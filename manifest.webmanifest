@@ -1,18 +1,36 @@
 {
   "name": "Siham Délice de Fès",
   "short_name": "Siham Délice",
-  "description": "120 recettes marocaines trilingues : gâteaux, pâtisseries, glaces et sorbets.",
+  "description": "155 recettes marocaines trilingues : gâteaux, pâtisseries, glaces, sorbets, crèmes et sirops.",
   "start_url": "index.html",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#F7F4ED",
-  "theme_color": "#1F4A3A",
+  "background_color": "#FBF6F5",
+  "theme_color": "#9B3A61",
   "lang": "fr",
-  "categories": ["food", "lifestyle"],
+  "categories": [
+    "food",
+    "lifestyle"
+  ],
   "icons": [
-    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
-    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
-    { "src": "icon-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
   ]
 }

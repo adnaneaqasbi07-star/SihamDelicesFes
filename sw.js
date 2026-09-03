@@ -1,7 +1,7 @@
 /* Siham Delice de Fes — service worker.
    Cache d'abord pour la coquille, avec repli reseau. Les polices Google
    sont mises en cache au premier passage pour fonctionner hors ligne. */
-const CACHE = "siham-delice-v1";
+const CACHE = "siham-delice-v2";
 const ASSETS = [
   "index.html",
   "manifest.webmanifest",

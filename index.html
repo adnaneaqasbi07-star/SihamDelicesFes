@@ -8,22 +8,22 @@
 <meta name="apple-mobile-web-app-title" content="Siham Délice">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="theme-color" content="#F7F4ED" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#14130E" media="(prefers-color-scheme: dark)">
-<meta name="description" content="120 recettes marocaines trilingues : gâteaux, pâtisseries, glaces et sorbets.">
+<meta name="theme-color" content="#FBF6F5" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#171113" media="(prefers-color-scheme: dark)">
+<meta name="description" content="155 recettes marocaines trilingues : gâteaux, pâtisseries, glaces, sorbets, crèmes et sirops.">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
 
 <style>
 :root{
-  --ground:#F7F4ED; --surface:#FFFDF8; --surface-2:#EFEBDF; --surface-3:#E5DFCE;
-  --ink:#221F19; --ink-soft:#5C574B; --ink-faint:#8A836F;
-  --line:#DDD6C6; --line-soft:#E8E2D4;
-  --accent:#1F4A3A; --accent-2:#2F6B52; --accent-wash:#E4EBE4; --on-accent:#FFFDF8;
-  --gold:#A8813C; --gold-wash:#F3EBDB;
-  --brown:#6B4A2E;
-  --ok:#2F6B52; --warn:#8F6520; --danger:#8C3A2E; --danger-wash:#F6E7E3;
+  --ground:#FBF6F5; --surface:#FFFCFB; --surface-2:#F4E9E8; --surface-3:#EBDBDA;
+  --ink:#241A1C; --ink-soft:#5E4A4E; --ink-faint:#8C7579;
+  --line:#E4D3D3; --line-soft:#EFE2E1;
+  --accent:#9B3A61; --accent-2:#B8566F; --accent-wash:#F8E7EC; --on-accent:#FFFCFB;
+  --gold:#A8813C; --gold-wash:#F5EBDB;
+  --brown:#7A4A55;
+  --ok:#2F6B52; --warn:#8F6520; --danger:#B4462B; --danger-wash:#F9E9E2;
   --shadow-1:0 1px 2px rgba(34,31,25,.06);
   --shadow-2:0 2px 6px rgba(34,31,25,.07),0 12px 28px -18px rgba(34,31,25,.3);
   --r:10px; --r-s:7px;
@@ -31,25 +31,25 @@
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
-    --ground:#14130E; --surface:#1C1B15; --surface-2:#24231B; --surface-3:#2E2C22;
-    --ink:#EDE7D8; --ink-soft:#A79F8C; --ink-faint:#7C7565;
-    --line:#33312A; --line-soft:#2A2921;
-    --accent:#77C39B; --accent-2:#8FD1AD; --accent-wash:#1E2A23; --on-accent:#10221A;
-    --gold:#D2A857; --gold-wash:#2A241A;
-    --brown:#C09B72;
-    --ok:#77C39B; --warn:#D2A857; --danger:#E08672; --danger-wash:#2E1F1B;
+    --ground:#171113; --surface:#201819; --surface-2:#291F21; --surface-3:#33272A;
+    --ink:#F0E4E7; --ink-soft:#B3A0A5; --ink-faint:#857073;
+    --line:#382B2E; --line-soft:#2E2325;
+    --accent:#E794AE; --accent-2:#F0A9BF; --accent-wash:#2C1C22; --on-accent:#24121A;
+    --gold:#D2A857; --gold-wash:#2C2419;
+    --brown:#C09B8B;
+    --ok:#77C39B; --warn:#D2A857; --danger:#E68A6B; --danger-wash:#33201A;
     --shadow-1:0 1px 2px rgba(0,0,0,.45);
     --shadow-2:0 2px 6px rgba(0,0,0,.5),0 12px 28px -18px rgba(0,0,0,.9);
   }
 }
 :root[data-theme="dark"]{
-  --ground:#14130E; --surface:#1C1B15; --surface-2:#24231B; --surface-3:#2E2C22;
-  --ink:#EDE7D8; --ink-soft:#A79F8C; --ink-faint:#7C7565;
-  --line:#33312A; --line-soft:#2A2921;
-  --accent:#77C39B; --accent-2:#8FD1AD; --accent-wash:#1E2A23; --on-accent:#10221A;
-  --gold:#D2A857; --gold-wash:#2A241A;
-  --brown:#C09B72;
-  --ok:#77C39B; --warn:#D2A857; --danger:#E08672; --danger-wash:#2E1F1B;
+  --ground:#171113; --surface:#201819; --surface-2:#291F21; --surface-3:#33272A;
+  --ink:#F0E4E7; --ink-soft:#B3A0A5; --ink-faint:#857073;
+  --line:#382B2E; --line-soft:#2E2325;
+  --accent:#E794AE; --accent-2:#F0A9BF; --accent-wash:#2C1C22; --on-accent:#24121A;
+  --gold:#D2A857; --gold-wash:#2C2419;
+  --brown:#C09B8B;
+  --ok:#77C39B; --warn:#D2A857; --danger:#E68A6B; --danger-wash:#33201A;
   --shadow-1:0 1px 2px rgba(0,0,0,.45);
   --shadow-2:0 2px 6px rgba(0,0,0,.5),0 12px 28px -18px rgba(0,0,0,.9);
 }
@@ -360,8 +360,8 @@ main{flex:1;padding:0 0 calc(env(safe-area-inset-bottom) + 84px)}
   #app,.toast,.sheet-bg{display:none!important}
   #print{display:block!important;font-family:"IBM Plex Sans",sans-serif;color:#000;font-size:10.5pt;line-height:1.45}
   #print[dir="rtl"]{font-family:Amiri,serif;font-size:12pt;line-height:1.8}
-  #print .p-head{display:flex;align-items:baseline;gap:10mm;border-bottom:1.4pt solid #1F4A3A;padding-bottom:3mm;margin-bottom:5mm}
-  #print .p-brand{font-family:Marcellus,Georgia,serif;font-size:13pt;color:#1F4A3A;letter-spacing:.02em}
+  #print .p-head{display:flex;align-items:baseline;gap:10mm;border-bottom:1.4pt solid #9B3A61;padding-bottom:3mm;margin-bottom:5mm}
+  #print .p-brand{font-family:Marcellus,Georgia,serif;font-size:13pt;color:#9B3A61;letter-spacing:.02em}
   #print .p-brand span{color:#A8813C}
   #print .p-cat{margin-inline-start:auto;font-size:9pt;color:#555;text-transform:uppercase;letter-spacing:.09em}
   #print h1{font-family:Marcellus,Georgia,serif;font-weight:400;font-size:23pt;line-height:1.1;margin:0 0 3mm}
@@ -375,7 +375,7 @@ main{flex:1;padding:0 0 calc(env(safe-area-inset-bottom) + 84px)}
   #print .p-fact .v{font-size:11pt;font-weight:600}
   #print .p-fact .k{font-size:7.5pt;color:#666;text-transform:uppercase;letter-spacing:.06em}
   #print[dir="rtl"] .p-fact .k{font-size:9.5pt;text-transform:none;letter-spacing:0}
-  #print h2{font-size:11pt;letter-spacing:.1em;text-transform:uppercase;color:#1F4A3A;margin:0 0 3mm;padding-bottom:1.5mm;border-bottom:.5pt solid #ccc}
+  #print h2{font-size:11pt;letter-spacing:.1em;text-transform:uppercase;color:#9B3A61;margin:0 0 3mm;padding-bottom:1.5mm;border-bottom:.5pt solid #ccc}
   #print[dir="rtl"] h2{font-size:13pt;letter-spacing:0;text-transform:none}
   #print .p-cols{display:grid;grid-template-columns:38% 1fr;gap:9mm;align-items:start}
   #print .p-grp{font-size:8.5pt;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:#A8813C;margin:3mm 0 1.5mm}
@@ -384,7 +384,7 @@ main{flex:1;padding:0 0 calc(env(safe-area-inset-bottom) + 84px)}
   #print .p-ing .q{font-weight:600;white-space:nowrap}
   #print .p-step{display:flex;gap:3mm;padding:1.6mm 0;break-inside:avoid}
   #print .p-step .n{font-weight:600;color:#A8813C;min-width:5mm}
-  #print .p-tip{border-inline-start:1.4pt solid #A8813C;background:#F7F2E6;padding:2.5mm 3.5mm;margin-top:4mm;font-size:9.5pt;break-inside:avoid}
+  #print .p-tip{border-inline-start:1.4pt solid #A8813C;background:#FAF0F2;padding:2.5mm 3.5mm;margin-top:4mm;font-size:9.5pt;break-inside:avoid}
   #print[dir="rtl"] .p-tip{font-size:11pt}
   #print .p-foot{margin-top:7mm;padding-top:2.5mm;border-top:.5pt solid #ccc;font-size:8pt;color:#666;display:flex;justify-content:space-between}
   #print .p-sl{width:100%;border-collapse:collapse}
@@ -684,7 +684,12 @@ const ING_SEED = [
   ["sucre_roux",  "سكر بني",           "Sucre roux",               "Brown sugar",            "i2", "g",  0.80],
   ["choco_blanc", "شوكولاتة بيضاء",    "Chocolat blanc",           "White chocolate",        "i8", "g",  0.90],
   ["farine_gr",   "دقيق محمص",         "Farine grillée",           "Toasted flour",          "i1", "g",  0.53],
-  ["orge_gr",     "شعير محمص",         "Orge grillée",             "Toasted barley",         "i1", "g",  0.55]
+  ["orge_gr",     "شعير محمص",         "Orge grillée",             "Toasted barley",         "i1", "g",  0.55],
+  ["riz",         "أرز",               "Riz rond",                 "Short-grain rice",       "i1", "g",  0.85],
+  ["tahin",       "طحينة",             "Tahini",                   "Tahini",                 "i3", "g",  1.10],
+  ["huile_argan", "زيت أركان",         "Huile d'argan",            "Argan oil",              "i6", "ml", 0.91],
+  ["avocat",      "أفوكادو",           "Avocats",                  "Avocados",               "i9", "g",  0.95],
+  ["the_vert",    "شاي أخضر",          "Thé vert",                 "Green tea",              "i7", "g",  0.35]
 ].map(function (r) {
   return { id: r[0], ar: r[1], fr: r[2], en: r[3], cat: r[4], unit: r[5], dens: r[6] };
 });
@@ -2580,6 +2585,12 @@ const SHAPE_RULES = [
   ["disc",     /harcha|حرشة/],
   ["mound",    /sellou|sfouf|zammita|سلو|سفوف|زميط/],
   ["layers",   /pastilla|ktefa|jawhara|bouchnikha|بسطيل|كتفا|جوهرة|بوشنيخ/],
+  ["flan",     /panna cotta|br(û|u)l(é|e)e|بانا كوتا|بروليه/],
+  ["drop",     /coulis|كوليس|sauce|صلصة|sirop|شراب|caramel liquide/],
+  ["cigar",    /cigare|سيجار/],
+  ["mound",    /p(â|a)te d'amande|farce|حشوة|عجينة|amlou|أملو/],
+  ["glass",    /cr(è|e)me|كريمة|ganache|غاناش|chantilly|mhalabia|مهلبية|riz au lait|أرز بالحليب|th(é|e) |أتاي|شاي|jus |عصير|salade|سلطة/],
+  ["dome",     /montecaos|مونتيكاو|sabl(é|e)|بسكويت بالمربى/],
   ["wedge",    /cheesecake|تشيز/],
   ["tart",     /tarte|tart|تارت/],
   ["glass",    /mousse|tiramisu|موس|تيراميسو/],
@@ -2593,24 +2604,25 @@ const SHAPE_RULES = [
 
 /* Teinte, deduite du parfum. Meme principe. */
 const TONE_RULES = [
+  [/avocat|avocado|أفوكادو/,                   "#4E6B33", "#86A85C"],
   [/chocolat|chocolate|شوكولات/,               "#33200F", "#6B4630"],
   [/café|cafe|coffee|قهوة/,                    "#3B2A1C", "#6E5138"],
   [/caramel|كراميل/,                           "#5E3A14", "#9E6A24"],
   [/datte|date|تمر/,                           "#4A2E1B", "#7E5430"],
-  [/noisette|hazelnut|بندق/,                   "#523B24", "#87643C"],
-  [/noix|walnut|جوز(?! الهند)/,                "#4C3D28", "#7C6642"],
-  [/cacahuèt|cacahuet|peanut|كاوكاو|فول/,      "#5C4526", "#95733E"],
+  [/noisette|hazelnut|بندق/,                   "#5E3D33", "#93695C"],
+  [/noix|walnut|جوز(?! الهند)/,                "#5A3F3A", "#8E6A62"],
+  [/cacahuèt|cacahuet|peanut|كاوكاو|فول/,      "#6B4C3C", "#A07A66"],
   [/pistache|pistachio|فستق/,                  "#3F5A2C", "#6E8F49"],
-  [/coco|coconut|جوز الهند/,                   "#6F6A5A", "#ADA694"],
-  [/amande|almond|لوز/,                        "#5A4A30", "#8E7448"],
-  [/sésame|sesame|سمسم|زنجلان/,                "#6B5A38", "#A08B5C"],
-  [/raisin|زبيب/,                              "#503A2C", "#84644C"],
+  [/coco|coconut|جوز الهند/,                   "#7A6D68", "#B4A7A1"],
+  [/amande|almond|لوز/,                        "#6B4A48", "#A37D78"],
+  [/sésame|sesame|سمسم|زنجلان/,                "#74594E", "#A88A7C"],
+  [/raisin|زبيب/,                              "#57382F", "#8B6255"],
   [/menthe|mint|نعناع/,                        "#2E5340", "#549173"],
   [/gingembre|ginger|زنجبيل/,                  "#7A5A1C", "#B78E32"],
   [/safran|saffron|زعفران/,                    "#8A5A0E", "#C79426"],
-  [/fleur d'oranger|orange blossom|ماء الزهر/, "#6A6144", "#A29774"],
-  [/anis|نافع/,                                "#5A5F3A", "#8E945F"],
-  [/miel|honey|عسل/,                           "#6B4520", "#A87731"],
+  [/fleur d'oranger|orange blossom|ماء الزهر/, "#7A6055", "#B39588"],
+  [/anis|نافع/,                                "#6A6250", "#9E957F"],
+  [/miel|honey|عسل/,                           "#7A5220", "#B5852F"],
   [/citron|lemon|ليمون/,                       "#65621D", "#A6A033"],
   [/mandarine|mandarin|يوسفي/,                 "#8A5510", "#C89228"],
   [/orange|برتقال/,                            "#8A4E15", "#C98A2C"],
@@ -2627,16 +2639,19 @@ const TONE_RULES = [
   [/poire|pear|كمثرى/,                         "#5C5C28", "#969644"],
   [/banane|banana|موز/,                        "#7A6A1E", "#B8A238"],
   [/exotique|tropical|fruits|فواكه/,           "#7A3A20", "#B76A3A"],
-  [/yaourt|yogurt|زبادي/,                      "#6C6A5C", "#A9A695"],
-  [/vanille|vanilla|فانيلا/,                   "#7C7154", "#BCB08A"],
-  [/marbr|marble|رخام/,                        "#48372A", "#7E6350"]
+  [/yaourt|yogurt|زبادي/,                      "#786B6A", "#B3A5A4"],
+  [/eau de rose|sirop de rose|ماء الورد|شراب الورد/, "#8E3358", "#C0708C"],
+  [/argan|أركان/,                              "#7A5A2A", "#B58F45"],
+  [/tahin|طحين/,                               "#74594E", "#A88A7C"],
+  [/vanille|vanilla|فانيلا/,                   "#8A7566", "#C4AC9C"],
+  [/marbr|marble|رخام/,                        "#4E3730", "#856257"]
 ];
 
 const TONE_CAT = {
-  c1: ["#75603C", "#A98D5B"], c2: ["#6B4520", "#A87731"], c3: ["#4A3524", "#84674A"],
-  c4: ["#67512F", "#9B7A49"], c5: ["#5E4B36", "#917455"], c6: ["#6C5F41", "#A79767"],
-  c7: ["#65621D", "#A6A033"], c8: ["#6A5B3E", "#A08D63"], c9: ["#6B4520", "#A87731"],
-  c10:["#5C5133", "#8E7C4F"]
+  c1: ["#7A4A55", "#AD7C86"], c2: ["#8A4258", "#BE7288"], c3: ["#5A3340", "#8E6272"],
+  c4: ["#78505A", "#A9808A"], c5: ["#6E4250", "#9E7280"], c6: ["#7C7154", "#BCB08A"],
+  c7: ["#65621D", "#A6A033"], c8: ["#8A5A66", "#BE8B96"], c9: ["#8A4A3A", "#C07E68"],
+  c10:["#6E4A58", "#A07C88"]
 };
 const SHAPE_CAT = {
   c1: "dome", c2: "crescent", c3: "loaf", c4: "slice", c5: "glass",
@@ -2644,9 +2659,14 @@ const SHAPE_CAT = {
 };
 
 function illusSpec(r) {
-  const key = ((r.n && (r.n.fr + " " + r.n.en + " " + r.n.ar)) + " " + (r.kw || "")).toLowerCase();
+  /* La forme se lit sur le nom seul : un sous-titre comme "avec sa creme au
+     citron" ou "pour chebakia" designe une autre preparation, pas celle-ci.
+     La couleur, elle, profite des mots-cles et du sous-titre. */
+  const nom = (r.n ? (r.n.fr + " " + r.n.en + " " + r.n.ar) : "").toLowerCase();
+  const key = (nom + " " + (r.kw || "") + " " +
+               (r.sub ? (r.sub.fr + " " + r.sub.en + " " + r.sub.ar) : "")).toLowerCase();
   let shape = null, tone = null;
-  for (let i = 0; i < SHAPE_RULES.length && !shape; i++) if (SHAPE_RULES[i][1].test(key)) shape = SHAPE_RULES[i][0];
+  for (let i = 0; i < SHAPE_RULES.length && !shape; i++) if (SHAPE_RULES[i][1].test(nom)) shape = SHAPE_RULES[i][0];
   for (let i = 0; i < TONE_RULES.length && !tone; i++) if (TONE_RULES[i][0].test(key)) tone = [TONE_RULES[i][1], TONE_RULES[i][2]];
   if (!shape) shape = SHAPE_CAT[r.cat] || "dome";
   if (!tone) tone = TONE_CAT[r.cat] || TONE_CAT.c10;
@@ -2710,6 +2730,15 @@ function motif(kind) {
     '<rect x="43" y="104" width="34" height="6" rx="3" fill="' + c + '" fill-opacity=".7"/>';
   const ball = '<circle cx="60" cy="46" r="27" fill="' + c + '"/>' +
     '<path d="M58 20a27 27 0 0 1 25 16" fill="none" stroke="' + INK_SOFT + '" stroke-width="5" stroke-linecap="round"/>';
+  if (kind === "cigar") {   /* cigares aux amandes : rouleaux */
+    return '<g transform="rotate(-24 60 60)">' +
+      '<g fill="' + c + '"><rect x="18" y="34" width="84" height="17" rx="8.5"/>' +
+      '<rect x="18" y="59" width="84" height="17" rx="8.5"/>' +
+      '<rect x="18" y="84" width="60" height="17" rx="8.5"/></g>' +
+      '<g fill="' + INK_SOFT + '"><circle cx="34" cy="42.5" r="2.6"/><circle cx="60" cy="42.5" r="2.6"/>' +
+      '<circle cx="86" cy="42.5" r="2.6"/><circle cx="34" cy="67.5" r="2.6"/><circle cx="60" cy="67.5" r="2.6"/>' +
+      '<circle cx="86" cy="67.5" r="2.6"/><circle cx="34" cy="92.5" r="2.6"/><circle cx="60" cy="92.5" r="2.6"/></g></g>';
+  }
   if (kind === "square") {   /* msemen, meloui, rghaif : carre feuillete */
     return '<rect x="24" y="24" width="72" height="72" rx="7" fill="' + c + '"/>' +
       '<g stroke="' + INK_SOFT + '" stroke-width="3.2" fill="none">' +
@@ -4349,12 +4378,455 @@ R("RCP-120", "c7", 1, 6, [20, 240, 5, 240], 750, "ml",
   ICE(S_TYPE, S_PULPE, ["فراولة ونعناع", "Fraise et menthe", "Strawberry and mint"], 28, 240, 25));
 </script>
 
+
+<script>
+"use strict";
+
+/* ---------- crèmes et garnitures : les préparations de base ---------- */
+R("RCP-121", "c8", 1, 8, [20, 120, 10, 0], 700, "g",
+  ["كريمة الحلواني", "Crème pâtissière", "Pastry Cream"],
+  ["أساس كل الحشوات", "La base de toutes les garnitures", "The base of every filling"],
+  "creme patissiere garniture tarte",
+  [["lait", 500, "ml", "base"], ["jaune", 4, "pc", "base"], ["sucre", 110, "g", "base"],
+   ["maizena", 45, "g", "base"], ["vanille_ex", 10, "ml", "base", "fix"], ["beurre", 30, "g", "base"]],
+  [["سخن الحليب مع الفانيليا دون أن يغلي.", "Chauffez le lait avec la vanille, sans le faire bouillir.", "Heat the milk with the vanilla, without boiling."],
+   ["اخفق الصفار مع السكر ثم أضف النشا.", "Fouettez les jaunes avec le sucre, puis ajoutez la maïzena.", "Whisk the yolks with the sugar, then add the cornstarch."],
+   ["اسكب الحليب الساخن على الخليط، أعده إلى النار وحرك بلا توقف حتى يثخن، ثم اتركه يغلي دقيقة كاملة.", "Versez le lait chaud sur le mélange, remettez sur le feu et remuez sans arrêt jusqu'à épaississement, puis laissez bouillir une minute pleine.", "Pour the hot milk over the mix, return to the heat and stir without stopping until thick, then boil for a full minute."],
+   ["أضف الزبدة خارج النار.", "Ajoutez le beurre hors du feu.", "Stir in the butter off the heat."],
+   ["غطها بغشاء ملامس واتركها تبرد ساعتين.", "Filmez au contact et laissez refroidir deux heures.", "Cover with cling film touching the surface and chill two hours."]],
+  ["دقيقة الغليان ليست اختيارية: بدونها يبقى للنشا طعم الدقيق النيء.", "La minute d'ébullition n'est pas facultative : sans elle, la maïzena garde son goût de farine.", "The full minute of boiling is not optional: without it the cornstarch keeps its raw taste."]);
+
+R("RCP-122", "c8", 2, 8, [15, 120, 12, 0], 600, "ml",
+  ["كريمة إنجليزية", "Crème anglaise", "Custard"],
+  ["للسقي أو لأساس المثلجات", "À napper, ou base de glace", "To pour, or as an ice cream base"],
+  "creme anglaise sauce nappage",
+  [["lait", 500, "ml", "base"], ["creme", 100, "ml", "base"], ["jaune", 6, "pc", "base"],
+   ["sucre", 100, "g", "base"], ["vanille_g", 1, "pc", "base", "fix"]],
+  [["اشقق عود الفانيليا وسخنه مع الحليب والكريمة، ثم اتركه ينقع عشرين دقيقة.", "Fendez la gousse, chauffez-la avec le lait et la crème, puis laissez infuser vingt minutes.", "Split the pod, heat it with the milk and cream, then infuse twenty minutes."],
+   ["اخفق الصفار مع السكر حتى يفتح لونه.", "Fouettez les jaunes avec le sucre jusqu'à blanchiment.", "Whisk the yolks with the sugar until pale."],
+   ["اسكب الحليب الساخن، ثم اطبخ على نار هادئة حتى 83 درجة دون أن يغلي أبدا.", "Versez le lait chaud, puis cuisez à feu doux jusqu'à 83 °C, sans jamais bouillir.", "Pour in the hot milk, then cook gently to 83 °C, never letting it boil."],
+   ["صفها فورا وبردها في وعاء بارد.", "Passez au chinois aussitôt et refroidissez dans un récipient froid.", "Strain at once and cool in a cold bowl."]],
+  ["إن تجبنت، اهرسها في الخلاط دقيقة: تعود ناعمة في أغلب الحالات.", "Si elle tranche, mixez-la une minute au blender : elle se rattrape le plus souvent.", "If it splits, blend it for a minute: it usually comes back."]);
+
+R("RCP-123", "c8", 1, 8, [15, 30, 0, 0], 550, "g",
+  ["كريمة اللوز", "Crème d'amandes", "Almond Cream"],
+  ["للتارت والفطائر", "Pour les tartes et les galettes", "For tarts and galettes"],
+  "creme amande frangipane garniture",
+  [["amande_p", 200, "g", "base"], ["sucre", 150, "g", "base"], ["beurre", 150, "g", "base"],
+   ["oeuf", 3, "pc", "base"], ["maizena", 20, "g", "base"], ["eau_zhar", 15, "ml", "base", "fix"]],
+  [["اخفق الزبدة الطرية مع السكر حتى يصبح المزيج كريميا.", "Crémez le beurre pommade avec le sucre jusqu'à consistance mousseuse.", "Cream the soft butter with the sugar until fluffy."],
+   ["أضف البيض واحدة واحدة، واخفق جيدا بعد كل واحدة.", "Ajoutez les œufs un à un en fouettant bien entre chaque.", "Add the eggs one at a time, beating well after each."],
+   ["أضف اللوز المطحون والنشا وماء الزهر.", "Incorporez les amandes en poudre, la maïzena et l'eau de fleur d'oranger.", "Fold in the ground almonds, cornstarch and orange blossom water."],
+   ["دعها ترتاح نصف ساعة في البرد قبل الاستعمال.", "Laissez reposer une demi-heure au frais avant emploi.", "Rest half an hour in the fridge before using."]],
+  ["الزبدة والبيض في حرارة الغرفة: البارد يقطع الكريمة.", "Beurre et œufs à température ambiante : le froid fait trancher la crème.", "Butter and eggs at room temperature: cold ingredients split the cream."]);
+
+R("RCP-124", "c8", 3, 10, [30, 0, 8, 0], 650, "g",
+  ["كريمة الزبدة", "Crème au beurre", "Buttercream"],
+  ["بالميرينغ السويسري", "À la meringue suisse", "Swiss meringue method"],
+  "creme beurre meringue decor",
+  [["blanc", 3, "pc", "base"], ["sucre", 180, "g", "base"], ["beurre", 250, "g", "base"],
+   ["vanille_ex", 10, "ml", "base", "fix"], ["sel", 1, "g", "base", "root"]],
+  [["اخفق البياض مع السكر على حمام مائي حتى تصل الحرارة إلى 60 درجة ويذوب السكر تماما.", "Fouettez les blancs et le sucre au bain-marie jusqu'à 60 °C, le sucre entièrement fondu.", "Whisk the whites and sugar over a water bath to 60 °C, until the sugar has fully dissolved."],
+   ["انقل الخليط إلى الخلاط واخفقه بسرعة عالية حتى يبرد تماما ويصبح لامعا ومتماسكا.", "Transférez au batteur et montez à grande vitesse jusqu'à complet refroidissement : la meringue doit être lisse et ferme.", "Transfer to a mixer and whip at high speed until completely cool: the meringue should be glossy and firm."],
+   ["أضف الزبدة الطرية قطعة قطعة مع الخفق المتواصل.", "Ajoutez le beurre pommade morceau par morceau, sans cesser de fouetter.", "Add the soft butter piece by piece, whisking continuously."],
+   ["إن انفصل المزيج، واصل الخفق: يعود متجانسا من تلقاء نفسه.", "Si l'appareil se dissocie, continuez de fouetter : il se lisse de lui-même.", "If it curdles, keep whisking: it comes back together."],
+   ["أضف الفانيليا والملح في النهاية.", "Ajoutez la vanille et le sel à la fin.", "Add the vanilla and salt at the end."]],
+  ["يجب أن يبرد الميرينغ تماما قبل إضافة الزبدة: إن كان فاترا أذابها ولم يرتفع شيء.", "La meringue doit être entièrement froide avant le beurre : tiède, elle le fait fondre et rien ne monte.", "The meringue must be completely cold before the butter: warm, it melts the butter and nothing whips."]);
+
+R("RCP-125", "c8", 1, 10, [10, 60, 5, 0], 640, "g",
+  ["غاناش الشوكولاتة", "Ganache au chocolat", "Chocolate Ganache"],
+  ["للسقي والحشو والتغطية", "À napper, fourrer ou glacer", "To pour, fill or glaze"],
+  "ganache chocolat glacage garniture",
+  [["choco_noir", 300, "g", "base"], ["creme", 300, "ml", "base"], ["beurre", 40, "g", "base"],
+   ["miel", 20, "g", "base"]],
+  [["قطع الشوكولاتة صغيرا وضعها في وعاء.", "Hachez le chocolat finement et mettez-le dans un bol.", "Chop the chocolate finely and put it in a bowl."],
+   ["سخن الكريمة مع العسل حتى الغليان الخفيف واسكبها على الشوكولاتة.", "Chauffez la crème avec le miel jusqu'au frémissement et versez-la sur le chocolat.", "Heat the cream with the honey to a simmer and pour it over the chocolate."],
+   ["انتظر دقيقة كاملة دون تحريك، ثم اخلط من الوسط نحو الخارج بحركات دائرية صغيرة.", "Attendez une minute pleine sans remuer, puis lissez du centre vers l'extérieur par petits cercles.", "Wait a full minute without stirring, then stir from the centre outwards in small circles."],
+   ["أضف الزبدة عندما تنزل حرارة الخليط إلى 40 درجة.", "Ajoutez le beurre quand le mélange descend à 40 °C.", "Add the butter once the mixture drops to 40 °C."]],
+  ["الخلط من الوسط نحو الخارج هو ما يستحلب الغاناش ويجعله لامعا: التحريك العشوائي يتركه باهتا ومحببا.", "Lisser du centre vers l'extérieur est ce qui émulsionne la ganache et la fait briller : remuer au hasard la rend terne et granuleuse.", "Stirring from the centre outwards is what emulsifies the ganache and makes it shine: random stirring leaves it dull and grainy."]);
+
+R("RCP-126", "c8", 1, 8, [10, 0, 0, 0], 550, "g",
+  ["كريمة مخفوقة", "Crème chantilly", "Whipped Cream"],
+  ["ثلاثة مكونات ومزلق واحد", "Trois ingrédients, un seul écueil", "Three ingredients, one pitfall"],
+  "chantilly creme fouettee",
+  [["creme", 500, "ml", "base"], ["sucre_glace", 50, "g", "base"],
+   ["vanille_ex", 5, "ml", "base", "fix"]],
+  [["ضع الكريمة والوعاء والمخفقة في الثلاجة نصف ساعة قبل البدء.", "Placez la crème, le bol et le fouet au réfrigérateur une demi-heure avant de commencer.", "Chill the cream, the bowl and the whisk for half an hour before starting."],
+   ["اخفق بسرعة متوسطة، لا عالية.", "Fouettez à vitesse moyenne, pas rapide.", "Whip at medium speed, not high."],
+   ["أضف السكر الناعم والفانيليا حين يبدأ الخليط في التماسك.", "Ajoutez le sucre glace et la vanille dès que la crème commence à prendre.", "Add the icing sugar and vanilla as soon as the cream starts to hold."],
+   ["أوقف الخفق حين ترتسم آثار المخفقة وتبقى.", "Arrêtez dès que le fouet laisse des sillons qui tiennent.", "Stop the moment the whisk leaves furrows that hold."]],
+  ["كريمة بنسبة دسم 30 بالمائة على الأقل: أقل من ذلك لا ترتفع أبدا، مهما فعلت.", "Une crème à 30 % de matière grasse au minimum : en dessous, elle ne monte pas, quoi que vous fassiez.", "Cream with at least 30 % fat: below that it will not whip, whatever you do."]);
+
+R("RCP-127", "c8", 2, 8, [20, 120, 10, 0], 500, "g",
+  ["كريمة الليمون", "Crème au citron", "Lemon Curd"],
+  ["حادة، للتارت والكؤوس", "Vive, pour tartes et verrines", "Sharp, for tarts and glasses"],
+  "lemon curd citron garniture",
+  [["jus_cit", 150, "ml", "base"], ["zeste_cit", 12, "g", "base", "root"], ["sucre", 150, "g", "base"],
+   ["oeuf", 3, "pc", "base"], ["beurre", 120, "g", "base"], ["maizena", 15, "g", "base"]],
+  [["افرك القشر بالسكر بأصابعك لتحرير زيوته العطرية.", "Frottez le zeste dans le sucre du bout des doigts pour libérer ses huiles.", "Rub the zest into the sugar with your fingertips to release its oils."],
+   ["اخفق البيض مع السكر المعطر والنشا وعصير الليمون.", "Fouettez les œufs avec ce sucre, la maïzena et le jus de citron.", "Whisk the eggs with that sugar, the cornstarch and the lemon juice."],
+   ["اطبخ على نار هادئة مع التحريك المتواصل حتى يثخن المزيج.", "Cuisez à feu doux en remuant sans arrêt jusqu'à épaississement.", "Cook over low heat, stirring constantly, until thick."],
+   ["أضف الزبدة قطعة قطعة خارج النار، ثم بردها ساعتين.", "Ajoutez le beurre morceau par morceau hors du feu, puis réservez deux heures au frais.", "Whisk in the butter piece by piece off the heat, then chill two hours."]],
+  ["الزبدة خارج النار فقط: عليها تنفصل الكريمة نهائيا.", "Le beurre hors du feu seulement : sur le feu, la crème se dissocie irrémédiablement.", "Butter off the heat only: over the heat the curd splits for good."]);
+
+R("RCP-128", "c8", 2, 10, [25, 240, 0, 0], 850, "g",
+  ["عجينة اللوز", "Pâte d'amande", "Almond Paste"],
+  ["للتشكيل أو للحشو", "À modeler ou à fourrer", "To model or to fill"],
+  "pate amande massepain modelage",
+  [["amande_p", 500, "g", "base"], ["sucre_glace", 400, "g", "base"], ["blanc", 2, "pc", "base"],
+   ["eau_zhar", 20, "ml", "base", "fix"], ["jus_cit", 10, "ml", "base", "fix"]],
+  [["انخل اللوز المطحون والسكر الناعم معا.", "Tamisez ensemble les amandes en poudre et le sucre glace.", "Sift the ground almonds and icing sugar together."],
+   ["أضف البياض تدريجيا مع ماء الزهر وعصير الليمون.", "Ajoutez les blancs peu à peu, avec l'eau de fleur d'oranger et le jus de citron.", "Add the whites gradually, with the orange blossom water and lemon juice."],
+   ["اعجن باليد حتى تتماسك العجينة دون أن تلتصق.", "Pétrissez à la main jusqu'à une pâte qui tient sans coller.", "Knead by hand to a paste that holds without sticking."],
+   ["لفها في غشاء ودعها ترتاح أربع ساعات في البرد.", "Emballez-la et laissez-la reposer quatre heures au frais.", "Wrap it and rest four hours in the fridge."]],
+  ["أضف البياض بالملعقة ولا دفعة واحدة: العجينة المفرطة الرطوبة لا تعالج.", "Ajoutez les blancs à la cuillère, jamais d'un coup : trop humide, la pâte est irrécupérable.", "Add the whites by the spoonful, never all at once: too wet, the paste cannot be saved."]);
+
+R("RCP-129", "c8", 1, 10, [15, 0, 0, 0], 750, "g",
+  ["حشوة اللوز المغربية", "Farce aux amandes marocaine", "Moroccan Almond Filling"],
+  ["لكعب الغزال والمحنشة والبريوات", "Kaab el ghzal, mhencha, briouates", "For gazelle horns, mhencha, briouats"],
+  "farce amande kaab mhencha briouate",
+  [["amande_p", 500, "g", "base"], ["sucre_glace", 180, "g", "base"], ["cannelle", 5, "g", "base", "fix"],
+   ["eau_zhar", 40, "ml", "base"], ["beurre_f", 40, "g", "base"], ["gomme", 1, "g", "base", "fix"]],
+  [["اسحق المسكة مع قليل من السكر حتى تصبح مسحوقا.", "Écrasez la gomme arabique avec un peu de sucre jusqu'à obtenir une poudre.", "Crush the gum arabic with a little sugar to a powder."],
+   ["اخلط اللوز والسكر والقرفة والمسكة.", "Mélangez les amandes, le sucre, la cannelle et la gomme.", "Mix the almonds, sugar, cinnamon and gum."],
+   ["أضف الزبدة المذابة وماء الزهر واعجن حتى تتماسك الحشوة بين الأصابع.", "Ajoutez le beurre fondu et l'eau de fleur d'oranger, travaillez jusqu'à ce que la farce tienne entre les doigts.", "Add the melted butter and orange blossom water, work until the filling holds between your fingers."]],
+  ["حشوة متماسكة لا رطبة: المفرطة الرطوبة تثقب العجين أثناء الخبز.", "Une farce qui tient, pas humide : trop mouillée, elle perce la pâte à la cuisson.", "A filling that holds, not wet: too moist and it bursts the pastry as it bakes."]);
+
+R("RCP-130", "c8", 1, 10, [15, 0, 0, 0], 600, "g",
+  ["حشوة التمر", "Farce aux dattes", "Date Filling"],
+  ["للمقروط والحلويات", "Pour makrout et gâteaux", "For makrout and cakes"],
+  "farce datte makrout",
+  [["datte", 500, "g", "base"], ["cannelle", 5, "g", "base", "fix"], ["huile", 30, "ml", "base"],
+   ["eau_zhar", 20, "ml", "base", "fix"], ["zeste_cit", 5, "g", "base", "root"]],
+  [["انزع النوى واقطع التمر خشنا.", "Dénoyautez et hachez grossièrement les dattes.", "Pit the dates and chop them coarsely."],
+   ["اهرسها بالخلاط أو في الهاون مع الزيت.", "Écrasez-les au mixeur ou au mortier avec l'huile.", "Blend or pound them with the oil."],
+   ["أضف القرفة وقشر الليمون وماء الزهر، ثم اعجن حتى تصبح العجينة لينة ومتجانسة.", "Ajoutez la cannelle, le zeste et l'eau de fleur d'oranger, travaillez jusqu'à une pâte souple et homogène.", "Add the cinnamon, zest and orange blossom water, and work to a smooth, supple paste."]],
+  ["إن كان التمر جافا، سخنه دقيقتين على البخار: يعود طريا دون إضافة ماء.", "Dattes un peu sèches ? Passez-les deux minutes à la vapeur : elles redeviennent malléables sans ajout d'eau.", "Dates a little dry? Steam them two minutes: they turn pliable again without adding water."]);
+
+R("RCP-131", "c8", 1, 8, [10, 0, 0, 0], 450, "g",
+  ["كريمة الطحينة", "Crème au sésame", "Tahini Cream"],
+  ["تغطية مغربية بالعسل", "Nappage marocain au miel", "Moroccan honey topping"],
+  "creme tahini sesame miel nappage",
+  [["tahin", 200, "g", "base"], ["miel", 120, "g", "base"], ["lait", 100, "ml", "base"],
+   ["sucre_glace", 40, "g", "base"], ["eau_zhar", 10, "ml", "base", "fix"]],
+  [["حرك الطحينة جيدا في علبتها: الزيت يعلوها دائما.", "Remuez bien le tahini dans son pot : l'huile remonte toujours.", "Stir the tahini well in its jar: the oil always rises."],
+   ["اخلطها مع العسل والسكر الناعم.", "Mélangez-le au miel et au sucre glace.", "Mix it with the honey and icing sugar."],
+   ["أضف الحليب في تيار رفيع حتى تحصل على قوام سائل ولامع، ثم ماء الزهر.", "Ajoutez le lait en filet jusqu'à une texture coulante et brillante, puis l'eau de fleur d'oranger.", "Add the milk in a thin stream to a glossy, pourable texture, then the orange blossom water."]],
+  ["الطحينة تتماسك أولا قبل أن تلين: لا تسكب الحليب كله ظنا أنك أخفقت.", "Le tahini se raidit d'abord avant de se détendre : n'ajoutez pas tout le lait d'un coup en croyant l'avoir raté.", "Tahini seizes before it loosens: do not dump in all the milk thinking you have ruined it."]);
+
+R("RCP-132", "c8", 2, 10, [25, 120, 10, 0], 800, "g",
+  ["كريمة موسلين", "Crème mousseline", "Mousseline Cream"],
+  ["كريمة الحلواني مخفوقة بالزبدة", "Pâtissière montée au beurre", "Pastry cream whipped with butter"],
+  "mousseline creme beurre garniture",
+  [["lait", 500, "ml", "base"], ["jaune", 4, "pc", "base"], ["sucre", 110, "g", "base"],
+   ["maizena", 45, "g", "base"], ["beurre", 200, "g", "base"], ["vanille_ex", 10, "ml", "base", "fix"]],
+  [["حضر كريمة الحلواني مع نصف الزبدة، ثم بردها تماما.", "Préparez une crème pâtissière avec la moitié du beurre, puis refroidissez-la complètement.", "Make a pastry cream with half the butter, then cool it completely."],
+   ["اخفق نصف الزبدة الباقي وحده حتى يفتح لونه ويصبح هوائيا.", "Fouettez le reste du beurre seul, jusqu'à ce qu'il blanchisse et devienne aérien.", "Whip the remaining butter on its own until pale and airy."],
+   ["أضف الكريمة الباردة إلى الزبدة بالملعقة، مع الخفق المتواصل.", "Incorporez la crème froide au beurre, cuillère par cuillère, sans cesser de fouetter.", "Add the cold cream to the butter a spoonful at a time, whisking constantly."],
+   ["استعملها فورا: تتماسك في البرد.", "Utilisez-la aussitôt : elle durcit au froid.", "Use it at once: it firms up when cold."]],
+  ["الكريمة والزبدة في نفس الحرارة: أي فرق بينهما يقطع المزيج.", "Crème et beurre à la même température : le moindre écart fait trancher l'appareil.", "Cream and butter at the same temperature: any gap splits the mixture."]);
+
+/* ---------- sirops et sauces ---------- */
+R("RCP-133", "c9", 1, 10, [5, 0, 8, 0], 800, "ml",
+  ["شراب السكر", "Sirop de sucre", "Sugar Syrup"],
+  ["الأساس الذي يخدم كل شيء", "La base à tout faire", "The all-purpose base"],
+  "sirop sucre base imbibage",
+  [["eau", 500, "ml", "base"], ["sucre", 500, "g", "base"], ["jus_cit", 10, "ml", "base", "fix"]],
+  [["اخلط الماء والسكر في قدر وسخن مع التحريك حتى يذوب السكر تماما.", "Réunissez l'eau et le sucre, chauffez en remuant jusqu'à dissolution complète.", "Combine the water and sugar and heat, stirring, until fully dissolved."],
+   ["اغل الخليط دقيقتين دون تحريك، ثم أضف عصير الليمون.", "Portez à ébullition deux minutes sans remuer, puis ajoutez le jus de citron.", "Boil for two minutes without stirring, then add the lemon juice."],
+   ["اتركه يبرد واحفظه في قنينة في الثلاجة: يبقى شهرا.", "Laissez refroidir et conservez en bouteille au réfrigérateur : il se garde un mois.", "Cool and keep it bottled in the fridge: it lasts a month."]],
+  ["عصير الليمون يمنع التبلور: بدونه يتحول الشراب إلى رمل بعد أيام.", "Le jus de citron empêche la cristallisation : sans lui, le sirop tourne en sable après quelques jours.", "The lemon juice stops crystallisation: without it the syrup turns sandy within days."]);
+
+R("RCP-134", "c9", 1, 10, [5, 0, 5, 0], 620, "ml",
+  ["شراب العسل وماء الزهر", "Sirop au miel et fleur d'oranger", "Honey & Orange Blossom Syrup"],
+  ["للشباكية والبريوات", "Pour chebakia et briouates", "For chebakia and briouats"],
+  "sirop miel fleur oranger chebakia",
+  [["miel", 500, "g", "base"], ["eau", 150, "ml", "base"], ["eau_zhar", 30, "ml", "base", "fix"],
+   ["jus_cit", 10, "ml", "base", "fix"]],
+  [["سخن العسل مع الماء على نار هادئة حتى يصبح سائلا، دون أن يغلي.", "Chauffez le miel avec l'eau à feu doux jusqu'à fluidité, sans jamais bouillir.", "Warm the honey with the water over low heat until fluid, never boiling."],
+   ["أضف عصير الليمون.", "Ajoutez le jus de citron.", "Add the lemon juice."],
+   ["أضف ماء الزهر خارج النار، واستعمل الشراب دافئا.", "Ajoutez l'eau de fleur d'oranger hors du feu, et utilisez tiède.", "Add the orange blossom water off the heat, and use it warm."]],
+  ["العسل المغلي يفقد عطره ويقسو: دافئ فقط، دائما.", "Un miel bouilli perd son parfum et durcit : tiède seulement, toujours.", "Boiled honey loses its scent and hardens: warm only, always."]);
+
+R("RCP-135", "c9", 1, 10, [5, 0, 8, 0], 700, "ml",
+  ["شراب الورد", "Sirop de rose", "Rose Syrup"],
+  ["للحلويات والمشروبات", "Pour desserts et boissons", "For desserts and drinks"],
+  "sirop rose eau de rose",
+  [["eau", 500, "ml", "base"], ["sucre", 400, "g", "base"], ["eau_ward", 40, "ml", "base", "fix"],
+   ["jus_cit", 15, "ml", "base", "fix"]],
+  [["أذب السكر في الماء على نار متوسطة.", "Dissolvez le sucre dans l'eau à feu moyen.", "Dissolve the sugar in the water over medium heat."],
+   ["اغل دقيقتين، أضف عصير الليمون واتركه يبرد.", "Faites bouillir deux minutes, ajoutez le jus de citron et laissez refroidir.", "Boil two minutes, add the lemon juice and let it cool."],
+   ["أضف ماء الورد إلى الشراب البارد.", "Ajoutez l'eau de rose dans le sirop froid.", "Add the rose water to the cold syrup."]],
+  ["ماء الورد على البارد: على الساخن لا يبقى منه إلا طعم الصابون.", "L'eau de rose à froid : à chaud, il ne reste qu'un goût de savon.", "Rose water into cold syrup: added hot, only a soapy note survives."]);
+
+R("RCP-136", "c9", 2, 10, [5, 0, 10, 0], 380, "ml",
+  ["كراميل سائل", "Caramel liquide", "Liquid Caramel"],
+  ["للفلان والتغطية", "Pour flans et nappages", "For flans and toppings"],
+  "caramel liquide flan nappage",
+  [["sucre", 300, "g", "base"], ["eau", 80, "ml", "base"], ["eau", 100, "ml", "sirop"],
+   ["jus_cit", 5, "ml", "base", "fix"]],
+  [["ضع السكر مع 80 مل من الماء وعصير الليمون في قدر ذي قاعدة سميكة.", "Mettez le sucre, 80 ml d'eau et le jus de citron dans une casserole à fond épais.", "Put the sugar, 80 ml water and the lemon juice in a heavy pan."],
+   ["اطبخ دون تحريك أبدا: حرك القدر نفسه إن لزم الأمر.", "Cuisez sans jamais remuer : contentez-vous d'agiter la casserole si besoin.", "Cook without ever stirring: just swirl the pan if needed."],
+   ["حين يصبح اللون عنبريا، أوقف الطبخ بالماء الساخن الباقي، بحذر: المزيج يتطاير.", "Dès la couleur ambrée, décuisez avec le reste d'eau chaude, prudemment : le mélange projette.", "At amber, stop the cooking with the remaining hot water, carefully: it spits."],
+   ["أعده إلى النار لحظة ليتجانس، ثم اتركه يبرد.", "Remettez un instant sur le feu pour homogénéiser, puis laissez refroidir.", "Return it briefly to the heat to even out, then cool."]],
+  ["ملعقة واحدة من التحريك تكفي لتبلور القدر كله: لا تحرك، أبدا.", "Une seule cuillère remuée suffit à faire cristalliser toute la casserole : ne remuez pas, jamais.", "One stir is enough to crystallise the whole pan: do not stir, ever."]);
+
+R("RCP-137", "c9", 2, 8, [10, 0, 12, 0], 450, "g",
+  ["صلصة الكراميل بالزبدة المملحة", "Sauce caramel au beurre salé", "Salted Butter Caramel Sauce"],
+  ["كثيفة ولامعة", "Épaisse et brillante", "Thick and glossy"],
+  "sauce caramel beurre sale",
+  [["sucre", 200, "g", "base"], ["creme", 200, "ml", "base"], ["beurre", 80, "g", "base"],
+   ["sel", 4, "g", "base", "root"]],
+  [["سخن الكريمة على نار هادئة واتركها جانبا.", "Chauffez la crème à feu doux et réservez-la.", "Warm the cream over low heat and set it aside."],
+   ["اطبخ السكر جافا في قدر سميك حتى يصبح كراميلا داكنا.", "Cuisez le sucre à sec dans une casserole épaisse jusqu'à un caramel foncé.", "Cook the sugar dry in a heavy pan to a dark caramel."],
+   ["أوقف الطبخ بالكريمة الساخنة، بحذر، مع التحريك.", "Décuisez avec la crème chaude, prudemment, en remuant.", "Stop the cooking with the hot cream, carefully, stirring."],
+   ["أضف الزبدة والملح خارج النار واخلط حتى تلمع الصلصة.", "Ajoutez le beurre et le sel hors du feu, mélangez jusqu'à ce que la sauce brille.", "Add the butter and salt off the heat and stir until the sauce shines."]],
+  ["كريمة ساخنة على كراميل ساخن: الكريمة الباردة تجمد الكراميل كتلة واحدة.", "Crème chaude sur caramel chaud : une crème froide fige le caramel en bloc.", "Hot cream onto hot caramel: cold cream seizes the caramel into a lump."]);
+
+R("RCP-138", "c9", 1, 8, [5, 0, 6, 0], 500, "ml",
+  ["صلصة الشوكولاتة", "Sauce au chocolat", "Chocolate Sauce"],
+  ["للمثلجات والحلويات", "Pour glaces et desserts", "For ice creams and desserts"],
+  "sauce chocolat nappage glace",
+  [["choco_noir", 200, "g", "base"], ["lait", 200, "ml", "base"], ["creme", 80, "ml", "base"],
+   ["sucre", 30, "g", "base"], ["beurre", 20, "g", "base"]],
+  [["سخن الحليب والكريمة مع السكر حتى الغليان الخفيف.", "Chauffez le lait et la crème avec le sucre jusqu'au frémissement.", "Heat the milk and cream with the sugar to a simmer."],
+   ["اسكبهما على الشوكولاتة المقطعة، انتظر دقيقة ثم اخلط.", "Versez sur le chocolat haché, attendez une minute puis lissez.", "Pour over the chopped chocolate, wait a minute, then stir smooth."],
+   ["أضف الزبدة: هي التي تعطي اللمعان.", "Ajoutez le beurre : c'est lui qui donne la brillance.", "Add the butter: it is what gives the shine."]],
+  ["تقدم دافئة. إن بردت، سخنها على حمام مائي لا على النار المباشرة.", "Se sert tiède. Si elle a refroidi, réchauffez-la au bain-marie et non sur le feu.", "Serve it warm. If it has cooled, reheat over a water bath, never direct heat."]);
+
+R("RCP-139", "c9", 1, 8, [10, 0, 8, 0], 450, "ml",
+  ["كوليس الفراولة", "Coulis de fraises", "Strawberry Coulis"],
+  ["للسقي، دون طبخ طويل", "À napper, sans longue cuisson", "To pour, barely cooked"],
+  "coulis fraise nappage",
+  [["fraise", 500, "g", "base"], ["sucre", 100, "g", "base"], ["jus_cit", 20, "ml", "base"]],
+  [["اهرس الفراولة مع السكر وعصير الليمون.", "Mixez les fraises avec le sucre et le jus de citron.", "Blend the strawberries with the sugar and lemon juice."],
+   ["سخن المزيج خمس دقائق فقط، دون غليان قوي.", "Chauffez cinq minutes seulement, sans forte ébullition.", "Heat for five minutes only, without a hard boil."],
+   ["صفه بالمصفاة لإزالة البذور، واتركه يبرد.", "Passez au tamis pour retirer les pépins, et laissez refroidir.", "Sieve to remove the seeds, and let it cool."]],
+  ["خمس دقائق لا أكثر: بعدها يصبح مربى ويضيع عطر الفاكهة الطازجة.", "Cinq minutes, pas plus : au-delà, c'est de la confiture et le parfum du fruit frais est perdu.", "Five minutes, no more: beyond that it is jam, and the fresh fruit is gone."]);
+
+R("RCP-140", "c9", 1, 8, [10, 0, 5, 0], 500, "ml",
+  ["كوليس المانجو", "Coulis de mangue", "Mango Coulis"],
+  ["بلا طبخ", "Sans cuisson", "No cooking"],
+  "coulis mangue nappage",
+  [["mangue", 500, "g", "base"], ["sucre", 80, "g", "base"], ["jus_cit", 25, "ml", "base"],
+   ["eau", 50, "ml", "base"]],
+  [["اهرس المانجو حتى تصبح ناعمة تماما.", "Mixez la mangue jusqu'à une purée parfaitement lisse.", "Blend the mango to a perfectly smooth purée."],
+   ["أذب السكر في الماء الساخن واتركه يبرد.", "Dissolvez le sucre dans l'eau chaude et laissez refroidir.", "Dissolve the sugar in the hot water and let it cool."],
+   ["اخلط اللب بالشراب البارد وعصير الليمون، وصفه إن كان ليفيا.", "Mélangez la pulpe au sirop froid et au jus de citron, tamisez si le fruit est filandreux.", "Mix the pulp with the cold syrup and lemon juice, sieving if the fruit is fibrous."]],
+  ["المانجو الناضجة جدا لا تحتاج سكرا: تذوق قبل أن تضيف.", "Une mangue très mûre n'a pas besoin de sucre : goûtez avant d'en ajouter.", "A very ripe mango needs no sugar: taste before adding any."]);
+
+R("RCP-141", "c9", 1, 10, [10, 0, 40, 0], 600, "ml",
+  ["شراب التمر", "Sirop de dattes", "Date Syrup"],
+  ["محلي طبيعي", "Sucrant naturel", "A natural sweetener"],
+  "sirop datte tmar naturel",
+  [["datte", 500, "g", "base"], ["eau", 700, "ml", "base"], ["cannelle", 3, "g", "base", "fix"]],
+  [["انزع النوى واقطع التمر، ثم انقعه في الماء الساخن نصف ساعة.", "Dénoyautez et coupez les dattes, puis faites-les gonfler trente minutes dans l'eau chaude.", "Pit and chop the dates, then soak them thirty minutes in hot water."],
+   ["اطبخ الخليط عشرين دقيقة على نار هادئة.", "Cuisez vingt minutes à feu doux.", "Simmer for twenty minutes."],
+   ["اهرسه ثم صفه في قماش رقيق بالضغط.", "Mixez puis filtrez dans un linge fin en pressant.", "Blend, then strain through a fine cloth, pressing."],
+   ["أعد السائل إلى النار حتى يثخن كالعسل، ثم أضف القرفة.", "Remettez le liquide sur le feu jusqu'à une consistance de miel, puis ajoutez la cannelle.", "Return the liquid to the heat until it thickens like honey, then add the cinnamon."]],
+  ["اضغط القماش بقوة: هناك يبقى ثلث الشراب.", "Pressez fort le linge : c'est là que reste le tiers du sirop.", "Press the cloth hard: a third of the syrup stays behind in it."]);
+</script>
+
+<script>
+"use strict";
+
+/* ---------- desserts ---------- */
+R("RCP-142", "c5", 1, 8, [15, 180, 12, 0], 8, "pc",
+  ["مهلبية", "Mhalabia", "Mhalabia"],
+  ["بماء الورد والفستق", "À l'eau de rose et pistaches", "With rose water and pistachios"],
+  "mhalabia flan lait ward",
+  [["lait", 1000, "ml", "base"], ["maizena", 80, "g", "base"], ["sucre", 120, "g", "base"],
+   ["eau_ward", 20, "ml", "base", "fix"], ["pistache", 40, "g", "decor"],
+   ["cannelle", 2, "g", "decor", "fix"]],
+  [["أذب النشا في كوب من الحليب البارد.", "Délayez la maïzena dans un verre de lait froid.", "Slake the cornstarch in a glass of cold milk."],
+   ["سخن باقي الحليب مع السكر، ثم أضف خليط النشا مع التحريك المتواصل.", "Chauffez le reste du lait avec le sucre, puis ajoutez la maïzena en remuant sans arrêt.", "Heat the remaining milk with the sugar, then add the slaked cornstarch, stirring constantly."],
+   ["اطبخ حتى يثخن المزيج ويغلي دقيقتين.", "Cuisez jusqu'à épaississement et laissez bouillir deux minutes.", "Cook until thick and let it boil two minutes."],
+   ["أضف ماء الورد خارج النار، وزع في الكؤوس وبرد ثلاث ساعات، ثم زين بالفستق والقرفة.", "Ajoutez l'eau de rose hors du feu, répartissez en coupes, réservez trois heures au frais puis décorez de pistaches et de cannelle.", "Add the rose water off the heat, divide into cups, chill three hours, then finish with pistachios and cinnamon."]],
+  ["دقيقتان من الغليان: أقل من ذلك يبقى للنشا طعمه، وأكثر يصبح المزيج مطاطيا.", "Deux minutes d'ébullition : moins, la maïzena garde son goût ; plus, la crème devient élastique.", "Two minutes of boiling: less and the cornstarch tastes raw; more and it turns rubbery."]);
+
+R("RCP-143", "c5", 1, 6, [10, 30, 40, 0], 6, "pc",
+  ["أرز بالحليب", "Riz au lait à la cannelle", "Cinnamon Rice Pudding"],
+  ["حلوى الطفولة", "Le dessert de l'enfance", "A childhood dessert"],
+  "riz au lait cannelle",
+  [["riz", 150, "g", "base"], ["lait", 1000, "ml", "base"], ["sucre", 100, "g", "base"],
+   ["cannelle", 4, "g", "base", "fix"], ["eau_zhar", 15, "ml", "base", "fix"],
+   ["beurre", 20, "g", "base"], ["cannelle", 2, "g", "decor", "fix"]],
+  [["اغسل الأرز ثم اسلقه خمس دقائق في ماء مغلي وصفه.", "Rincez le riz, blanchissez-le cinq minutes à l'eau bouillante et égouttez.", "Rinse the rice, blanch it five minutes in boiling water and drain."],
+   ["اطبخه في الحليب على نار هادئة جدا مع التحريك من حين لآخر، من ثلاثين إلى أربعين دقيقة.", "Cuisez-le dans le lait à feu très doux, en remuant de temps en temps, trente à quarante minutes.", "Cook it in the milk over very low heat, stirring now and then, thirty to forty minutes."],
+   ["أضف السكر والقرفة في آخر عشر دقائق.", "Ajoutez le sucre et la cannelle dans les dix dernières minutes.", "Add the sugar and cinnamon in the last ten minutes."],
+   ["أضف الزبدة وماء الزهر خارج النار، ووزعه في الكؤوس ورش القرفة.", "Ajoutez le beurre et l'eau de fleur d'oranger hors du feu, répartissez en coupes et poudrez de cannelle.", "Add the butter and orange blossom water off the heat, divide into cups and dust with cinnamon."]],
+  ["السكر في آخر الطبخ: مضافا في البداية يمنع الأرز من الانتفاخ ويبقى قاسيا.", "Le sucre en fin de cuisson : ajouté au départ, il empêche le riz de gonfler et le laisse dur.", "Sugar at the end: added early, it stops the rice swelling and leaves it firm."]);
+
+R("RCP-144", "c5", 1, 6, [15, 300, 8, 0], 6, "pc",
+  ["بانا كوتا بماء الورد", "Panna cotta à l'eau de rose", "Rose Water Panna Cotta"],
+  ["ناعمة وعطرة", "Soyeuse et parfumée", "Silky and fragrant"],
+  "panna cotta eau de rose framboise",
+  [["creme", 500, "ml", "base"], ["lait", 200, "ml", "base"], ["sucre", 90, "g", "base"],
+   ["gelatine", 8, "g", "base"], ["eau_ward", 25, "ml", "base", "fix"],
+   ["framboise", 150, "g", "decor"]],
+  [["انقع الجيلاتين في ماء بارد عشر دقائق.", "Réhydratez la gélatine dix minutes dans l'eau froide.", "Soak the gelatin ten minutes in cold water."],
+   ["سخن الكريمة والحليب مع السكر حتى الغليان الخفيف، دون غليان قوي.", "Chauffez la crème et le lait avec le sucre jusqu'au frémissement, sans forte ébullition.", "Heat the cream and milk with the sugar to a simmer, without a hard boil."],
+   ["أذب الجيلاتين المصفى في الخليط الساخن، ثم أضف ماء الورد.", "Dissolvez la gélatine essorée dans le mélange chaud, puis ajoutez l'eau de rose.", "Dissolve the drained gelatin in the hot mixture, then add the rose water."],
+   ["وزع في الكؤوس وبرد خمس ساعات، ثم قدمها مع التوت.", "Répartissez en coupes, réservez cinq heures au frais et servez avec les framboises.", "Divide into glasses, chill five hours and serve with the raspberries."]],
+  ["ثمانية غرامات من الجيلاتين لسبعمائة مليلتر: أكثر منها تصبح البانا كوتا مطاطية بدل أن ترتجف.", "Huit grammes de gélatine pour sept cents millilitres : au-delà, la panna cotta devient caoutchouteuse au lieu de trembler.", "Eight grams of gelatin for seven hundred millilitres: more and the panna cotta turns rubbery instead of trembling."]);
+
+R("RCP-145", "c5", 2, 6, [20, 240, 45, 0], 6, "pc",
+  ["كريم بروليه", "Crème brûlée", "Crème Brûlée"],
+  ["بقشرة الكراميل", "Sous sa croûte de caramel", "Under its caramel crust"],
+  "creme brulee vanille caramel",
+  [["creme", 500, "ml", "base"], ["jaune", 6, "pc", "base"], ["sucre", 90, "g", "base"],
+   ["vanille_g", 1, "pc", "base", "fix"], ["sucre_roux", 60, "g", "decor"]],
+  [["اشقق عود الفانيليا وسخنه مع الكريمة، ثم اتركه ينقع نصف ساعة.", "Fendez la gousse, chauffez-la avec la crème et laissez infuser trente minutes.", "Split the pod, heat it with the cream and infuse thirty minutes."],
+   ["اخفق الصفار مع السكر دون إدخال هواء.", "Fouettez les jaunes avec le sucre sans incorporer d'air.", "Whisk the yolks with the sugar without beating in air."],
+   ["أضف الكريمة الفاترة، صف المزيج وأزل الرغوة من السطح.", "Ajoutez la crème tiède, passez au chinois et retirez l'écume en surface.", "Add the warm cream, strain, and skim off any foam."],
+   ["اخبزه في حمام مائي 45 دقيقة على 100 درجة: يجب أن يبقى القلب مرتجفا.", "Cuisez au bain-marie 45 minutes à 100 °C : le cœur doit rester tremblant.", "Bake in a water bath 45 minutes at 100 °C: the centre must stay wobbly."],
+   ["برده أربع ساعات، رش السكر البني واحرقه بالشالوميه قبل التقديم مباشرة.", "Réservez quatre heures au frais, saupoudrez de sucre roux et caramélisez au chalumeau juste avant de servir.", "Chill four hours, sprinkle with brown sugar and torch it just before serving."]],
+  ["احرق السكر في اللحظة الأخيرة: بعد عشر دقائق تلين القشرة وتذوب.", "Caramélisez au dernier moment : dix minutes plus tard, la croûte a ramolli et fondu.", "Torch it at the last moment: ten minutes later the crust has softened and dissolved."]);
+
+R("RCP-146", "c5", 1, 6, [15, 60, 0, 0], 6, "pc",
+  ["سلطة البرتقال بالقرفة", "Salade d'oranges à la cannelle", "Cinnamon Orange Salad"],
+  ["ختام خفيف لوجبة ثقيلة", "La fin légère d'un repas lourd", "A light end to a heavy meal"],
+  "salade orange cannelle dessert leger",
+  [["orange", 8, "pc", "base"], ["cannelle", 5, "g", "base", "fix"], ["sucre_glace", 30, "g", "base"],
+   ["eau_zhar", 15, "ml", "base", "fix"], ["amande_m", 30, "g", "decor"],
+   ["datte", 60, "g", "decor", "lin", true]],
+  [["قشر البرتقال وأزل الجلد الأبيض تماما.", "Pelez les oranges à vif, en retirant toute la peau blanche.", "Peel the oranges to the flesh, removing all the white pith."],
+   ["قطعها شرائح رقيقة ورتبها في طبق واسع.", "Coupez-les en fines rondelles et disposez-les dans un plat large.", "Slice them thinly and arrange them on a wide dish."],
+   ["رش السكر الناعم وماء الزهر، ثم غط الطبق وبرده ساعة.", "Saupoudrez de sucre glace, arrosez d'eau de fleur d'oranger, couvrez et réservez une heure au frais.", "Dust with icing sugar, sprinkle with orange blossom water, cover and chill one hour."],
+   ["رش القرفة واللوز المحمص عند التقديم.", "Poudrez de cannelle et parsemez d'amandes grillées au moment de servir.", "Dust with cinnamon and scatter toasted almonds when serving."]],
+  ["القرفة عند التقديم لا قبله: منقوعة ساعة تسود وتترك طعما ترابيا.", "La cannelle au moment de servir, jamais avant : macérée une heure, elle noircit et laisse un goût terreux.", "Cinnamon at serving time, never before: left to steep it darkens and turns earthy."]);
+
+R("RCP-147", "c5", 2, 6, [25, 240, 8, 0], 6, "pc",
+  ["موس الليمون", "Mousse au citron", "Lemon Mousse"],
+  ["حادة وخفيفة", "Vive et légère", "Sharp and light"],
+  "mousse citron leger",
+  [["jus_cit", 150, "ml", "base"], ["zeste_cit", 10, "g", "base", "root"], ["sucre", 130, "g", "base"],
+   ["oeuf", 4, "pc", "base"], ["gelatine", 8, "g", "base"], ["creme", 250, "ml", "base"]],
+  [["انقع الجيلاتين في ماء بارد.", "Réhydratez la gélatine dans l'eau froide.", "Soak the gelatin in cold water."],
+   ["افصل البيض، واطبخ الصفار مع السكر وعصير الليمون والقشر على نار هادئة حتى يثخن.", "Séparez les œufs, cuisez les jaunes avec le sucre, le jus et le zeste à feu doux jusqu'à épaississement.", "Separate the eggs, cook the yolks with the sugar, juice and zest over low heat until thick."],
+   ["أذب الجيلاتين في الخليط الساخن واتركه يفتر.", "Dissolvez la gélatine dans le mélange chaud et laissez tiédir.", "Dissolve the gelatin in the hot mixture and let it cool to lukewarm."],
+   ["اخفق البياض حتى يتماسك، واخفق الكريمة طرية.", "Montez les blancs en neige et fouettez la crème en chantilly souple.", "Whip the whites to peaks and the cream to soft peaks."],
+   ["أضف البياض ثم الكريمة برفق، وزع في الكؤوس وبرد أربع ساعات.", "Incorporez les blancs puis la crème délicatement, répartissez en coupes et réservez quatre heures au frais.", "Fold in the whites, then the cream, gently; divide into glasses and chill four hours."]],
+  ["أضف البياض والكريمة على خليط فاتر لا ساخن: الحرارة تذيب الرغوة وتضيع الخفة.", "Incorporez blancs et crème sur un appareil tiède, jamais chaud : la chaleur fait retomber la mousse.", "Fold the whites and cream into a lukewarm base, never hot: heat collapses the foam."]);
+
+/* ---------- biscuits ---------- */
+R("RCP-148", "c4", 1, 10, [20, 30, 18, 0], 40, "pc",
+  ["مونتيكاو", "Montecaos", "Montecaos"],
+  ["تذوب في الفم", "Fondants à la cannelle", "Melt-in-the-mouth, with cinnamon"],
+  "montecaos sable cannelle huile",
+  [["farine", 500, "g", "pate"], ["sucre_glace", 200, "g", "pate"], ["huile", 200, "ml", "pate"],
+   ["cannelle", 6, "g", "pate", "fix"], ["levure_c", 6, "g", "pate", "root"],
+   ["cannelle", 3, "g", "decor", "fix"]],
+  [["حمص الدقيق في مقلاة جافة عشر دقائق حتى يذهب لونه قليلا، ثم اتركه يبرد.", "Torréfiez la farine dix minutes à sec, jusqu'à ce qu'elle blondisse à peine, et laissez refroidir.", "Toast the flour dry for ten minutes, until barely golden, and let it cool."],
+   ["اخلطه مع السكر الناعم والقرفة والخميرة.", "Mélangez-la au sucre glace, à la cannelle et à la levure.", "Mix it with the icing sugar, cinnamon and baking powder."],
+   ["أضف الزيت واعجن قليلا حتى تتماسك العجينة، ثم دعها ترتاح نصف ساعة.", "Ajoutez l'huile et travaillez juste assez pour que la pâte tienne, puis laissez reposer une demi-heure.", "Add the oil and work only until the dough holds, then rest half an hour."],
+   ["شكل كرات صغيرة، رش القرفة واخبزها 18 دقيقة على 160 درجة: تبقى فاتحة اللون.", "Formez de petites boules, poudrez de cannelle et enfournez 18 minutes à 160 °C : elles restent pâles.", "Shape small balls, dust with cinnamon and bake 18 minutes at 160 °C: they stay pale."]],
+  ["تحميص الدقيق هو كل الفرق: بدونه يبقى للمونتيكاو طعم الدقيق النيء.", "La torréfaction de la farine fait toute la différence : sans elle, le montecao garde un goût de farine crue.", "Toasting the flour makes all the difference: without it the montecao tastes of raw flour."]);
+
+R("RCP-149", "c4", 2, 10, [35, 60, 15, 0], 30, "pc",
+  ["بسكويت بالمربى", "Sablés à la confiture", "Jam Sandwich Biscuits"],
+  ["بمربى المشمش", "À la confiture d'abricot", "With apricot jam"],
+  "sable confiture abricot lunettes",
+  [["farine", 400, "g", "pate"], ["beurre", 200, "g", "pate"], ["sucre_glace", 120, "g", "pate"],
+   ["oeuf", 1, "pc", "pate"], ["sel", 2, "g", "pate", "root"], ["vanille_ex", 5, "ml", "pate", "fix"],
+   ["abricot", 250, "g", "farce"], ["sucre", 80, "g", "farce"],
+   ["sucre_glace", 40, "g", "decor"]],
+  [["افرك الدقيق بالزبدة الباردة بأطراف الأصابع حتى تحصل على رمل خشن.", "Sablez la farine avec le beurre froid du bout des doigts, jusqu'à un sable grossier.", "Rub the flour with the cold butter using your fingertips, to a coarse sand."],
+   ["أضف السكر والملح والبيضة والفانيليا، واجمع العجين دون عجن، ثم برده ساعة.", "Ajoutez le sucre, le sel, l'œuf et la vanille, rassemblez sans pétrir et réservez une heure au frais.", "Add the sugar, salt, egg and vanilla, gather without kneading, and chill one hour."],
+   ["اطبخ المشمش مع السكر عشر دقائق حتى تحصل على مربى كثيف، ثم اتركه يبرد.", "Cuisez les abricots avec le sucre dix minutes, jusqu'à une confiture épaisse, et laissez refroidir.", "Cook the apricots with the sugar for ten minutes to a thick jam, and cool."],
+   ["افرد العجين وقطعه أقراصا، واثقب نصفها في الوسط.", "Étalez la pâte, découpez des disques et évidez le centre de la moitié d'entre eux.", "Roll out the dough, cut discs and cut a hole in the centre of half of them."],
+   ["اخبزها 15 دقيقة على 170 درجة، ثم الصق قرصا كاملا بقرص مثقوب بالمربى ورش السكر الناعم.", "Enfournez 15 minutes à 170 °C, assemblez un disque plein et un disque évidé avec la confiture, et poudrez de sucre glace.", "Bake 15 minutes at 170 °C, sandwich a whole disc with a cut-out one using the jam, and dust with icing sugar."]],
+  ["زبدة باردة وأصابع سريعة: الزبدة التي تذوب في العجين تعطي بسكويتا قاسيا لا رمليا.", "Beurre froid et doigts rapides : un beurre qui fond dans la pâte donne un biscuit dur, pas sablé.", "Cold butter and quick fingers: butter that melts into the dough gives a hard biscuit, not a crumbly one."]);
+
+R("RCP-150", "c4", 2, 8, [40, 0, 20, 0], 32, "pc",
+  ["سيجار اللوز", "Cigares aux amandes", "Almond Cigars"],
+  ["مقلية ومغموسة في العسل", "Frits et trempés dans le miel", "Fried and dipped in honey"],
+  "cigare amande warqa miel",
+  [["warqa", 8, "pc", "pate"], ["amande_p", 350, "g", "farce"], ["sucre_glace", 130, "g", "farce"],
+   ["cannelle", 4, "g", "farce", "fix"], ["eau_zhar", 30, "ml", "farce"], ["beurre_f", 40, "g", "farce"],
+   ["oeuf", 1, "pc", "pate", "fix"], ["huile_fri", 700, "ml", "friture", "fix"],
+   ["miel", 400, "g", "sirop"], ["sesame", 30, "g", "decor"]],
+  [["اخلط اللوز مع السكر والقرفة والزبدة وماء الزهر.", "Mélangez les amandes, le sucre, la cannelle, le beurre et l'eau de fleur d'oranger.", "Mix the almonds, sugar, cinnamon, butter and orange blossom water."],
+   ["شكل من الحشوة أصابع رفيعة بطول عشرة سنتيمترات.", "Façonnez la farce en fins boudins de dix centimètres.", "Shape the filling into thin ten-centimetre logs."],
+   ["قص ورقة البسطيلة مستطيلات، ضع الحشوة على الحافة ولف بإحكام.", "Découpez la warqa en rectangles, posez la farce sur le bord et roulez serré.", "Cut the warqa into rectangles, lay the filling along one edge and roll tightly."],
+   ["الصق الطرف بالبيض المخفوق، ثم اقلها في زيت متوسط حتى تذهب.", "Scellez à l'œuf battu, puis faites frire à feu moyen jusqu'à coloration.", "Seal with beaten egg, then fry over medium heat until golden."],
+   ["اغمرها في العسل الدافئ دقيقتين ورشها بالسمسم.", "Trempez-les deux minutes dans le miel tiède et parsemez de sésame.", "Steep them two minutes in warm honey and scatter sesame."]],
+  ["لف محكم بلا هواء: أي فراغ داخل السيجار ينفتح في الزيت.", "Un roulage serré, sans air : la moindre poche d'air fait éclater le cigare dans l'huile.", "Roll tightly with no air: any trapped pocket bursts the cigar in the oil."]);
+
+R("RCP-151", "c4", 2, 12, [30, 60, 15, 0], 60, "pc",
+  ["حلوة الماكينة", "Biscuits à la machine", "Piped Butter Biscuits"],
+  ["بقالب الحلوى", "Au moule à biscuits", "From the biscuit press"],
+  "machine presse sable chocolat",
+  [["farine", 500, "g", "pate"], ["beurre", 250, "g", "pate"], ["sucre_glace", 150, "g", "pate"],
+   ["oeuf", 2, "pc", "pate"], ["maizena", 80, "g", "pate"], ["levure_c", 4, "g", "pate", "root"],
+   ["vanille_ex", 5, "ml", "pate", "fix"], ["choco_noir", 120, "g", "glacage"]],
+  [["اخفق الزبدة الطرية مع السكر الناعم حتى يصبح المزيج كريميا.", "Crémez le beurre pommade avec le sucre glace jusqu'à consistance mousseuse.", "Cream the soft butter with the icing sugar until fluffy."],
+   ["أضف البيض والفانيليا، ثم الدقيق والنشا والخميرة.", "Ajoutez les œufs et la vanille, puis la farine, la maïzena et la levure.", "Add the eggs and vanilla, then the flour, cornstarch and baking powder."],
+   ["دع العجين يرتاح ساعة في البرد: يجب أن يبقى طريا بما يكفي للضغط.", "Laissez reposer une heure au frais : la pâte doit rester assez souple pour être pressée.", "Rest one hour in the fridge: the dough must stay soft enough to press."],
+   ["مرر العجين في الماكينة على صفيحة، واخبز 15 دقيقة على 170 درجة.", "Pressez la pâte à la machine sur une plaque, et enfournez 15 minutes à 170 °C.", "Press the dough onto a tray with the biscuit press, and bake 15 minutes at 170 °C."],
+   ["اغمس أطرافها في الشوكولاتة المذابة بعد أن تبرد.", "Trempez les extrémités dans le chocolat fondu une fois refroidies.", "Dip the ends in melted chocolate once cool."]],
+  ["عجين بارد جدا يسد الماكينة، وعجين دافئ يفقد شكله: نصف ساعة في البرد هي الحد.", "Une pâte trop froide bloque la machine, une pâte trop tiède perd son dessin : une demi-heure au frais est le juste milieu.", "Dough too cold jams the press, dough too warm loses its shape: half an hour chilled is the balance."]);
+
+R("RCP-152", "c4", 1, 10, [25, 30, 20, 0], 45, "pc",
+  ["بسكويت بالسمسم والنافع", "Biscuits au sésame et à l'anis", "Sesame & Anise Biscuits"],
+  ["لأتاي المساء", "Pour le thé du soir", "For the evening tea"],
+  "biscuit sesame anis the",
+  [["farine", 450, "g", "pate"], ["sesame", 120, "g", "pate"], ["sucre", 180, "g", "pate"],
+   ["huile", 130, "ml", "pate"], ["oeuf", 2, "pc", "pate"], ["anis", 10, "g", "pate", "fix"],
+   ["levure_c", 8, "g", "pate", "root"], ["sel", 2, "g", "pate", "root"],
+   ["sesame", 40, "g", "decor"]],
+  [["حمص السمسم حتى يصفر واتركه يبرد، ثم اطحن نصفه.", "Grillez le sésame jusqu'à blondeur, laissez refroidir et moulez-en la moitié.", "Toast the sesame until golden, cool it, and grind half of it."],
+   ["اسحق النافع في الهاون لتحرير عطره.", "Écrasez l'anis au mortier pour libérer son parfum.", "Crush the anise in a mortar to release its scent."],
+   ["اخفق البيض مع السكر والزيت، ثم أضف الدقيق والسمسم والنافع والخميرة والملح.", "Fouettez les œufs avec le sucre et l'huile, puis ajoutez la farine, le sésame, l'anis, la levure et le sel.", "Whisk the eggs with the sugar and oil, then add the flour, sesame, anise, baking powder and salt."],
+   ["دع العجين يرتاح نصف ساعة، شكل أقراصا، مررها في السمسم واخبزها 20 دقيقة على 175 درجة.", "Laissez reposer une demi-heure, formez des disques, roulez-les dans le sésame et enfournez 20 minutes à 175 °C.", "Rest half an hour, shape discs, roll them in sesame and bake 20 minutes at 175 °C."]],
+  ["نصف السمسم مطحون ونصفه صحيح: المطحون يعطي النكهة والصحيح يعطي القرمشة.", "Moitié moulu, moitié entier : le moulu donne le goût, l'entier donne le croquant.", "Half ground, half whole: the ground brings flavour, the whole brings crunch."]);
+
+/* ---------- autres : les indispensables autour de la pâtisserie ---------- */
+R("RCP-153", "c10", 1, 10, [20, 0, 15, 0], 800, "g",
+  ["أملو", "Amlou", "Amlou"],
+  ["معجون اللوز وزيت أركان", "Pâte d'amande à l'huile d'argan", "Almond and argan spread"],
+  "amlou argan miel tartinade souss",
+  [["amande", 500, "g", "base"], ["huile_argan", 250, "ml", "base"], ["miel", 200, "g", "base"],
+   ["sel", 2, "g", "base", "root"]],
+  [["حمص اللوز في الفرن على 160 درجة اثنتي عشرة دقيقة، ثم اتركه يبرد تماما.", "Torréfiez les amandes douze minutes à 160 °C, puis laissez-les refroidir complètement.", "Roast the almonds twelve minutes at 160 °C, then cool them completely."],
+   ["اطحنه طويلا في الخلاط حتى يتحول إلى عجينة زيتية سائلة.", "Broyez-les longuement au robot, jusqu'à obtenir une pâte huileuse et coulante.", "Grind them at length until they become an oily, flowing paste."],
+   ["أضف زيت أركان تدريجيا مع الطحن المتواصل.", "Ajoutez l'huile d'argan peu à peu, sans cesser de broyer.", "Add the argan oil gradually, still grinding."],
+   ["أضف العسل والملح في النهاية، واحفظه في مرطبان زجاجي.", "Ajoutez le miel et le sel à la fin, et conservez en bocal de verre.", "Add the honey and salt at the end, and keep it in a glass jar."]],
+  ["اطحن اللوز عشر دقائق على الأقل: التوقف مبكرا يعطي مسحوقا لا عجينة، ولا كمية زيت تصلح ذلك.", "Broyez au moins dix minutes : s'arrêter trop tôt donne une poudre, pas une pâte, et aucune huile ne rattrape cela.", "Grind for at least ten minutes: stopping early gives powder, not paste, and no amount of oil fixes it."]);
+
+R("RCP-154", "c10", 1, 6, [10, 0, 10, 0], 1, "l",
+  ["أتاي بالنعناع", "Thé à la menthe", "Mint Tea"],
+  ["ما يقدم مع كل حلوى", "Ce qui accompagne toute pâtisserie", "What accompanies every pastry"],
+  "the menthe atay nana",
+  [["the_vert", 15, "g", "base"], ["menthe", 60, "g", "base"], ["sucre", 120, "g", "base"],
+   ["eau", 1000, "ml", "base"]],
+  [["ضع الشاي في البراد واسكب عليه قليلا من الماء المغلي، حرك واسكب هذا الماء الأول: هو ما يحمل المرارة.", "Mettez le thé dans la théière, versez un peu d'eau bouillante, remuez et jetez cette première eau : c'est elle qui porte l'amertume.", "Put the tea in the pot, pour on a little boiling water, swirl and discard it: that first water carries the bitterness."],
+   ["أضف السكر والماء المغلي، ودع البراد على نار هادئة دقيقتين.", "Ajoutez le sucre et l'eau bouillante, et laissez la théière sur feu doux deux minutes.", "Add the sugar and boiling water, and leave the pot over low heat for two minutes."],
+   ["أضف النعناع بعد إبعاد البراد عن النار، واتركه ينقع ثلاث دقائق.", "Ajoutez la menthe hors du feu et laissez infuser trois minutes.", "Add the mint off the heat and infuse three minutes."],
+   ["اسكب كأسا وأعده إلى البراد ثلاث مرات لمزج الشاي.", "Versez un verre et reversez-le dans la théière, trois fois, pour mélanger.", "Pour a glass and return it to the pot, three times, to mix."],
+   ["اسكب من علو ليتكون الزبد على السطح.", "Servez de haut, pour former la mousse en surface.", "Pour from a height, to raise the foam on top."]],
+  ["النعناع لا يغلي أبدا: مطبوخا يسود ويعطي مرارة عشبية لا تزول.", "La menthe ne bouillit jamais : cuite, elle noircit et donne une amertume herbacée qui ne part plus.", "Mint must never boil: cooked, it blackens and leaves a grassy bitterness that never goes."]);
+
+R("RCP-155", "c10", 1, 4, [10, 0, 0, 0], 1, "l",
+  ["عصير الأفوكادو باللوز", "Jus d'avocat aux amandes", "Avocado and Almond Shake"],
+  ["كثيف ومغذ", "Épais et nourrissant", "Thick and filling"],
+  "avocat amande jus lait",
+  [["avocat", 400, "g", "base"], ["lait", 600, "ml", "base"], ["amande_p", 60, "g", "base"],
+   ["sucre", 80, "g", "base"], ["eau_zhar", 10, "ml", "base", "fix"],
+   ["amande_m", 20, "g", "decor"]],
+  [["اختر أفوكادو ناضجا جدا: يلين تحت الإصبع دون مقاومة.", "Choisissez des avocats très mûrs : ils cèdent sous le doigt sans résistance.", "Choose very ripe avocados: they yield under a finger without resistance."],
+   ["اهرس اللب مع الحليب واللوز المطحون والسكر.", "Mixez la chair avec le lait, les amandes en poudre et le sucre.", "Blend the flesh with the milk, ground almonds and sugar."],
+   ["أضف ماء الزهر واخلط ثانيتين فقط.", "Ajoutez l'eau de fleur d'oranger et mixez deux secondes seulement.", "Add the orange blossom water and blend for two seconds only."],
+   ["قدمه فورا في كؤوس باردة، مرشوشا باللوز المقشر.", "Servez aussitôt dans des verres froids, parsemé d'amandes effilées.", "Serve at once in cold glasses, scattered with flaked almonds."]],
+  ["يقدم في الدقائق التي يحضر فيها: الأفوكادو يسود بسرعة، ولا يمنع ذلك إلا العصير الفوري.", "Se sert dans les minutes qui suivent : l'avocat noircit vite et rien ne l'empêche sinon la consommation immédiate.", "Serve within minutes: avocado browns fast and nothing prevents it but drinking it straight away."]);
+</script>
+
 <script>
 "use strict";
 
 /* Version du jeu de recettes livre. Toute augmentation declenche l'ajout
    des recettes manquantes, sans jamais toucher a celles que vous avez creees. */
-const SEED_VERSION = 2;
+const SEED_VERSION = 3;
 const SEEDV_KEY = "darhlou.seedv";
 
 function allSeed() {
