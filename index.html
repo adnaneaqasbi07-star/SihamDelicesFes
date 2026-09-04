@@ -10,7 +10,6 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#FBF6F5" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#171113" media="(prefers-color-scheme: dark)">
-<meta name="description" content="155 recettes marocaines trilingues : gâteaux, pâtisseries, glaces, sorbets, crèmes et sirops.">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
@@ -302,6 +301,20 @@ main{flex:1;padding:0 0 calc(env(safe-area-inset-bottom) + 84px)}
 .step[data-done="1"] .tx{color:var(--ink-faint)}
 .step .tx{flex:1;font-size:15px;line-height:1.55}
 [dir="rtl"] .step .tx{font-size:16.5px}
+.dietbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:10px 0 2px}
+.dietrow{display:flex;align-items:center;gap:11px;width:100%;text-align:start;padding:10px 13px;border-bottom:1px solid var(--line-soft)}
+.dietrow:last-child{border-bottom:0}
+.dietrow .di{flex:0 0 22px;font-size:15px;text-align:center}
+.dietrow .dn{flex:1;font-size:14.5px;line-height:1.35;min-width:0}
+.dietrow .dn em{font-style:normal;color:var(--ink-faint);font-size:12.5px;display:block}
+[dir="rtl"] .dietrow .dn{font-size:16px}
+[dir="rtl"] .dietrow .dn em{font-size:14px}
+.dietrow .dv{flex:0 0 auto;font-size:11.5px;font-weight:500;padding:2px 8px;border-radius:4px;white-space:nowrap}
+[dir="rtl"] .dietrow .dv{font-size:13px}
+.dietrow .dv.ok{background:var(--accent-wash);color:var(--ok)}
+.dietrow .dv.adapt{background:var(--gold-wash);color:var(--warn)}
+.dietrow .dv.no{background:var(--danger-wash);color:var(--danger)}
+button.dietrow:active{background:var(--surface-2)}
 .tipbox{background:var(--gold-wash);border-inline-start:2px solid var(--gold);border-radius:0 var(--r-s) var(--r-s) 0;padding:13px 15px;margin:12px 0;font-size:14.5px;line-height:1.55}
 [dir="rtl"] .tipbox{border-radius:var(--r-s) 0 0 var(--r-s);font-size:16px}
 
@@ -412,7 +425,7 @@ const RTL = { ar: true, fr: false, en: false };
 
 /* ---------- libelles d'interface (table T_UI du modele) ---------- */
 const UI = {
-  app_tag:      { ar: "حلويات مغربية", fr: "Pâtisserie marocaine", en: "Moroccan pastry" },
+  app_tag:      { ar: "المطبخ والحلويات المغربية", fr: "Cuisine et pâtisserie marocaines", en: "Moroccan cooking & pastry" },
   tab_home:     { ar: "الرئيسية", fr: "Accueil", en: "Home" },
   tab_recipes:  { ar: "الوصفات", fr: "Recettes", en: "Recipes" },
   tab_shop:     { ar: "المشتريات", fr: "Courses", en: "Shopping" },
@@ -553,7 +566,30 @@ const UI = {
   err_photo:    { ar: "تعذر تحميل الصورة", fr: "Impossible de charger cette image", en: "Could not load that image" },
   err_save:     { ar: "تعذر الحفظ، حاول مجددا", fr: "Enregistrement impossible, réessayez", en: "Could not save, try again" },
   name_required:{ ar: "أدخل اسما واحدا على الأقل", fr: "Renseignez au moins un nom", en: "Enter at least one name" },
-  qs:           { ar: "حسب الحاجة", fr: "q.s.", en: "as needed" }
+  qs:           { ar: "حسب الحاجة", fr: "q.s.", en: "as needed" },
+
+  diets:        { ar: "الأنظمة الغذائية", fr: "Régimes", en: "Diets" },
+  d_sugar_str:  { ar: "السكر يحدد قوام المثلجات: تقليله يغير الوصفة نفسها، لا طعمها فقط.",
+                  fr: "Le sucre fixe la texture d'une glace : le réduire change la recette, pas seulement le goût.",
+                  en: "Sugar sets the texture of a frozen dessert: cutting it changes the recipe, not just the taste." },
+  diet_filter:  { ar: "نظام غذائي", fr: "Régime", en: "Diet" },
+  d_ok:         { ar: "متوافقة", fr: "Compatible", en: "Suitable" },
+  d_adapt:      { ar: "قابلة للتعديل", fr: "Adaptable", en: "Adaptable" },
+  d_no:         { ar: "غير متوافقة", fr: "Incompatible", en: "Not suitable" },
+  d_over:       { ar: "فوق الحد", fr: "Au-delà du seuil", en: "Above threshold" },
+  d_blocking:   { ar: "المانع", fr: "Bloquant", en: "Blocking" },
+  d_view:       { ar: "اعرض النسخة المعدلة", fr: "Voir la version adaptée", en: "Show the adapted version" },
+  d_adapted:    { ar: "نسخة معدلة", fr: "Version adaptée", en: "Adapted version" },
+  d_original:   { ar: "العودة إلى الأصل", fr: "Revenir à l'original", en: "Back to the original" },
+  d_replaces:   { ar: "بدل", fr: "remplace", en: "replaces" },
+  d_threshold:  { ar: "الحد", fr: "seuil", en: "threshold" },
+  nutri:        { ar: "تقدير لكل حصة", fr: "Estimation par portion", en: "Estimate per serving" },
+  n_prot:       { ar: "بروتين", fr: "Protéines", en: "Protein" },
+  n_sugar:      { ar: "سكريات", fr: "Sucres", en: "Sugars" },
+  n_sodium:     { ar: "صوديوم", fr: "Sodium", en: "Sodium" },
+  n_warning:    { ar: "قيم تقديرية محسوبة من مراجع عامة، وليست تحليلا لمنتجاتك. زيت القلي غير محتسب. لا تحل هذه الأرقام محل رأي طبيب أو أخصائي تغذية.",
+                  fr: "Valeurs estimées à partir de références génériques, non d'une analyse de vos produits. L'huile de friture n'est pas comptée. Ces chiffres ne remplacent pas l'avis d'un médecin ou d'un diététicien.",
+                  en: "Values estimated from generic references, not an analysis of your own products. Frying oil is not counted. These figures do not replace advice from a doctor or dietitian." }
 };
 
 /* ---------- unites et facteurs (table T_Unites) ---------- */
@@ -1185,8 +1221,9 @@ const S = {
   recipeId: null,
   portions: null,
   query: "",
-  filter: { cat: "", diff: "", maxTime: "", minPort: "" },
+  filter: { cat: "", diff: "", maxTime: "", minPort: "", diet: "" },
   sort: "name",
+  diet: null,
   draft: null,
   ings: [],
   recipes: [],
@@ -1340,6 +1377,13 @@ function matches(r) {
   if (f.diff && r.diff > Number(f.diff)) return false;
   if (f.maxTime && totalTime(r) > Number(f.maxTime)) return false;
   if (f.minPort && (r.portions || 0) < Number(f.minPort)) return false;
+  if (f.diet) {
+    const d = dietById(f.diet);
+    if (d) {
+      const e = dietVerdict(r, d, 1).etat;
+      if (e === "incompatible" || e === "au_dela") return false;
+    }
+  }
   return true;
 }
 function filtered() {
@@ -1407,7 +1451,7 @@ function pushStock() { return dbWrite("catalog/stock", { items: S.stock }); }
 function pushShop() { return dbWrite("state/shop", { items: S.shop }); }
 
 async function seedAll() {
-  S.ings = ING_SEED.slice();
+  S.ings = ING_SEED.concat(ING_SUBS_SEED, ING_SALE_SEED);
   S.recipes = allSeed();
   saveLocal();
   setLocalSeedVersion(SEED_VERSION);
@@ -1706,7 +1750,7 @@ function scHome() {
 function scList() {
   const res = filtered();
   const f = S.filter;
-  const active = f.cat || f.diff || f.maxTime || f.minPort;
+  const active = f.cat || f.diff || f.maxTime || f.minPort || f.diet;
   let h = '<div class="pad"><h1 class="h-screen serif">' + esc(t("all_recipes")) + "</h1>" + searchBox(false);
 
   h += '<div class="row" style="margin-bottom:12px">' +
@@ -1730,6 +1774,8 @@ function scList() {
         field(t("min_portions"), select("fport", f.minPort, [["", t("any")], ["4", "4"], ["6", "6"], ["8", "8"], ["10", "10"], ["12", "12"]])) +
         field(t("sort"), select("fsort", S.sort, [["name", t("sort_name")], ["recent", t("sort_recent")], ["time", t("sort_time")], ["diff", t("sort_diff")]])) +
       "</div>" +
+      field(t("diet_filter"), select("fdietf", f.diet,
+        [["", t("any")]].concat(DIETS.map(function (d) { return [d.id, d.ico + " " + L(d)]; })))) +
       (active ? '<button class="btn ghost sm" data-act="clearf">' + esc(t("clear")) + "</button>" : "") +
     "</div></details>";
 
@@ -1810,10 +1856,19 @@ function scRecipe() {
       }).join("") +
     "</div></div>";
 
-  /* ingredients groupes */
-  h += '<div class="pad"><p class="eyebrow" style="margin-top:6px">' + esc(t("ingredients")) + "</p>";
+  /* ingredients groupes — adaptes au régime actif le cas echeant */
+  const dActif = S.diet ? dietById(S.diet) : null;
+  const rv = dActif ? adaptRecipe(r, dActif) : r;
+  h += '<div class="pad">';
+  if (dActif) {
+    h += '<div class="dietbar">' +
+      '<span class="badge" style="background:var(--accent-wash);color:var(--accent)">' +
+        dActif.ico + " " + esc(t("d_adapted")) + " · " + esc(L(dActif)) + "</span>" +
+      '<button class="btn sm ghost" data-act="diet" data-v="">' + esc(t("d_original")) + "</button></div>";
+  }
+  h += '<p class="eyebrow" style="margin-top:6px">' + esc(t("ingredients")) + "</p>";
   const groups = {};
-  r.ings.forEach(function (it, i) { (groups[it.g] = groups[it.g] || []).push([it, i]); });
+  rv.ings.forEach(function (it, i) { (groups[it.g] = groups[it.g] || []).push([it, i]); });
   const keys = GROUP_ORDER.filter(function (g) { return groups[g]; })
     .concat(Object.keys(groups).filter(function (g) { return GROUP_ORDER.indexOf(g) < 0; }));
   const multi = keys.length > 1;
@@ -1830,6 +1885,8 @@ function scRecipe() {
         '<span class="nm">' + esc(gi ? L(gi) : it.i) +
           (it.rk ? " <em>· " + esc(L(it.rk)) + "</em>" : "") +
           (it.opt ? ' <em>(' + esc(t("optional")) + ")</em>" : "") +
+          (it.remplace ? ' <em>· ' + esc(t("d_replaces")) + " " +
+            esc(L(ingById(it.remplace) || {})) + "</em>" : "") +
         "</span>" +
         '<span class="qt' + (it.m === "fix" ? " manual" : "") + '">' + qtyLabel(q, it.u) + "</span>" +
         "</button>";
@@ -1856,6 +1913,46 @@ function scRecipe() {
       return '<div class="fact"><div class="v" style="font-size:13.5px">' + esc(f[0]) + '</div><div class="k">' + esc(f[1]) + "</div></div>";
     }).join("") + "</div>";
   }
+
+  /* régimes */
+  h += '<p class="eyebrow">' + esc(t("diets")) + '</p><div class="card">';
+  DIETS.forEach(function (d) {
+    const v = dietVerdict(r, d, k);
+    const lbl = v.etat === "compatible" ? t("d_ok")
+              : v.etat === "adaptable" ? t("d_adapt")
+              : v.etat === "au_dela" ? t("d_over") : t("d_no");
+    const cls = v.etat === "compatible" ? "ok" : (v.etat === "adaptable" ? "adapt" : "no");
+    const actionnable = (v.etat === "adaptable" || v.etat === "au_dela") && dietSubs(r, d).length > 0;
+    let detail = "";
+    if (v.valeur !== undefined) {
+      detail = ' <em>' + esc(fmtNum(Math.round(v.valeur * 10) / 10)) + " " + d.unite +
+        " · " + esc(t("d_threshold")) + " " + d.seuil + " " + d.unite + "</em>";
+    } else if (v.etat === "incompatible") {
+      detail = ' <em>· ' + esc(t("d_blocking")) + " : " +
+        v.bloquants.slice(0, 3).map(function (x) { return esc(L(ingById(x) || {})); }).join(", ") + "</em>";
+    } else if (v.note) {
+      detail = ' <em>' + esc(t(v.note)) + "</em>";
+    } else if (v.etat === "adaptable" && v.remplaces.length) {
+      detail = ' <em>· ' + v.remplaces.slice(0, 3).map(function (x) { return esc(L(ingById(x) || {})); }).join(", ") + "</em>";
+    }
+    h += (actionnable
+            ? '<button class="dietrow" data-act="diet" data-v="' + d.id + '">'
+            : '<div class="dietrow">') +
+      '<span class="di" aria-hidden="true">' + d.ico + "</span>" +
+      '<span class="dn">' + esc(L(d)) + detail + "</span>" +
+      '<span class="dv ' + cls + '">' + esc(lbl) + "</span>" +
+      (actionnable ? "</button>" : "</div>");
+  });
+  h += "</div>";
+
+  /* estimation nutritionnelle */
+  const nu = recipeNutri(rv, k);
+  h += '<p class="eyebrow">' + esc(t("nutri")) + '</p><div class="facts">' +
+    '<div class="fact"><div class="v">' + esc(fmtNum(Math.round(nu.p * 10) / 10)) + ' g</div><div class="k">' + esc(t("n_prot")) + "</div></div>" +
+    '<div class="fact"><div class="v">' + esc(fmtNum(Math.round(nu.s * 10) / 10)) + ' g</div><div class="k">' + esc(t("n_sugar")) + "</div></div>" +
+    '<div class="fact"><div class="v">' + esc(fmtNum(Math.round(nu.na))) + ' mg</div><div class="k">' + esc(t("n_sodium")) + "</div></div>" +
+    "</div>" +
+    '<p class="muted" style="font-size:12.5px;line-height:1.5">' + esc(t("n_warning")) + "</p>";
 
   if (L(r.tips)) h += '<p class="eyebrow">' + esc(t("tips")) + '</p><div class="tipbox">' + esc(L(r.tips)) + "</div>";
   if (L(r.notes)) h += '<p class="eyebrow">' + esc(t("notes")) + '</p><p>' + esc(L(r.notes)) + "</p>";
@@ -2585,11 +2682,16 @@ const SHAPE_RULES = [
   ["disc",     /harcha|حرشة/],
   ["mound",    /sellou|sfouf|zammita|سلو|سفوف|زميط/],
   ["layers",   /pastilla|ktefa|jawhara|bouchnikha|بسطيل|كتفا|جوهرة|بوشنيخ/],
+  ["tajine",   /tajine|طاجين|tanjia|طنجية/],
+  ["couscous", /couscous|كسكس|seffa|سفة|medfouna|مدفونة/],
+  ["bowl",     /harira|حريرة|soupe|شوربة|chorba|bissara|بيصارة|بصارة/],
+  ["salad",    /salade|سلطة|zaalouk|زعلوك|taktouka|تكتوكة/],
+  ["bread",    /khobz|خبز|batbout|بطبوط|pain|رفيسة|rfissa/],
   ["flan",     /panna cotta|br(û|u)l(é|e)e|بانا كوتا|بروليه/],
   ["drop",     /coulis|كوليس|sauce|صلصة|sirop|شراب|caramel liquide/],
   ["cigar",    /cigare|سيجار/],
   ["mound",    /p(â|a)te d'amande|farce|حشوة|عجينة|amlou|أملو/],
-  ["glass",    /cr(è|e)me|كريمة|ganache|غاناش|chantilly|mhalabia|مهلبية|riz au lait|أرز بالحليب|th(é|e) |أتاي|شاي|jus |عصير|salade|سلطة/],
+  ["glass",    /cr(è|e)me|كريمة|ganache|غاناش|chantilly|mhalabia|مهلبية|riz au lait|أرز بالحليب|th(é|e) |أتاي|شاي|jus |عصير/],
   ["dome",     /montecaos|مونتيكاو|sabl(é|e)|بسكويت بالمربى/],
   ["wedge",    /cheesecake|تشيز/],
   ["tart",     /tarte|tart|تارت/],
@@ -2640,6 +2742,18 @@ const TONE_RULES = [
   [/banane|banana|موز/,                        "#7A6A1E", "#B8A238"],
   [/exotique|tropical|fruits|فواكه/,           "#7A3A20", "#B76A3A"],
   [/yaourt|yogurt|زبادي/,                      "#786B6A", "#B3A5A4"],
+  [/tajine|طاجين|tanjia|طنجية/,                "#7A3A1E", "#B0713F"],
+  [/couscous|كسكس|seffa|سفة/,                  "#8A6A22", "#C4A24A"],
+  [/harira|حريرة|chorba|شوربة/,                "#7E3524", "#B56A48"],
+  [/bissara|بيصارة|بصارة|f(è|e)ve|فول/,        "#6E6420", "#A89C42"],
+  [/lentille|عدس/,                             "#5E4A2A", "#957C4C"],
+  [/zaalouk|زعلوك|aubergine|باذنجان/,          "#4A3050", "#7B5A84"],
+  [/taktouka|تكتوكة|poivron|فلفل حلو/,         "#7A2E2A", "#B2604C"],
+  [/poulet|chicken|دجاج/,                      "#8A6A2E", "#C2A055"],
+  [/agneau|lamb|غنم|boeuf|b(œ|oe)uf|بقر|kefta|كفتة/, "#6B2C24", "#A05A48"],
+  [/poisson|fish|سمك/,                         "#3E5566", "#6E8A9E"],
+  [/khobz|خبز|batbout|بطبوط|pain|rfissa|رفيسة/,"#7A6242", "#B39868"],
+  [/olive|زيتون/,                              "#4E5A28", "#82914A"],
   [/eau de rose|sirop de rose|ماء الورد|شراب الورد/, "#8E3358", "#C0708C"],
   [/argan|أركان/,                              "#7A5A2A", "#B58F45"],
   [/tahin|طحين/,                               "#74594E", "#A88A7C"],
@@ -2651,11 +2765,14 @@ const TONE_CAT = {
   c1: ["#7A4A55", "#AD7C86"], c2: ["#8A4258", "#BE7288"], c3: ["#5A3340", "#8E6272"],
   c4: ["#78505A", "#A9808A"], c5: ["#6E4250", "#9E7280"], c6: ["#7C7154", "#BCB08A"],
   c7: ["#65621D", "#A6A033"], c8: ["#8A5A66", "#BE8B96"], c9: ["#8A4A3A", "#C07E68"],
-  c10:["#6E4A58", "#A07C88"]
+  c10:["#6E4A58", "#A07C88"],
+  c11:["#7A3A1E", "#B0713F"], c12:["#8A6A22", "#C4A24A"], c13:["#7E3524", "#B56A48"],
+  c14:["#4E5A28", "#82914A"], c15:["#7A6242", "#B39868"]
 };
 const SHAPE_CAT = {
   c1: "dome", c2: "crescent", c3: "loaf", c4: "slice", c5: "glass",
-  c6: "scoop", c7: "scoop", c8: "glass", c9: "drop", c10: "rosette"
+  c6: "scoop", c7: "scoop", c8: "glass", c9: "drop", c10: "rosette",
+  c11: "tajine", c12: "couscous", c13: "bowl", c14: "salad", c15: "bread"
 };
 
 function illusSpec(r) {
@@ -2730,6 +2847,7 @@ function motif(kind) {
     '<rect x="43" y="104" width="34" height="6" rx="3" fill="' + c + '" fill-opacity=".7"/>';
   const ball = '<circle cx="60" cy="46" r="27" fill="' + c + '"/>' +
     '<path d="M58 20a27 27 0 0 1 25 16" fill="none" stroke="' + INK_SOFT + '" stroke-width="5" stroke-linecap="round"/>';
+  if (MOTIF_SALE[kind]) return MOTIF_SALE[kind](c);
   if (kind === "cigar") {   /* cigares aux amandes : rouleaux */
     return '<g transform="rotate(-24 60 60)">' +
       '<g fill="' + c + '"><rect x="18" y="34" width="84" height="17" rx="8.5"/>' +
@@ -4821,12 +4939,1239 @@ R("RCP-155", "c10", 1, 4, [10, 0, 0, 0], 1, "l",
   ["يقدم في الدقائق التي يحضر فيها: الأفوكادو يسود بسرعة، ولا يمنع ذلك إلا العصير الفوري.", "Se sert dans les minutes qui suivent : l'avocat noircit vite et rien ne l'empêche sinon la consommation immédiate.", "Serve within minutes: avocado browns fast and nothing prevents it but drinking it straight away."]);
 </script>
 
+
+
+
+
+<script>
+"use strict";
+
+/* =====================================================================
+   Régimes alimentaires
+   ---------------------------------------------------------------------
+   Les valeurs nutritionnelles sont des references generiques pour 100 g,
+   pas des mesures de vos produits. Les totaux affiches sont donc des
+   ESTIMATIONS. L'huile de friture est exclue du calcul : seule une
+   fraction est absorbee, et elle varie trop pour etre chiffree.
+   Rien ici ne remplace l'avis d'un medecin ou d'un dieteticien.
+   ===================================================================== */
+
+/* ---------- ingredients de substitution ---------- */
+const ING_SUBS_SEED = [
+  ["farine_riz",  "دقيق الأرز",        "Farine de riz",            "Rice flour",             "i1", "g",  0.55],
+  ["lait_amande", "حليب اللوز",        "Lait d'amande",            "Almond milk",            "i11","ml", 1.00],
+  ["creme_coco",  "كريمة جوز الهند",   "Crème de coco",            "Coconut cream",          "i11","ml", 1.00],
+  ["agar",        "أغار أغار",         "Agar-agar",                "Agar-agar",              "i10","g",  0.60],
+  ["erythritol",  "إريثريتول",         "Érythritol",               "Erythritol",             "i2", "g",  0.70],
+  ["stevia",      "ستيفيا",            "Stévia",                   "Stevia",                 "i2", "g",  0.50],
+  ["margarine_v", "سمن نباتي",         "Margarine végétale",       "Plant margarine",        "i6", "g",  0.90],
+  ["sirop_agave", "شراب الأغاف",       "Sirop d'agave",            "Agave syrup",            "i2", "g",  1.31],
+  ["lin",         "بذور الكتان المطحونة", "Graines de lin moulues",  "Ground flaxseed",        "i11","g",  0.55]
+].map(function (r) {
+  return { id: r[0], ar: r[1], fr: r[2], en: r[3], cat: r[4], unit: r[5], dens: r[6] };
+});
+
+/* ---------- proteines / sucres / sodium pour 100 g, et etiquettes ----------
+   etiquettes : gluten lactose oeuf coque sesame animal nonveg          */
+const ING_NUTRI = {};
+[
+ ["farine",10,1,2,"gluten"],            ["semoule_f",12,1,1,"gluten"],      ["semoule_m",12,1,1,"gluten"],
+ ["maizena",0.3,0,9,""],                ["warqa",8,1,400,"gluten"],         ["sucre",0,100,0,""],
+ ["sucre_glace",0,99,0,""],             ["sucre_van",0,98,0,""],            ["miel",0.3,82,4,"animal"],
+ ["glucose",0,92,10,""],                ["amande",21,4,1,"coque"],          ["amande_m",21,4,1,"coque"],
+ ["amande_p",21,4,1,"coque"],           ["noix",15,3,2,"coque"],            ["noisette",15,4,0,"coque"],
+ ["pistache",20,8,1,"coque"],           ["sesame",17,0.3,11,"sesame"],      ["cacahuete",26,4,18,"coque"],
+ ["datte",2.5,63,2,""],                 ["raisin_sec",3,59,11,""],          ["beurre",0.9,0.6,11,"lactose animal"],
+ ["beurre_f",0.9,0.6,11,"lactose animal"], ["smen",0.5,0.5,400,"lactose animal"], ["huile",0,0,0,""],
+ ["huile_oli",0,0,2,""],                ["huile_fri",0,0,0,""],             ["oeuf",13,0.4,124,"oeuf animal"],
+ ["jaune",16,0.6,48,"oeuf animal"],     ["blanc",11,0.7,166,"oeuf animal"], ["lait",3.4,4.8,44,"lactose animal"],
+ ["lait_pdr",26,38,370,"lactose animal"], ["lait_conc",8,54,127,"lactose animal"], ["creme",2,3,38,"lactose animal"],
+ ["creme_f",2.5,3,40,"lactose animal"], ["yaourt",3.5,4.7,46,"lactose animal"], ["fromage_f",6,3,300,"lactose animal"],
+ ["eau",0,0,1,""],                      ["eau_zhar",0,0,1,""],              ["eau_ward",0,0,1,""],
+ ["levure_c",0,0,11000,""],             ["levure_b",40,0,50,""],            ["bicarbonate",0,0,27000,""],
+ ["gelatine",86,0,30,"animal nonveg"],  ["stabilisant",1,5,100,""],         ["sel",0,0,38700,""],
+ ["cannelle",4,2,10,""],                ["anis",18,0,16,""],                ["fenouil",16,0,88,""],
+ ["gomme",0,0,20,""],                   ["safran",11,0,148,""],             ["vanille_ex",0,13,9,""],
+ ["vanille_g",1,12,9,""],               ["zeste_cit",1.5,4,6,""],           ["jus_cit",0.4,2.5,1,""],
+ ["citron",1,2.5,2,""],                 ["orange",0.9,9,0,""],              ["mangue",0.8,14,1,""],
+ ["fraise",0.7,5,1,""],                 ["banane",1.1,12,1,""],             ["choco_noir",8,24,20,""],
+ ["choco_lait",8,52,79,"lactose animal"], ["cacao",20,2,21,""],             ["vinaigre",0,0,5,""],
+ ["colorant",0,0,10,""],                ["coco",7,7,37,""],                 ["cafe",12,0,37,""],
+ ["gingembre",1.8,1.7,13,""],           ["menthe",3.3,0,31,""],             ["pomme",0.3,10,1,""],
+ ["poire",0.4,10,1,""],                 ["ananas",0.5,10,1,""],             ["kiwi",1.1,9,3,""],
+ ["grenade",1.7,14,3,""],               ["pasteque",0.6,6,1,""],            ["peche",0.9,8,0,""],
+ ["abricot",1.4,9,1,""],                ["framboise",1.2,4.4,1,""],         ["mandarine",0.8,11,2,""],
+ ["mascarpone",4.8,3,30,"lactose animal"], ["biscuit_c",8,30,180,"gluten oeuf animal"], ["sucre_roux",0,97,28,""],
+ ["choco_blanc",6,59,90,"lactose animal"], ["farine_gr",11,1,2,"gluten"],   ["orge_gr",10,1,9,"gluten"],
+ ["riz",7,0.1,1,""],                    ["tahin",17,0.5,35,"sesame"],       ["huile_argan",0,0,0,""],
+ ["avocat",2,0.7,7,""],                 ["the_vert",20,0,3,""],
+ ["farine_riz",6,0.1,1,""],             ["lait_amande",0.5,3,60,"coque"],   ["creme_coco",2,3,15,""],
+ ["agar",0,0,100,""],                   ["erythritol",0,0,0,""],            ["stevia",0,0,0,""],
+ ["margarine_v",0.2,0.5,700,""],        ["sirop_agave",0,68,4,""],
+ ["lin",18,1.5,30,""]
+].forEach(function (r) { ING_NUTRI[r[0]] = { p: r[1], s: r[2], na: r[3], t: r[4] }; });
+
+/* poids moyen d'une piece, en grammes */
+const PIECE_G = {
+  oeuf: 50, jaune: 18, blanc: 32, citron: 100, orange: 150, mandarine: 70,
+  warqa: 25, vanille_g: 3, avocat: 200, pomme: 180, poire: 180
+};
+
+function nutriOf(id) { return ING_NUTRI[id] || { p: 0, s: 0, na: 0, t: "" }; }
+function ingTags(id) { return nutriOf(id).t.split(" ").filter(Boolean); }
+
+/* grammes reels correspondant a une quantite exprimee dans son unite */
+function gramsOf(ingId, qty, unitId) {
+  const u = unitById(unitId), g = ingById(ingId);
+  if (u.type === "mass") return qty * u.factor;
+  if (u.type === "vol") {
+    const ml = qty * u.factor;
+    return ml * (g && g.dens > 0 ? g.dens : 1);
+  }
+  if (u.type === "unit") return qty * (PIECE_G[ingId] || 40);
+  return 0;
+}
+
+/* estimation par portion */
+function recipeNutri(r, k) {
+  let p = 0, su = 0, na = 0;
+  r.ings.forEach(function (it) {
+    if (it.g === "friture") return;
+    const grams = gramsOf(it.i, scaledQty(it, k), it.u);
+    const n = nutriOf(it.i);
+    p += grams * n.p / 100;
+    su += grams * n.s / 100;
+    na += grams * n.na / 100;
+  });
+  const port = Math.max(1, (S.portions || r.portions || 1));
+  return { p: p / port, s: su / port, na: na / port };
+}
+
+/* ---------- substitutions : [remplacant, facteur] ; null = a retirer ---------- */
+const SUB_LACTOSE = {
+  lait: ["lait_amande", 1], lait_pdr: [null, 0], lait_conc: ["creme_coco", 1],
+  creme: ["creme_coco", 1], creme_f: ["creme_coco", 1], yaourt: ["creme_coco", 1],
+  fromage_f: ["creme_coco", 1], mascarpone: ["creme_coco", 1],
+  beurre: ["huile", 0.8], beurre_f: ["huile", 0.8], smen: ["huile_oli", 0.8],
+  choco_lait: ["choco_noir", 1], choco_blanc: ["choco_noir", 1]
+};
+/* Un oeuf entier se remplace par 7 g de lin moulu delaye dans trois fois
+   son volume d'eau. Un jaune, par 4 g. Le blanc d'oeuf, lui, porte une
+   structure qu'aucun ingredient ne reproduit sans changer la recette :
+   il reste bloquant, et la recette est declaree incompatible. */
+const SUB_ANIMAL = Object.assign({}, SUB_LACTOSE, {
+  oeuf: ["lin", 7], jaune: ["lin", 4],
+  miel: ["sirop_agave", 0.75], gelatine: ["agar", 0.125]
+});
+const SUB_GLUTEN = {
+  farine: ["farine_riz", 1], farine_gr: ["farine_riz", 1], orge_gr: ["farine_riz", 1],
+  semoule_f: ["farine_riz", 0.9], semoule_m: ["farine_riz", 0.9]
+};
+const SUB_SUCRE = {
+  sucre: ["erythritol", 1.3], sucre_glace: ["erythritol", 1.3], sucre_van: ["erythritol", 1.3],
+  sucre_roux: ["erythritol", 1.3], glucose: [null, 0], sirop_agave: ["erythritol", 1],
+  miel: ["erythritol", 0.8], lait_conc: [null, 0]
+};
+const SUB_SEL = { sel: [null, 0] };
+
+/* ---------- les régimes ----------
+   forbid  : etiquettes qui rendent la recette incompatible si non substituables
+   subs    : table de substitution applicable
+   metric  : 'na' sodium mg, 's' sucres g, 'p' proteines g — par portion
+   seuil   : au-dela, la recette est signalee comme a adapter               */
+const DIETS = [
+  { id: "vegetarien",  ico: "🌿", ar: "نباتي",          fr: "Végétarien",            en: "Vegetarian",
+    forbid: ["nonveg"], subs: { gelatine: ["agar", 0.125] } },
+  { id: "vegetalien",  ico: "🌱", ar: "نباتي صرف",      fr: "Végétalien",            en: "Vegan",
+    forbid: ["animal"], subs: SUB_ANIMAL },
+  { id: "sans_lactose",ico: "🥛", ar: "بدون لاكتوز",    fr: "Sans lactose",          en: "Lactose-free",
+    forbid: ["lactose"], subs: SUB_LACTOSE },
+  { id: "sans_gluten", ico: "🌾", ar: "بدون غلوتين",    fr: "Sans gluten",           en: "Gluten-free",
+    forbid: ["gluten"], subs: SUB_GLUTEN },
+  { id: "sans_coque",  ico: "🥜", ar: "بدون مكسرات",    fr: "Sans fruits à coque",   en: "Nut-free",
+    forbid: ["coque"], subs: {} },
+  { id: "sans_sesame", ico: "◦",  ar: "بدون سمسم",      fr: "Sans sésame",           en: "Sesame-free",
+    forbid: ["sesame"], subs: {} },
+  { id: "sans_sel",    ico: "🧂", ar: "بدون ملح",       fr: "Sans sel",              en: "Salt-free",
+    forbid: [], subs: SUB_SEL, metric: "na", seuil: 120, unite: "mg" },
+  { id: "reduit_sucre",ico: "◐",  ar: "قليل السكر",     fr: "Réduit en sucre",       en: "Reduced sugar",
+    forbid: [], subs: SUB_SUCRE, metric: "s", seuil: 10, unite: "g" },
+  { id: "faible_prot", ico: "◑",  ar: "قليل البروتين",  fr: "Faible en protéines",   en: "Low protein",
+    forbid: [], subs: {}, metric: "p", seuil: 5, unite: "g" }
+];
+function dietById(id) {
+  for (let i = 0; i < DIETS.length; i++) if (DIETS[i].id === id) return DIETS[i];
+  return null;
+}
+
+/* verdict : compatible | adaptable | incompatible */
+function dietVerdict(r, d, k) {
+  /* Dans une glace ou un sorbet, le sucre abaisse le point de congelation :
+     il tient la texture autant que le gout. Le remplacer n'est pas une
+     adaptation mais une autre recette — on le dit au lieu de le proposer. */
+  if (d.id === "reduit_sucre" && r.ice) {
+    return { etat: "incompatible", bloquants: [], remplaces: [], note: "d_sugar_str" };
+  }
+  const bloquants = [], remplaces = [];
+  r.ings.forEach(function (it) {
+    if (it.g === "friture") return;
+    const tags = ingTags(it.i);
+    const gene = d.forbid.some(function (t) { return tags.indexOf(t) >= 0; });
+    if (!gene) return;
+    if (d.subs && d.subs[it.i]) remplaces.push(it.i);
+    else if (it.opt) remplaces.push(it.i);
+    else bloquants.push(it.i);
+  });
+  if (bloquants.length) return { etat: "incompatible", bloquants: bloquants, remplaces: remplaces };
+
+  if (d.metric) {
+    const n = recipeNutri(r, k || 1);
+    const val = n[d.metric];
+    const apres = dietSubs(r, d).length ? recipeNutri(adaptRecipe(r, d), k || 1)[d.metric] : val;
+    if (val <= d.seuil) return { etat: "compatible", valeur: val, remplaces: [] };
+    if (apres <= d.seuil) return { etat: "adaptable", valeur: val, apres: apres, remplaces: dietSubs(r, d) };
+    return { etat: "au_dela", valeur: val, apres: apres, remplaces: dietSubs(r, d) };
+  }
+  return remplaces.length
+    ? { etat: "adaptable", remplaces: remplaces }
+    : { etat: "compatible", remplaces: [] };
+}
+
+/* liste des ingredients que ce régime remplace effectivement dans cette recette */
+function dietSubs(r, d) {
+  if (!d.subs) return [];
+  const out = [];
+  r.ings.forEach(function (it) {
+    if (it.g === "friture") return;
+    if (d.subs[it.i] && out.indexOf(it.i) < 0) out.push(it.i);
+  });
+  return out;
+}
+
+/* recette transformee selon un régime */
+function adaptRecipe(r, d) {
+  const c = JSON.parse(JSON.stringify(r));
+  const gardes = [];
+  c.ings.forEach(function (it) {
+    const rule = d.subs && d.subs[it.i];
+    if (!rule) { gardes.push(it); return; }
+    if (rule[0] === null) return;            /* retire */
+    it.remplace = it.i;
+    it.i = rule[0];
+    it.q = Math.round(it.q * rule[1] * 1000) / 1000;
+    const gi = ingById(it.i);
+    if (gi && unitById(it.u).type !== unitById(gi.unit).type) it.u = gi.unit;
+    gardes.push(it);
+  });
+  c.ings = gardes;
+  c.adapte = d.id;
+  return c;
+}
+</script>
+
+<script>
+"use strict";
+
+/* =====================================================================
+   Cuisine salée — catégories, ingrédients, motifs
+   ===================================================================== */
+
+/* ---------- cinq catégories de plats ---------- */
+[
+  { id: "c11", icon: "🍲", ar: "طواجن",            fr: "Tajines",           en: "Tagines" },
+  { id: "c12", icon: "🥘", ar: "الكسكس",           fr: "Couscous",          en: "Couscous" },
+  { id: "c13", icon: "🍜", ar: "الحريرة والشوربة", fr: "Soupes et harira",  en: "Soups & harira" },
+  { id: "c14", icon: "🥗", ar: "السلطات",          fr: "Salades",           en: "Salads" },
+  { id: "c15", icon: "🍗", ar: "أطباق وخبز",       fr: "Plats et pains",    en: "Dishes & breads" }
+].forEach(function (c) { CATS.push(c); });
+
+/* ---------- quatre familles d'ingrédients ---------- */
+[
+  { id: "i12", ar: "لحوم وأسماك",   fr: "Viandes et poissons",   en: "Meat & fish" },
+  { id: "i13", ar: "خضر",           fr: "Légumes",               en: "Vegetables" },
+  { id: "i14", ar: "قطاني",         fr: "Légumineuses",          en: "Pulses" },
+  { id: "i15", ar: "توابل مالحة",   fr: "Épices et condiments",  en: "Spices & condiments" }
+].forEach(function (c) { ICATS.push(c); });
+
+/* ---------- ingrédients salés ---------- */
+const ING_SALE_SEED = [
+  ["agneau",       "لحم الغنم",        "Épaule d'agneau",        "Lamb shoulder",       "i12","g", 0],
+  ["poulet",       "دجاج",             "Poulet",                 "Chicken",             "i12","g", 0],
+  ["boeuf",        "لحم البقر",        "Bœuf à mijoter",         "Stewing beef",        "i12","g", 0],
+  ["kefta",        "كفتة",             "Viande hachée",          "Minced meat",         "i12","g", 0],
+  ["poisson_b",    "سمك أبيض",         "Poisson blanc",          "White fish",          "i12","g", 0],
+  ["oignon",       "بصل",              "Oignons",                "Onions",              "i13","g", 0],
+  ["ail",          "ثوم",              "Ail",                    "Garlic",              "i13","g", 0],
+  ["tomate",       "طماطم",            "Tomates",                "Tomatoes",            "i13","g", 0],
+  ["conc_tomate",  "معجون الطماطم",    "Concentré de tomate",    "Tomato paste",        "i13","g", 0],
+  ["carotte",      "جزر",              "Carottes",               "Carrots",             "i13","g", 0],
+  ["courgette",    "كوسة",             "Courgettes",             "Courgettes",          "i13","g", 0],
+  ["navet",        "لفت",              "Navets",                 "Turnips",             "i13","g", 0],
+  ["potiron",      "قرع أحمر",         "Potiron",                "Pumpkin",             "i13","g", 0],
+  ["chou",         "كرنب",             "Chou",                   "Cabbage",             "i13","g", 0],
+  ["pomme_terre",  "بطاطس",            "Pommes de terre",        "Potatoes",            "i13","g", 0],
+  ["poivron",      "فلفل حلو",         "Poivrons",               "Bell peppers",        "i13","g", 0],
+  ["aubergine",    "باذنجان",          "Aubergines",             "Aubergines",          "i13","g", 0],
+  ["celeri",       "كرفس",             "Céleri",                 "Celery",              "i13","g", 0],
+  ["petits_pois",  "جلبانة",           "Petits pois",            "Green peas",          "i13","g", 0],
+  ["artichaut",    "قوق",              "Cœurs d'artichaut",      "Artichoke hearts",    "i13","g", 0],
+  ["pois_chiche",  "حمص",              "Pois chiches",           "Chickpeas",           "i14","g", 0],
+  ["lentille",     "عدس",              "Lentilles",              "Lentils",             "i14","g", 0],
+  ["feve_seche",   "فول جاف",          "Fèves sèches",           "Dried broad beans",   "i14","g", 0],
+  ["coriandre",    "كزبرة",            "Coriandre fraîche",      "Fresh coriander",     "i15","g", 0],
+  ["persil",       "معدنوس",           "Persil",                 "Parsley",             "i15","g", 0],
+  ["ras_hanout",   "رأس الحانوت",      "Ras el hanout",          "Ras el hanout",       "i15","g", 0],
+  ["curcuma",      "كركم",             "Curcuma",                "Turmeric",            "i15","g", 0],
+  ["paprika",      "فلفل حلو مطحون",   "Paprika",                "Paprika",             "i15","g", 0],
+  ["cumin",        "كمون",             "Cumin",                  "Cumin",               "i15","g", 0],
+  ["gingembre_p",  "زنجبيل مطحون",     "Gingembre en poudre",    "Ground ginger",       "i15","g", 0],
+  ["poivre",       "إبزار",            "Poivre noir",            "Black pepper",        "i15","g", 0],
+  ["piment",       "فلفل حار",         "Piment fort",            "Hot chilli",          "i15","g", 0],
+  ["citron_confit","حامض مصير",        "Citron confit",          "Preserved lemon",     "i15","g", 0],
+  ["olive_verte",  "زيتون أخضر",       "Olives vertes",          "Green olives",        "i15","g", 0],
+  ["pruneau",      "برقوق مجفف",       "Pruneaux",               "Prunes",              "i13","g", 0],
+  ["semoule_cous", "كسكس",             "Semoule à couscous",     "Couscous semolina",   "i1", "g", 0],
+  ["vermicelle",   "شعرية",            "Vermicelles",            "Vermicelli",          "i1", "g", 0],
+  ["bouillon",     "مرق",              "Bouillon",               "Stock",               "i15","ml",1.00]
+].map(function (r) {
+  return { id: r[0], ar: r[1], fr: r[2], en: r[3], cat: r[4], unit: r[5], dens: r[6] };
+});
+
+/* ---------- valeurs nutritionnelles et étiquettes ---------- */
+[
+ ["agneau",25,0,70,"animal nonveg viande"],   ["poulet",27,0,82,"animal nonveg viande"],
+ ["boeuf",26,0,66,"animal nonveg viande"],    ["kefta",20,0,75,"animal nonveg viande"],
+ ["poisson_b",20,0,90,"animal nonveg poisson"],
+ ["oignon",1.1,4.2,4,""],        ["ail",6,1,17,""],            ["tomate",0.9,2.6,5,""],
+ ["conc_tomate",4.3,12,59,""],   ["carotte",0.9,4.7,69,""],    ["courgette",1.2,2.5,8,""],
+ ["navet",0.9,3.8,67,""],        ["potiron",1,2.8,1,""],       ["chou",1.3,3.2,18,""],
+ ["pomme_terre",2,0.8,6,""],     ["poivron",1,4.2,4,""],       ["aubergine",1,3.5,2,""],
+ ["celeri",0.7,1.3,80,""],       ["petits_pois",5,5.7,5,""],   ["artichaut",3.3,1,60,""],
+ ["pois_chiche",19,11,24,""],    ["lentille",25,2,6,""],       ["feve_seche",26,5,13,""],
+ ["coriandre",2.1,0.9,46,""],    ["persil",3,0.9,56,""],       ["ras_hanout",12,5,900,""],
+ ["curcuma",8,3,27,""],          ["paprika",14,10,68,""],      ["cumin",18,2,168,""],
+ ["gingembre_p",9,3,27,""],      ["poivre",10,0.6,20,""],      ["piment",12,7,30,""],
+ ["citron_confit",1,1,8000,""],  ["olive_verte",1,0,1550,""],  ["pruneau",2.2,38,2,""],
+ ["semoule_cous",13,0.5,1,"gluten"], ["vermicelle",12,2,6,"gluten"], ["bouillon",1,0.3,350,""]
+].forEach(function (r) { ING_NUTRI[r[0]] = { p: r[1], s: r[2], na: r[3], t: r[4] }; });
+
+/* ---------- motifs des plats ---------- */
+const MOTIF_SALE = {
+  tajine: function (c) {
+    return '<path d="M60 14 L92 62 H28 Z" fill="' + c + '" stroke="' + c + '" stroke-width="7" stroke-linejoin="round"/>' +
+      '<circle cx="60" cy="12" r="6" fill="' + c + '"/>' +
+      '<path d="M18 66h84a6 6 0 0 1 0 12H18a6 6 0 0 1 0 -12z" fill="' + c + '"/>' +
+      '<path d="M26 78h68l-6 16a8 8 0 0 1 -8 6h-40a8 8 0 0 1 -8 -6z" fill="' + c + '" fill-opacity=".72"/>' +
+      '<path d="M46 34h28M40 48h40" stroke="' + INK_SOFT + '" stroke-width="4" stroke-linecap="round"/>';
+  },
+  couscous: function (c) {
+    return '<path d="M20 88c8-32 22-48 40-48s32 16 40 48z" fill="' + c + '"/>' +
+      '<g fill="' + INK_SOFT + '"><circle cx="46" cy="70" r="4"/><circle cx="60" cy="60" r="4.5"/>' +
+      '<circle cx="74" cy="72" r="4"/><circle cx="54" cy="82" r="3.6"/><circle cx="70" cy="84" r="3.6"/>' +
+      '<circle cx="38" cy="82" r="3.2"/><circle cx="86" cy="84" r="3.2"/></g>' +
+      '<path d="M14 88h92a5 5 0 0 1 0 10H14a5 5 0 0 1 0 -10z" fill="' + c + '" fill-opacity=".72"/>';
+  },
+  bowl: function (c) {
+    return '<path d="M22 52h76c0 26-17 46-38 46S22 78 22 52z" fill="' + c + '"/>' +
+      '<path d="M16 46h88a5 5 0 0 1 0 10H16a5 5 0 0 1 0 -10z" fill="' + c + '"/>' +
+      '<g stroke="' + INK_SOFT + '" stroke-width="4" stroke-linecap="round" fill="none">' +
+      '<path d="M46 26c0-6 8-6 8-12"/><path d="M62 30c0-6 8-6 8-12"/></g>' +
+      '<path d="M40 70h40" stroke="' + INK_SOFT + '" stroke-width="4" stroke-linecap="round"/>';
+  },
+  salad: function (c) {
+    return '<circle cx="60" cy="62" r="40" fill="' + c + '" fill-opacity=".62"/>' +
+      '<circle cx="60" cy="62" r="29" fill="' + c + '"/>' +
+      '<g fill="' + INK_SOFT + '"><circle cx="52" cy="54" r="5"/><circle cx="68" cy="58" r="5.5"/>' +
+      '<circle cx="56" cy="70" r="4.5"/><circle cx="70" cy="72" r="4"/></g>';
+  },
+  bread: function (c) {
+    return '<circle cx="60" cy="60" r="38" fill="' + c + '"/>' +
+      '<circle cx="60" cy="60" r="38" fill="none" stroke="' + INK_SOFT + '" stroke-width="3" stroke-dasharray="6 8"/>' +
+      '<path d="M60 30v60M34 44l52 32M86 44L34 76" stroke="' + INK_SOFT + '" stroke-width="3.4" stroke-linecap="round"/>';
+  }
+};
+</script>
+
+<script>
+"use strict";
+
+/* un ingrédient encore manquant */
+ING_SALE_SEED.push({ id: "fenugrec", ar: "الحلبة", fr: "Fenugrec", en: "Fenugreek", cat: "i15", unit: "g", dens: 0 });
+ING_NUTRI["fenugrec"] = { p: 23, s: 0, na: 67, t: "" };
+
+/* ---------- tajines (c11) ---------- */
+R("RCP-156", "c11", 2, 6, [30, 0, 75, 0], 6, "pc",
+  ["طاجين الدجاج بالزيتون والحامض المصير", "Tajine de poulet aux olives et citron confit", "Chicken Tagine with Olives & Preserved Lemon"],
+  ["الطاجين الأكثر شهرة", "Le plus connu de tous", "The best known of all"],
+  "tajine poulet olive citron confit mchermel",
+  [["poulet", 1400, "g", "base"], ["oignon", 300, "g", "base"], ["ail", 20, "g", "base"],
+   ["huile_oli", 80, "ml", "base"], ["coriandre", 30, "g", "base"], ["persil", 20, "g", "base"],
+   ["gingembre_p", 5, "g", "base", "root"], ["curcuma", 4, "g", "base", "root"],
+   ["safran", 0.2, "g", "base", "root"], ["poivre", 3, "g", "base", "root"],
+   ["sel", 8, "g", "base", "root"], ["eau", 300, "ml", "base"],
+   ["citron_confit", 120, "g", "decor"], ["olive_verte", 150, "g", "decor"]],
+  [["اخلط الدجاج مع الثوم المدقوق والتوابل والزيت ونصف الكزبرة، واتركه يتشرب نصف ساعة.",
+    "Mélangez le poulet avec l'ail pilé, les épices, l'huile et la moitié de la coriandre, et laissez mariner une demi-heure.",
+    "Rub the chicken with the crushed garlic, spices, oil and half the coriander, and marinate for half an hour."],
+   ["افرش البصل المقطع رقيقا في قاع الطاجين وضع الدجاج فوقه.",
+    "Étalez l'oignon émincé au fond du tajine et posez le poulet dessus.",
+    "Spread the sliced onion over the base of the tagine and lay the chicken on top."],
+   ["أضف الماء، غط الطاجين واتركه على نار هادئة ساعة، دون تحريك.",
+    "Ajoutez l'eau, couvrez et laissez mijoter une heure à feu doux, sans remuer.",
+    "Add the water, cover and simmer one hour over low heat, without stirring."],
+   ["أضف الزيتون والحامض المصير وباقي الكزبرة، وواصل الطهي ربع ساعة.",
+    "Ajoutez les olives, le citron confit et le reste de la coriandre, et poursuivez un quart d'heure.",
+    "Add the olives, preserved lemon and remaining coriander, and cook on for fifteen minutes."],
+   ["ارفع الغطاء في آخر عشر دقائق ليتماسك المرق.",
+    "Découvrez les dix dernières minutes pour laisser la sauce réduire.",
+    "Uncover for the last ten minutes to let the sauce reduce."]],
+  ["اسلق الزيتون دقيقتين وصفه قبل إضافته: هكذا تنزع ملوحته الزائدة.",
+    "Ébouillantez les olives deux minutes et égouttez-les avant de les ajouter : cela leur ôte l'excès de sel.",
+    "Blanch the olives two minutes and drain them before adding: it takes off the excess salt."]);
+
+R("RCP-157", "c11", 2, 6, [25, 0, 110, 0], 6, "pc",
+  ["طاجين اللحم بالبرقوق", "Tajine d'agneau aux pruneaux", "Lamb Tagine with Prunes"],
+  ["حلو ومملح", "Le sucré-salé des fêtes", "The festive sweet and savoury"],
+  "tajine agneau pruneau amande fete",
+  [["agneau", 1200, "g", "base"], ["oignon", 400, "g", "base"], ["smen", 40, "g", "base"],
+   ["huile_oli", 40, "ml", "base"], ["cannelle", 6, "g", "base", "fix"],
+   ["gingembre_p", 5, "g", "base", "root"], ["safran", 0.2, "g", "base", "root"],
+   ["poivre", 3, "g", "base", "root"], ["sel", 8, "g", "base", "root"], ["eau", 500, "ml", "base"],
+   ["pruneau", 300, "g", "sirop"], ["miel", 60, "g", "sirop"], ["sucre", 30, "g", "sirop"],
+   ["amande_m", 100, "g", "decor"], ["sesame", 20, "g", "decor"]],
+  [["دهّن اللحم بالتوابل والسمن واتركه ربع ساعة.",
+    "Enrobez la viande d'épices et de smen, laissez reposer un quart d'heure.",
+    "Coat the meat with spices and smen, and leave a quarter of an hour."],
+   ["قلّبه في القدر حتى يذهب لونه، ثم أضف البصل والماء.",
+    "Faites-le revenir jusqu'à coloration, puis ajoutez l'oignon et l'eau.",
+    "Brown it in the pot, then add the onion and the water."],
+   ["اتركه على نار هادئة ساعة وربع حتى يلين اللحم ويتفكك.",
+    "Laissez mijoter une heure et quart, jusqu'à ce que la viande se détache.",
+    "Simmer an hour and a quarter, until the meat falls apart."],
+   ["انقع البرقوق في ماء فاتر ثم اطبخه على حدة مع العسل والسكر والقرفة عشرين دقيقة.",
+    "Faites gonfler les pruneaux à l'eau tiède puis compotez-les à part avec le miel, le sucre et la cannelle vingt minutes.",
+    "Plump the prunes in warm water, then cook them separately with the honey, sugar and cinnamon for twenty minutes."],
+   ["اقل اللوز، ركب الطبق وزينه باللوز والسمسم.",
+    "Faites frire les amandes, dressez et parsemez d'amandes et de sésame.",
+    "Fry the almonds, plate up and scatter almonds and sesame."]],
+  ["اطبخ البرقوق على حدة: مطبوخا مع اللحم يتفكك ويحلي المرق كله.",
+    "Cuisez les pruneaux à part : dans la viande, ils se défont et sucrent toute la sauce.",
+    "Cook the prunes separately: in with the meat they collapse and sweeten the whole sauce."]);
+
+R("RCP-158", "c11", 1, 4, [20, 0, 35, 0], 4, "pc",
+  ["طاجين الكفتة بالبيض", "Tajine de kefta aux œufs", "Kefta Tagine with Eggs"],
+  ["سريع ومغذ", "Rapide et nourrissant", "Quick and filling"],
+  "tajine kefta oeuf tomate",
+  [["kefta", 600, "g", "base"], ["tomate", 700, "g", "base"], ["oignon", 150, "g", "base"],
+   ["ail", 15, "g", "base"], ["huile_oli", 50, "ml", "base"], ["conc_tomate", 30, "g", "base"],
+   ["paprika", 6, "g", "base", "root"], ["cumin", 5, "g", "base", "root"],
+   ["piment", 2, "g", "base", "root", true], ["sel", 6, "g", "base", "root"],
+   ["coriandre", 25, "g", "base"], ["persil", 15, "g", "base"], ["oeuf", 4, "pc", "decor"]],
+  [["اطبخ الطماطم المقشرة المهروسة مع البصل والثوم والزيت والتوابل عشرين دقيقة.",
+    "Faites réduire les tomates pelées et concassées avec l'oignon, l'ail, l'huile et les épices vingt minutes.",
+    "Reduce the peeled, chopped tomatoes with the onion, garlic, oil and spices for twenty minutes."],
+   ["اعجن الكفتة مع نصف الكزبرة والمعدنوس وقليل من الكمون.",
+    "Travaillez la viande hachée avec la moitié de la coriandre, le persil et un peu de cumin.",
+    "Work the minced meat with half the coriander, the parsley and a little cumin."],
+   ["شكل كرات صغيرة وضعها في الصلصة.",
+    "Formez de petites boulettes et déposez-les dans la sauce.",
+    "Shape small meatballs and settle them into the sauce."],
+   ["غط واطبخ عشر دقائق، ثم اكسر البيض على السطح.",
+    "Couvrez, cuisez dix minutes, puis cassez les œufs à la surface.",
+    "Cover, cook ten minutes, then crack the eggs onto the surface."],
+   ["غط مرة أخرى حتى يتماسك البياض ويبقى الصفار طريا، ورش الكزبرة.",
+    "Couvrez à nouveau jusqu'à ce que le blanc prenne et que le jaune reste coulant, et parsemez de coriandre.",
+    "Cover again until the whites set and the yolks stay soft, then scatter coriander."]],
+  ["الصلصة يجب أن تكون ثخينة قبل البيض: المائية تسلقه بدل أن تطبخه.",
+    "La sauce doit être épaisse avant les œufs : trop liquide, elle les pochera au lieu de les cuire.",
+    "The sauce must be thick before the eggs go in: too liquid and it poaches them instead."]);
+
+R("RCP-159", "c11", 2, 4, [35, 60, 30, 0], 4, "pc",
+  ["طاجين السمك بالشرمولة", "Tajine de poisson à la chermoula", "Fish Tagine with Chermoula"],
+  ["على طريقة الصويرة", "À la manière d'Essaouira", "In the Essaouira style"],
+  "tajine poisson chermoula essaouira",
+  [["poisson_b", 1000, "g", "base"], ["coriandre", 40, "g", "farce"], ["persil", 25, "g", "farce"],
+   ["ail", 25, "g", "farce"], ["cumin", 8, "g", "farce", "root"], ["paprika", 8, "g", "farce", "root"],
+   ["jus_cit", 60, "ml", "farce"], ["huile_oli", 80, "ml", "farce"], ["sel", 7, "g", "farce", "root"],
+   ["pomme_terre", 500, "g", "base"], ["tomate", 400, "g", "base"], ["poivron", 200, "g", "base"],
+   ["citron_confit", 60, "g", "decor"], ["olive_verte", 100, "g", "decor"]],
+  [["اخلط الكزبرة والمعدنوس والثوم والكمون والفلفل الحلو وعصير الليمون والزيت والملح: هذه هي الشرمولة.",
+    "Mixez coriandre, persil, ail, cumin, paprika, jus de citron, huile et sel : voilà la chermoula.",
+    "Blend coriander, parsley, garlic, cumin, paprika, lemon juice, oil and salt: that is chermoula."],
+   ["دهّن السمك بنصفها واتركه ساعة في البرد.",
+    "Enrobez le poisson de la moitié et laissez mariner une heure au frais.",
+    "Coat the fish with half of it and marinate one hour in the fridge."],
+   ["افرش شرائح البطاطس في قاع الطاجين، ثم الطماطم والفلفل.",
+    "Tapissez le fond du tajine de rondelles de pomme de terre, puis de tomates et de poivrons.",
+    "Line the base of the tagine with potato slices, then tomatoes and peppers."],
+   ["ضع السمك فوقها، أضف باقي الشرمولة وقليلا من الماء.",
+    "Posez le poisson dessus, ajoutez le reste de chermoula et un peu d'eau.",
+    "Lay the fish on top, add the rest of the chermoula and a little water."],
+   ["غط واطبخ نصف ساعة على نار هادئة، ثم أضف الزيتون والحامض المصير.",
+    "Couvrez et cuisez une demi-heure à feu doux, puis ajoutez olives et citron confit.",
+    "Cover and cook half an hour over low heat, then add the olives and preserved lemon."]],
+  ["البطاطس في القاع ليست حشوة: هي التي تحمي السمك من الاحتراق.",
+    "Les pommes de terre au fond ne sont pas un remplissage : ce sont elles qui protègent le poisson du feu.",
+    "The potatoes at the bottom are not filler: they are what protects the fish from the heat."]);
+
+R("RCP-160", "c11", 1, 6, [30, 0, 55, 0], 6, "pc",
+  ["طاجين الخضر", "Tajine de légumes", "Vegetable Tagine"],
+  ["نباتي بالكامل", "Entièrement végétal", "Entirely plant-based"],
+  "tajine legumes vegetarien vegetalien",
+  [["carotte", 300, "g", "base"], ["courgette", 300, "g", "base"], ["navet", 250, "g", "base"],
+   ["pomme_terre", 350, "g", "base"], ["potiron", 250, "g", "base"], ["tomate", 300, "g", "base"],
+   ["oignon", 200, "g", "base"], ["ail", 15, "g", "base"], ["pois_chiche", 150, "g", "base"],
+   ["huile_oli", 70, "ml", "base"], ["ras_hanout", 8, "g", "base", "root"],
+   ["curcuma", 5, "g", "base", "root"], ["gingembre_p", 4, "g", "base", "root"],
+   ["sel", 8, "g", "base", "root"], ["coriandre", 30, "g", "base"], ["eau", 250, "ml", "base"]],
+  [["انقع الحمص ليلة كاملة واسلقه حتى يلين.",
+    "Faites tremper les pois chiches une nuit et cuisez-les jusqu'à tendreté.",
+    "Soak the chickpeas overnight and cook them until tender."],
+   ["قلّب البصل والثوم في الزيت مع التوابل حتى ينبعث العطر.",
+    "Faites revenir l'oignon et l'ail dans l'huile avec les épices jusqu'à ce qu'ils embaument.",
+    "Soften the onion and garlic in the oil with the spices until fragrant."],
+   ["أضف الطماطم واتركها تنضج عشر دقائق.",
+    "Ajoutez les tomates et laissez fondre dix minutes.",
+    "Add the tomatoes and let them break down for ten minutes."],
+   ["رتب الخضر واقفة على شكل مخروط حسب مدة طهيها: الصلبة في الأسفل.",
+    "Disposez les légumes en cône selon leur temps de cuisson : les plus fermes en bas.",
+    "Arrange the vegetables in a cone by cooking time: the firmest at the bottom."],
+   ["أضف الماء والحمص، غط واطبخ خمسا وأربعين دقيقة دون تحريك.",
+    "Ajoutez l'eau et les pois chiches, couvrez et cuisez quarante-cinq minutes sans remuer.",
+    "Add the water and chickpeas, cover and cook forty-five minutes without stirring."]],
+  ["لا تحرك أبدا: الترتيب المخروطي هو ما يطبخ كل خضرة في وقتها الصحيح.",
+    "Ne remuez jamais : c'est l'empilement en cône qui cuit chaque légume à son juste temps.",
+    "Never stir: the cone is what cooks each vegetable for exactly as long as it needs."]);
+
+R("RCP-161", "c11", 2, 6, [30, 0, 90, 0], 6, "pc",
+  ["طاجين اللحم بالقوق والجلبانة", "Tajine d'agneau aux artichauts et petits pois", "Lamb Tagine with Artichokes & Peas"],
+  ["طاجين الربيع", "Le tajine du printemps", "The spring tagine"],
+  "tajine agneau artichaut petits pois printemps",
+  [["agneau", 1100, "g", "base"], ["oignon", 250, "g", "base"], ["ail", 15, "g", "base"],
+   ["huile_oli", 60, "ml", "base"], ["safran", 0.2, "g", "base", "root"],
+   ["gingembre_p", 5, "g", "base", "root"], ["curcuma", 4, "g", "base", "root"],
+   ["poivre", 3, "g", "base", "root"], ["sel", 8, "g", "base", "root"], ["eau", 450, "ml", "base"],
+   ["coriandre", 30, "g", "base"], ["artichaut", 400, "g", "decor"], ["petits_pois", 350, "g", "decor"],
+   ["citron_confit", 60, "g", "decor"], ["jus_cit", 30, "ml", "decor"]],
+  [["قلّب اللحم في الزيت مع البصل والثوم والتوابل حتى يذهب لونه.",
+    "Faites revenir la viande dans l'huile avec l'oignon, l'ail et les épices.",
+    "Brown the meat in the oil with the onion, garlic and spices."],
+   ["أضف الماء والكزبرة، غط واطبخ ساعة على نار هادئة.",
+    "Ajoutez l'eau et la coriandre, couvrez et cuisez une heure à feu doux.",
+    "Add the water and coriander, cover and cook one hour over low heat."],
+   ["مرر القوق في ماء بعصير الليمون حتى لا يسود.",
+    "Passez les artichauts dans de l'eau citronnée pour qu'ils ne noircissent pas.",
+    "Hold the artichokes in lemon water so they do not blacken."],
+   ["أضف القوق والجلبانة والحامض المصير، وواصل الطهي عشرين دقيقة.",
+    "Ajoutez les artichauts, les petits pois et le citron confit, et poursuivez vingt minutes.",
+    "Add the artichokes, peas and preserved lemon, and cook on for twenty minutes."],
+   ["ارفع الغطاء في آخر عشر دقائق ليتماسك المرق.",
+    "Découvrez les dix dernières minutes pour lier la sauce.",
+    "Uncover for the last ten minutes to thicken the sauce."]],
+  ["الجلبانة في آخر عشرين دقيقة: أكثر من ذلك تفقد لونها الأخضر وتصبح دقيقية.",
+    "Les petits pois dans les vingt dernières minutes : au-delà, ils perdent leur vert et deviennent farineux.",
+    "Peas in the last twenty minutes: longer and they lose their green and turn floury."]);
+
+R("RCP-162", "c11", 1, 4, [25, 0, 40, 0], 4, "pc",
+  ["طاجين كرات الكفتة", "Tajine de boulettes de kefta", "Kefta Meatball Tagine"],
+  ["بصلصة الطماطم", "En sauce tomate", "In tomato sauce"],
+  "tajine boulette kefta mkaouara",
+  [["kefta", 700, "g", "base"], ["oignon", 120, "g", "base"], ["coriandre", 30, "g", "base"],
+   ["persil", 20, "g", "base"], ["cumin", 6, "g", "base", "root"], ["paprika", 5, "g", "base", "root"],
+   ["sel", 6, "g", "base", "root"], ["poivre", 3, "g", "base", "root"],
+   ["tomate", 800, "g", "sirop"], ["conc_tomate", 40, "g", "sirop"], ["ail", 15, "g", "sirop"],
+   ["huile_oli", 60, "ml", "sirop"], ["sucre", 10, "g", "sirop"]],
+  [["اعجن الكفتة مع البصل المفروم ناعما والأعشاب والتوابل.",
+    "Travaillez la viande hachée avec l'oignon finement haché, les herbes et les épices.",
+    "Work the minced meat with the finely chopped onion, herbs and spices."],
+   ["اترك المزيج ربع ساعة في البرد ليتماسك.",
+    "Laissez le mélange raffermir un quart d'heure au frais.",
+    "Let the mixture firm up a quarter of an hour in the fridge."],
+   ["شكل كرات بحجم الجوزة بيدين مبللتين.",
+    "Formez des boulettes de la taille d'une noix, les mains mouillées.",
+    "Shape walnut-sized balls with wet hands."],
+   ["حضر صلصة الطماطم مع الثوم والزيت والسكر، واتركها تثخن.",
+    "Préparez la sauce tomate avec l'ail, l'huile et le sucre, et laissez épaissir.",
+    "Make the tomato sauce with the garlic, oil and sugar, and let it thicken."],
+   ["ضع الكرات في الصلصة، غط واطبخ عشرين دقيقة دون تحريك.",
+    "Déposez les boulettes dans la sauce, couvrez et cuisez vingt minutes sans remuer.",
+    "Settle the meatballs into the sauce, cover and cook twenty minutes without stirring."]],
+  ["ملعقة السكر ليست للتحلية: هي التي تكسر حموضة الطماطم.",
+    "La cuillère de sucre n'est pas là pour sucrer : elle casse l'acidité de la tomate.",
+    "The spoon of sugar is not for sweetness: it cuts the acidity of the tomato."]);
+
+R("RCP-163", "c11", 2, 6, [25, 0, 240, 0], 6, "pc",
+  ["طنجية مراكشية", "Tanjia marrakchie", "Marrakchi Tanjia"],
+  ["تطبخ في الفرن التقليدي", "Cuite au four du hammam", "Cooked in the bathhouse oven"],
+  "tanjia marrakech four traditionnel",
+  [["boeuf", 1300, "g", "base"], ["ail", 40, "g", "base"], ["smen", 60, "g", "base"],
+   ["huile_oli", 60, "ml", "base"], ["cumin", 10, "g", "base", "root"],
+   ["curcuma", 6, "g", "base", "root"], ["safran", 0.3, "g", "base", "root"],
+   ["poivre", 4, "g", "base", "root"], ["sel", 10, "g", "base", "root"],
+   ["citron_confit", 100, "g", "base"], ["eau", 150, "ml", "base"]],
+  [["قطع اللحم قطعا كبيرة وضعه في الطنجية أو في قدر ثقيل.",
+    "Coupez la viande en gros morceaux et mettez-la dans la tanjia ou une cocotte lourde.",
+    "Cut the meat into large pieces and put it in the tanjia or a heavy casserole."],
+   ["أضف الثوم كاملا والسمن والزيت والتوابل والحامض المصير.",
+    "Ajoutez l'ail en gousses entières, le smen, l'huile, les épices et le citron confit.",
+    "Add the whole garlic cloves, the smen, oil, spices and preserved lemon."],
+   ["أضف الماء، أغلق الفتحة بورق وأحكم الإغلاق.",
+    "Ajoutez l'eau, obturez l'ouverture avec du papier et fermez hermétiquement.",
+    "Add the water, seal the opening with paper and close it tight."],
+   ["اطبخها أربع ساعات على حرارة منخفضة جدا، 140 درجة.",
+    "Cuisez quatre heures à très basse température, 140 °C.",
+    "Cook four hours at a very low temperature, 140 °C."],
+   ["افتحها على المائدة: العطر هو نصف الطبق.",
+    "Ouvrez-la à table : le parfum est la moitié du plat.",
+    "Open it at the table: the aroma is half the dish."]],
+  ["ماء قليل جدا: الطنجية تطبخ في عصير اللحم نفسه، لا في المرق.",
+    "Très peu d'eau : la tanjia cuit dans le jus de la viande, pas dans un bouillon.",
+    "Very little water: a tanjia cooks in the meat's own juices, not in stock."]);
+
+/* ---------- couscous (c12) ---------- */
+R("RCP-164", "c12", 3, 8, [45, 0, 120, 0], 8, "pc",
+  ["كسكس بسبع خضر", "Couscous aux sept légumes", "Seven-Vegetable Couscous"],
+  ["كسكس الجمعة", "Le couscous du vendredi", "The Friday couscous"],
+  "couscous sept legumes vendredi",
+  [["semoule_cous", 800, "g", "pate"], ["huile", 60, "ml", "pate"], ["sel", 6, "g", "pate", "root"],
+   ["eau", 400, "ml", "pate"], ["smen", 50, "g", "pate"],
+   ["agneau", 1000, "g", "base"], ["oignon", 300, "g", "base"], ["huile_oli", 70, "ml", "base"],
+   ["ras_hanout", 10, "g", "base", "root"], ["curcuma", 6, "g", "base", "root"],
+   ["gingembre_p", 5, "g", "base", "root"], ["safran", 0.2, "g", "base", "root"],
+   ["poivre", 4, "g", "base", "root"], ["sel", 10, "g", "base", "root"],
+   ["coriandre", 40, "g", "base"], ["persil", 25, "g", "base"], ["eau", 2500, "ml", "base"],
+   ["carotte", 400, "g", "decor"], ["navet", 300, "g", "decor"], ["courgette", 400, "g", "decor"],
+   ["potiron", 400, "g", "decor"], ["chou", 300, "g", "decor"], ["tomate", 250, "g", "decor"],
+   ["pois_chiche", 200, "g", "decor"]],
+  [["اسلق الحمص المنقوع ليلة كاملة، واحتفظ به.",
+    "Cuisez les pois chiches trempés une nuit, et réservez-les.",
+    "Cook the chickpeas soaked overnight, and set them aside."],
+   ["قلّب اللحم والبصل في الزيت مع التوابل في أسفل الكسكاس، ثم أضف الماء والأعشاب.",
+    "Faites revenir la viande et l'oignon dans l'huile avec les épices au bas du couscoussier, puis ajoutez l'eau et les herbes.",
+    "Brown the meat and onion in the oil with the spices in the base of the couscoussier, then add the water and herbs."],
+   ["رشّ السميد بالماء المملح والزيت، افركه براحتي اليد، ثم بخّره عشرين دقيقة فوق المرق.",
+    "Aspergez la semoule d'eau salée et d'huile, roulez-la entre les paumes, puis passez-la vingt minutes à la vapeur au-dessus du bouillon.",
+    "Sprinkle the semolina with salted water and oil, roll it between your palms, then steam it twenty minutes over the broth."],
+   ["أنزل السميد، رشّه بالماء وافركه من جديد، وأعده إلى البخار. كرر ثلاث مرات.",
+    "Redescendez la semoule, arrosez-la, roulez-la de nouveau et remettez-la à la vapeur. Répétez trois fois.",
+    "Take the semolina down, sprinkle, roll it again and return it to the steam. Repeat three times."],
+   ["أضف الخضر إلى المرق حسب مدة طهيها: الجزر واللفت أولا، الكوسة والقرع في الآخر.",
+    "Ajoutez les légumes au bouillon selon leur temps de cuisson : carottes et navets d'abord, courgettes et potiron en dernier.",
+    "Add the vegetables to the broth by cooking time: carrots and turnips first, courgettes and pumpkin last."],
+   ["اجمع السميد في طبق، ادهنه بالسمن، رتب الخضر واللحم فوقه واسكب المرق جانبا.",
+    "Dressez la semoule en dôme, beurrez-la au smen, disposez légumes et viande dessus et servez le bouillon à part.",
+    "Mound the semolina, work in the smen, arrange the vegetables and meat on top and serve the broth alongside."]],
+  ["ثلاث مرات على البخار، لا أقل: هذا هو الطريق الوحيد إلى حبة منفصلة.",
+    "Trois passages à la vapeur, pas moins : c'est le seul chemin vers un grain détaché.",
+    "Three passes through the steam, no fewer: it is the only route to separate grains."]);
+
+R("RCP-165", "c12", 3, 8, [40, 0, 110, 0], 8, "pc",
+  ["كسكس التفاية", "Couscous tfaya", "Tfaya Couscous"],
+  ["بالبصل المحمر والزبيب", "Aux oignons confits et raisins", "With caramelised onions and raisins"],
+  "couscous tfaya oignon raisin sucre sale",
+  [["semoule_cous", 800, "g", "pate"], ["huile", 60, "ml", "pate"], ["sel", 6, "g", "pate", "root"],
+   ["eau", 400, "ml", "pate"], ["smen", 50, "g", "pate"],
+   ["poulet", 1200, "g", "base"], ["oignon", 200, "g", "base"], ["huile_oli", 60, "ml", "base"],
+   ["safran", 0.2, "g", "base", "root"], ["gingembre_p", 5, "g", "base", "root"],
+   ["poivre", 3, "g", "base", "root"], ["sel", 8, "g", "base", "root"], ["eau", 2000, "ml", "base"],
+   ["oignon", 900, "g", "sirop"], ["raisin_sec", 200, "g", "sirop"], ["cannelle", 8, "g", "sirop", "fix"],
+   ["miel", 80, "g", "sirop"], ["smen", 40, "g", "sirop"],
+   ["amande_m", 120, "g", "decor"], ["pois_chiche", 150, "g", "decor"]],
+  [["اطبخ الدجاج مع البصل والتوابل في أسفل الكسكاس.",
+    "Cuisez le poulet avec l'oignon et les épices au bas du couscoussier.",
+    "Cook the chicken with the onion and spices in the base of the couscoussier."],
+   ["بخّر السميد ثلاث مرات كما في الكسكس التقليدي.",
+    "Passez la semoule trois fois à la vapeur, comme pour le couscous classique.",
+    "Steam the semolina three times, as for the classic couscous."],
+   ["اطبخ التفاية على حدة: بصل مقطع رقيقا مع السمن والقرفة، على نار هادئة جدا خمسا وأربعين دقيقة.",
+    "Préparez la tfaya à part : oignons émincés au smen avec la cannelle, à feu très doux quarante-cinq minutes.",
+    "Make the tfaya separately: sliced onions in smen with cinnamon, over very low heat for forty-five minutes."],
+   ["أضف الزبيب المنقوع والعسل، واتركها تتحول إلى مربى داكن.",
+    "Ajoutez les raisins gonflés et le miel, et laissez confire jusqu'à une compotée sombre.",
+    "Add the plumped raisins and honey, and let it reduce to a dark compote."],
+   ["اجمع السميد، ضع الدجاج، وغطه بالتفاية واللوز المقلي.",
+    "Dressez la semoule, posez le poulet et couvrez de tfaya et d'amandes frites.",
+    "Mound the semolina, add the chicken and cover with the tfaya and fried almonds."]],
+  ["التفاية تحتاج ساعة ونارا هادئة: على نار قوية تحترق ولا تتحول إلى مربى.",
+    "La tfaya demande une heure et un feu doux : à feu vif, elle brûle sans jamais confire.",
+    "Tfaya needs an hour and a low flame: over high heat it burns instead of confiting."]);
+
+R("RCP-166", "c12", 2, 6, [35, 0, 90, 0], 6, "pc",
+  ["كسكس بالدجاج", "Couscous au poulet", "Chicken Couscous"],
+  ["أخف من كسكس اللحم", "Plus léger que celui à l'agneau", "Lighter than the lamb version"],
+  "couscous poulet legumes",
+  [["semoule_cous", 600, "g", "pate"], ["huile", 45, "ml", "pate"], ["sel", 5, "g", "pate", "root"],
+   ["eau", 300, "ml", "pate"], ["smen", 40, "g", "pate"],
+   ["poulet", 1300, "g", "base"], ["oignon", 250, "g", "base"], ["huile_oli", 60, "ml", "base"],
+   ["curcuma", 6, "g", "base", "root"], ["gingembre_p", 5, "g", "base", "root"],
+   ["poivre", 3, "g", "base", "root"], ["sel", 8, "g", "base", "root"],
+   ["coriandre", 30, "g", "base"], ["eau", 2000, "ml", "base"],
+   ["carotte", 350, "g", "decor"], ["courgette", 350, "g", "decor"],
+   ["potiron", 300, "g", "decor"], ["pois_chiche", 150, "g", "decor"]],
+  [["قلّب الدجاج والبصل في الزيت مع التوابل، ثم أضف الماء والكزبرة.",
+    "Faites revenir le poulet et l'oignon avec les épices, puis ajoutez l'eau et la coriandre.",
+    "Brown the chicken and onion with the spices, then add the water and coriander."],
+   ["بخّر السميد ثلاث مرات، برشّ وفرك بين كل مرة.",
+    "Passez la semoule trois fois à la vapeur, en l'arrosant et la roulant entre chaque.",
+    "Steam the semolina three times, sprinkling and rolling between each."],
+   ["أضف الجزر أولا، ثم الكوسة والقرع بعد عشرين دقيقة.",
+    "Ajoutez les carottes d'abord, puis les courgettes et le potiron vingt minutes plus tard.",
+    "Add the carrots first, then the courgettes and pumpkin twenty minutes later."],
+   ["أضف الحمص المسلوق في آخر عشر دقائق.",
+    "Ajoutez les pois chiches cuits dans les dix dernières minutes.",
+    "Add the cooked chickpeas in the last ten minutes."],
+   ["اجمع السميد بالسمن ورتب الدجاج والخضر فوقه.",
+    "Dressez la semoule au smen et disposez le poulet et les légumes dessus.",
+    "Work the smen into the semolina and arrange the chicken and vegetables on top."]],
+  ["الدجاج ينضج في أربعين دقيقة: لا تطبخه ساعتين كاللحم، يتفكك ويجف.",
+    "Le poulet est cuit en quarante minutes : ne le menez pas deux heures comme l'agneau, il se défait et sèche.",
+    "Chicken is done in forty minutes: do not give it two hours like lamb, it falls apart and dries."]);
+
+R("RCP-167", "c12", 2, 6, [35, 0, 70, 0], 6, "pc",
+  ["كسكس نباتي", "Couscous végétarien", "Vegetarian Couscous"],
+  ["بالقطاني والخضر", "Aux légumes et légumineuses", "With vegetables and pulses"],
+  "couscous vegetarien vegetalien legumes",
+  [["semoule_cous", 600, "g", "pate"], ["huile", 50, "ml", "pate"], ["sel", 5, "g", "pate", "root"],
+   ["eau", 300, "ml", "pate"], ["huile_oli", 30, "ml", "pate"],
+   ["oignon", 250, "g", "base"], ["ail", 15, "g", "base"], ["tomate", 300, "g", "base"],
+   ["huile_oli", 70, "ml", "base"], ["ras_hanout", 8, "g", "base", "root"],
+   ["curcuma", 6, "g", "base", "root"], ["paprika", 5, "g", "base", "root"],
+   ["sel", 8, "g", "base", "root"], ["coriandre", 35, "g", "base"], ["eau", 1800, "ml", "base"],
+   ["carotte", 350, "g", "decor"], ["navet", 250, "g", "decor"], ["courgette", 350, "g", "decor"],
+   ["potiron", 300, "g", "decor"], ["chou", 250, "g", "decor"],
+   ["pois_chiche", 200, "g", "decor"], ["lentille", 100, "g", "decor"]],
+  [["انقع الحمص ليلة كاملة، واسلقه مع العدس.",
+    "Faites tremper les pois chiches une nuit et cuisez-les avec les lentilles.",
+    "Soak the chickpeas overnight and cook them with the lentils."],
+   ["حضر مرقا من البصل والثوم والطماطم والتوابل والكزبرة.",
+    "Préparez un bouillon d'oignon, d'ail, de tomate, d'épices et de coriandre.",
+    "Make a broth of onion, garlic, tomato, spices and coriander."],
+   ["بخّر السميد ثلاث مرات فوق هذا المرق.",
+    "Passez la semoule trois fois à la vapeur au-dessus de ce bouillon.",
+    "Steam the semolina three times over that broth."],
+   ["أضف الخضر بالترتيب: الصلبة أولا، الطرية في الآخر.",
+    "Ajoutez les légumes dans l'ordre : les fermes d'abord, les tendres ensuite.",
+    "Add the vegetables in order: firm first, tender after."],
+   ["اجمع السميد بزيت الزيتون ورتب الخضر والقطاني فوقه.",
+    "Dressez la semoule à l'huile d'olive et disposez légumes et légumineuses dessus.",
+    "Dress the semolina with olive oil and arrange the vegetables and pulses on top."]],
+  ["مرق نباتي يحتاج توابل أكثر: بلا لحم، هي التي تحمل الطبق كله.",
+    "Un bouillon végétal demande plus d'épices : sans viande, ce sont elles qui portent le plat.",
+    "A vegetable broth needs more spice: without meat, the spices carry the dish."]);
+
+R("RCP-168", "c12", 2, 8, [40, 0, 60, 0], 8, "pc",
+  ["السفة المدفونة", "Seffa medfouna", "Seffa Medfouna"],
+  ["الدجاج مدفون في السميد", "Le poulet enfoui dans la semoule", "Chicken buried in the semolina"],
+  "seffa medfouna sucre sale poulet",
+  [["semoule_cous", 700, "g", "pate"], ["huile", 50, "ml", "pate"], ["sel", 5, "g", "pate", "root"],
+   ["eau", 350, "ml", "pate"], ["beurre", 100, "g", "pate"], ["lait", 200, "ml", "pate"],
+   ["poulet", 1200, "g", "farce"], ["oignon", 250, "g", "farce"], ["huile_oli", 50, "ml", "farce"],
+   ["safran", 0.2, "g", "farce", "root"], ["gingembre_p", 5, "g", "farce", "root"],
+   ["cannelle", 5, "g", "farce", "fix"], ["sel", 7, "g", "farce", "root"],
+   ["sucre_glace", 120, "g", "decor"], ["cannelle", 8, "g", "decor", "fix"],
+   ["amande_m", 150, "g", "decor"], ["raisin_sec", 100, "g", "decor"]],
+  [["اطبخ الدجاج مع البصل والتوابل حتى يتفكك، ثم فتّته.",
+    "Cuisez le poulet avec l'oignon et les épices jusqu'à ce qu'il se détache, puis effilez-le.",
+    "Cook the chicken with the onion and spices until it falls apart, then shred it."],
+   ["بخّر السميد ثلاث مرات، وادهنه بالزبدة والحليب في الأخيرة.",
+    "Passez la semoule trois fois à la vapeur, et travaillez-la au beurre et au lait à la dernière.",
+    "Steam the semolina three times, working in the butter and milk on the last."],
+   ["اقل اللوز وانقع الزبيب.",
+    "Faites frire les amandes et gonfler les raisins.",
+    "Fry the almonds and plump the raisins."],
+   ["ضع نصف السميد في الطبق، ادفن الدجاج في الوسط، وغطه بالنصف الآخر.",
+    "Disposez la moitié de la semoule, enfouissez le poulet au centre et recouvrez du reste.",
+    "Lay half the semolina, bury the chicken in the middle and cover with the rest."],
+   ["شكل مخروطا، وزخرفه بخطوط من القرفة والسكر الناعم واللوز والزبيب.",
+    "Formez un cône et décorez de lignes de cannelle, de sucre glace, d'amandes et de raisins.",
+    "Shape a cone and decorate with lines of cinnamon, icing sugar, almonds and raisins."]],
+  ["الدجاج مخفي حتى القطع الأول: هذا كل معنى الاسم.",
+    "Le poulet reste caché jusqu'à la première cuillère : c'est tout le sens du nom.",
+    "The chicken stays hidden until the first spoonful: that is what the name means."]);
+</script>
+
+<script>
+"use strict";
+
+/* ---------- soupes (c13) ---------- */
+R("RCP-169", "c13", 2, 8, [30, 0, 90, 0], 8, "pc",
+  ["الحريرة", "Harira", "Harira"],
+  ["شوربة رمضان", "La soupe du Ramadan", "The soup of Ramadan"],
+  "harira ramadan lentille pois chiche tomate",
+  [["agneau", 300, "g", "base"], ["oignon", 200, "g", "base"], ["celeri", 100, "g", "base"],
+   ["tomate", 900, "g", "base"], ["conc_tomate", 60, "g", "base"], ["huile_oli", 60, "ml", "base"],
+   ["pois_chiche", 150, "g", "base"], ["lentille", 120, "g", "base"],
+   ["coriandre", 60, "g", "base"], ["persil", 30, "g", "base"],
+   ["curcuma", 5, "g", "base", "root"], ["gingembre_p", 4, "g", "base", "root"],
+   ["poivre", 3, "g", "base", "root"], ["sel", 10, "g", "base", "root"],
+   ["eau", 2500, "ml", "base"],
+   ["vermicelle", 80, "g", "decor"], ["farine", 60, "g", "decor"], ["jus_cit", 40, "ml", "decor"]],
+  [["انقع الحمص ليلة كاملة.", "Faites tremper les pois chiches une nuit.", "Soak the chickpeas overnight."],
+   ["قلّب اللحم مع البصل والكرفس والتوابل في الزيت خمس دقائق.",
+    "Faites revenir la viande avec l'oignon, le céleri et les épices cinq minutes.",
+    "Sweat the meat with the onion, celery and spices for five minutes."],
+   ["أضف الطماطم المهروسة والمعجون والحمص والعدس والماء، واتركه ساعة.",
+    "Ajoutez les tomates mixées, le concentré, les pois chiches, les lentilles et l'eau, et laissez une heure.",
+    "Add the blended tomatoes, paste, chickpeas, lentils and water, and leave one hour."],
+   ["أضف الشعرية والأعشاب المفرومة، واطبخ عشر دقائق.",
+    "Ajoutez les vermicelles et les herbes hachées, cuisez dix minutes.",
+    "Add the vermicelli and chopped herbs, and cook ten minutes."],
+   ["أذب الدقيق في كوب ماء بارد واسكبه في تيار رفيع مع التحريك: هذا هو التخمير الذي يربط الشوربة.",
+    "Délayez la farine dans un verre d'eau froide et versez-la en filet en remuant : c'est le tedouira qui lie la soupe.",
+    "Slake the flour in a glass of cold water and pour it in a thin stream while stirring: that is the tedouira that binds the soup."],
+   ["أضف عصير الليمون خارج النار.",
+    "Ajoutez le jus de citron hors du feu.",
+    "Add the lemon juice off the heat."]],
+  ["اسكب التخمير في تيار رفيع جدا مع تحريك مستمر: دفعة واحدة تعطي كتلا لا تزول.",
+    "Versez la tedouira en filet très fin sans cesser de remuer : d'un coup, elle fait des grumeaux irrécupérables.",
+    "Pour the tedouira in a very thin stream, stirring throughout: all at once it makes lumps you cannot undo."]);
+
+R("RCP-170", "c13", 1, 6, [15, 480, 60, 0], 6, "pc",
+  ["بيصارة", "Bissara", "Bissara"],
+  ["حريرة الفول والثوم", "Le velouté de fèves à l'ail", "Garlicky broad bean purée"],
+  "bissara feve ail cumin hiver",
+  [["feve_seche", 500, "g", "base"], ["ail", 40, "g", "base"], ["huile_oli", 100, "ml", "base"],
+   ["cumin", 12, "g", "base", "root"], ["paprika", 8, "g", "base", "root"],
+   ["sel", 10, "g", "base", "root"], ["eau", 1800, "ml", "base"],
+   ["huile_oli", 60, "ml", "decor"], ["cumin", 5, "g", "decor", "root"],
+   ["piment", 2, "g", "decor", "root", true]],
+  [["انقع الفول المقشر ثماني ساعات على الأقل، وصفه.",
+    "Faites tremper les fèves décortiquées au moins huit heures, puis égouttez.",
+    "Soak the skinned broad beans at least eight hours, then drain."],
+   ["اطبخه في الماء مع الثوم الكامل وزيت الزيتون والتوابل.",
+    "Cuisez-les dans l'eau avec l'ail entier, l'huile d'olive et les épices.",
+    "Cook them in the water with the whole garlic, olive oil and spices."],
+   ["اتركه على نار هادئة ساعة حتى يتفكك تماما.",
+    "Laissez mijoter une heure, jusqu'à complet délitement.",
+    "Simmer one hour, until completely collapsed."],
+   ["اهرسه بالخلاط حتى يصبح ناعما كالكريمة، وعدّل بالماء المغلي.",
+    "Mixez jusqu'à une texture de velouté, et ajustez à l'eau bouillante.",
+    "Blend to a velvety texture, and loosen with boiling water."],
+   ["قدمه ساخنا مع خط من زيت الزيتون ورشة كمون وفلفل حار.",
+    "Servez très chaud, avec un filet d'huile d'olive, du cumin et du piment.",
+    "Serve very hot, with a thread of olive oil, cumin and chilli."]],
+  ["فول مقشر فقط: بقشرته لا تصبح البيصارة ناعمة أبدا.",
+    "Des fèves décortiquées seulement : avec la peau, la bissara ne sera jamais lisse.",
+    "Skinned beans only: with the skins, bissara never turns smooth."]);
+
+R("RCP-171", "c13", 1, 6, [15, 0, 35, 0], 6, "pc",
+  ["شوربة بالشعرية", "Chorba au vermicelle", "Vermicelli Chorba"],
+  ["خفيفة وسريعة", "Légère et rapide", "Light and quick"],
+  "chorba vermicelle legere poulet",
+  [["poulet", 400, "g", "base"], ["oignon", 150, "g", "base"], ["celeri", 80, "g", "base"],
+   ["carotte", 150, "g", "base"], ["tomate", 300, "g", "base"], ["huile_oli", 40, "ml", "base"],
+   ["curcuma", 4, "g", "base", "root"], ["poivre", 2, "g", "base", "root"],
+   ["sel", 8, "g", "base", "root"], ["coriandre", 30, "g", "base"], ["eau", 1800, "ml", "base"],
+   ["vermicelle", 100, "g", "decor"], ["jus_cit", 25, "ml", "decor"]],
+  [["قلّب الدجاج والبصل والكرفس والجزر في الزيت مع التوابل.",
+    "Faites revenir le poulet, l'oignon, le céleri et la carotte dans l'huile avec les épices.",
+    "Sweat the chicken, onion, celery and carrot in the oil with the spices."],
+   ["أضف الطماطم المهروسة والماء، واتركه عشرين دقيقة.",
+    "Ajoutez les tomates mixées et l'eau, et laissez vingt minutes.",
+    "Add the blended tomatoes and water, and leave twenty minutes."],
+   ["أخرج الدجاج، فتّته وأعده إلى الشوربة.",
+    "Retirez le poulet, effilez-le et remettez-le dans la soupe.",
+    "Lift out the chicken, shred it and return it to the soup."],
+   ["أضف الشعرية والكزبرة واطبخ ثماني دقائق.",
+    "Ajoutez les vermicelles et la coriandre, cuisez huit minutes.",
+    "Add the vermicelli and coriander, and cook eight minutes."],
+   ["أضف عصير الليمون قبل التقديم.",
+    "Ajoutez le jus de citron au moment de servir.",
+    "Add the lemon juice as you serve."]],
+  ["الشعرية في آخر ثماني دقائق: مطبوخة أكثر تشرب المرق كله.",
+    "Les vermicelles dans les huit dernières minutes : plus longtemps, ils boivent tout le bouillon.",
+    "Vermicelli in the last eight minutes: longer and they drink the whole broth."]);
+
+R("RCP-172", "c13", 1, 6, [15, 0, 50, 0], 6, "pc",
+  ["شوربة العدس", "Soupe de lentilles", "Lentil Soup"],
+  ["نباتية ومشبعة", "Végétale et nourrissante", "Plant-based and filling"],
+  "soupe lentille vegetarien vegetalien",
+  [["lentille", 350, "g", "base"], ["oignon", 200, "g", "base"], ["ail", 20, "g", "base"],
+   ["carotte", 200, "g", "base"], ["tomate", 400, "g", "base"], ["conc_tomate", 30, "g", "base"],
+   ["huile_oli", 60, "ml", "base"], ["cumin", 8, "g", "base", "root"],
+   ["paprika", 5, "g", "base", "root"], ["curcuma", 4, "g", "base", "root"],
+   ["sel", 9, "g", "base", "root"], ["coriandre", 35, "g", "base"], ["eau", 1800, "ml", "base"],
+   ["jus_cit", 30, "ml", "decor"]],
+  [["اغسل العدس ولا تنقعه: هو ينضج بلا نقع.",
+    "Rincez les lentilles sans les faire tremper : elles cuisent sans.",
+    "Rinse the lentils without soaking: they cook without it."],
+   ["قلّب البصل والثوم والجزر في الزيت مع التوابل.",
+    "Faites revenir l'oignon, l'ail et la carotte dans l'huile avec les épices.",
+    "Sweat the onion, garlic and carrot in the oil with the spices."],
+   ["أضف الطماطم والمعجون والعدس والماء.",
+    "Ajoutez les tomates, le concentré, les lentilles et l'eau.",
+    "Add the tomatoes, paste, lentils and water."],
+   ["اطبخه أربعين دقيقة، وأضف الملح في النهاية فقط.",
+    "Cuisez quarante minutes, et ne salez qu'à la fin.",
+    "Cook forty minutes, and salt only at the end."],
+   ["أضف الكزبرة وعصير الليمون خارج النار.",
+    "Ajoutez la coriandre et le jus de citron hors du feu.",
+    "Add the coriander and lemon juice off the heat."]],
+  ["الملح في النهاية: مضافا في البداية، يمنع العدس من أن يلين.",
+    "Le sel à la fin : ajouté au début, il empêche la lentille de s'attendrir.",
+    "Salt at the end: added early, it stops the lentils from softening."]);
+
+R("RCP-173", "c13", 2, 8, [30, 0, 75, 0], 8, "pc",
+  ["حريرة نباتية", "Harira végétarienne", "Vegetarian Harira"],
+  ["بلا لحم، بكل النكهة", "Sans viande, avec tout le goût", "No meat, all the flavour"],
+  "harira vegetarien vegetalien ramadan",
+  [["oignon", 250, "g", "base"], ["celeri", 120, "g", "base"], ["tomate", 900, "g", "base"],
+   ["conc_tomate", 70, "g", "base"], ["huile_oli", 80, "ml", "base"],
+   ["pois_chiche", 200, "g", "base"], ["lentille", 150, "g", "base"],
+   ["coriandre", 70, "g", "base"], ["persil", 35, "g", "base"],
+   ["curcuma", 6, "g", "base", "root"], ["gingembre_p", 5, "g", "base", "root"],
+   ["paprika", 5, "g", "base", "root"], ["cannelle", 2, "g", "base", "fix"],
+   ["poivre", 3, "g", "base", "root"], ["sel", 10, "g", "base", "root"], ["eau", 2400, "ml", "base"],
+   ["vermicelle", 80, "g", "decor"], ["farine", 60, "g", "decor"], ["jus_cit", 40, "ml", "decor"]],
+  [["انقع الحمص ليلة كاملة واسلقه حتى يلين.",
+    "Faites tremper les pois chiches une nuit et cuisez-les jusqu'à tendreté.",
+    "Soak the chickpeas overnight and cook them until tender."],
+   ["قلّب البصل والكرفس في الزيت مع كل التوابل، طويلا، حتى تنبعث الروائح.",
+    "Faites revenir longuement l'oignon et le céleri dans l'huile avec toutes les épices.",
+    "Sweat the onion and celery at length in the oil with all the spices."],
+   ["أضف الطماطم والمعجون واتركهما ينضجان عشرين دقيقة: هنا يتكون العمق.",
+    "Ajoutez les tomates et le concentré, laissez compoter vingt minutes : c'est là que se fait la profondeur.",
+    "Add the tomatoes and paste, and let them cook down twenty minutes: that is where the depth comes from."],
+   ["أضف القطاني والماء والأعشاب، واطبخ نصف ساعة.",
+    "Ajoutez les légumineuses, l'eau et les herbes, et cuisez une demi-heure.",
+    "Add the pulses, water and herbs, and cook half an hour."],
+   ["أضف الشعرية، ثم التخمير في تيار رفيع، ثم عصير الليمون خارج النار.",
+    "Ajoutez les vermicelles, puis la tedouira en filet, puis le citron hors du feu.",
+    "Add the vermicelli, then the tedouira in a thin stream, then the lemon off the heat."]],
+  ["بلا لحم، العمق يأتي من طبخ الطماطم والتوابل طويلا في الزيت: لا تستعجل هذه الخطوة.",
+    "Sans viande, la profondeur vient de la longue cuisson des tomates et des épices dans l'huile : ne bâclez pas cette étape.",
+    "Without meat, the depth comes from cooking the tomatoes and spices long in the oil: do not rush that step."]);
+
+/* ---------- salades (c14) ---------- */
+R("RCP-174", "c14", 1, 6, [20, 0, 40, 0], 6, "pc",
+  ["زعلوك الباذنجان", "Zaalouk d'aubergines", "Aubergine Zaalouk"],
+  ["يقدم فاترا أو باردا", "Servi tiède ou froid", "Served warm or cold"],
+  "zaalouk aubergine tomate ail salade cuite",
+  [["aubergine", 700, "g", "base"], ["tomate", 500, "g", "base"], ["ail", 25, "g", "base"],
+   ["huile_oli", 80, "ml", "base"], ["paprika", 8, "g", "base", "root"],
+   ["cumin", 6, "g", "base", "root"], ["piment", 2, "g", "base", "root", true],
+   ["sel", 7, "g", "base", "root"], ["coriandre", 35, "g", "base"], ["jus_cit", 25, "ml", "base"]],
+  [["اشو الباذنجان أو اسلقه حتى يلين تماما، ثم قشره.",
+    "Grillez ou pochez les aubergines jusqu'à complet ramollissement, puis pelez-les.",
+    "Char or poach the aubergines until fully soft, then peel them."],
+   ["اطبخ الطماطم المقشرة مع الثوم والزيت والتوابل عشرين دقيقة.",
+    "Faites réduire les tomates pelées avec l'ail, l'huile et les épices vingt minutes.",
+    "Reduce the peeled tomatoes with the garlic, oil and spices for twenty minutes."],
+   ["أضف الباذنجان واهرسه بالشوكة داخل المقلاة.",
+    "Ajoutez les aubergines et écrasez-les à la fourchette dans la poêle.",
+    "Add the aubergines and crush them with a fork in the pan."],
+   ["اطبخ عشرين دقيقة أخرى حتى يجف الماء تماما.",
+    "Poursuivez vingt minutes, jusqu'à évaporation complète de l'eau.",
+    "Cook on twenty minutes, until all the water has gone."],
+   ["أضف الكزبرة وعصير الليمون خارج النار.",
+    "Ajoutez la coriandre et le jus de citron hors du feu.",
+    "Add the coriander and lemon juice off the heat."]],
+  ["الزعلوك يجب أن يجف تماما: إن بقي ماء، فقد الطعم وصار سلطة طماطم.",
+    "Le zaalouk doit être totalement sec : s'il reste de l'eau, ce n'est plus qu'une sauce tomate.",
+    "Zaalouk must be completely dry: if water remains, it is just tomato sauce."]);
+
+R("RCP-175", "c14", 1, 6, [20, 0, 35, 0], 6, "pc",
+  ["تكتوكة", "Taktouka", "Taktouka"],
+  ["بالفلفل المشوي", "Aux poivrons grillés", "With grilled peppers"],
+  "taktouka poivron tomate grille salade",
+  [["poivron", 600, "g", "base"], ["tomate", 600, "g", "base"], ["ail", 20, "g", "base"],
+   ["huile_oli", 70, "ml", "base"], ["paprika", 6, "g", "base", "root"],
+   ["cumin", 5, "g", "base", "root"], ["sel", 7, "g", "base", "root"],
+   ["persil", 25, "g", "base"], ["coriandre", 20, "g", "base"]],
+  [["اشو الفلفل حتى يسود جلده، ضعه في كيس عشر دقائق ثم قشره.",
+    "Grillez les poivrons jusqu'à ce que la peau noircisse, enfermez-les dix minutes dans un sac puis pelez-les.",
+    "Grill the peppers until the skins blacken, close them in a bag ten minutes, then peel."],
+   ["قطعه شرائح وأزل البذور.",
+    "Coupez-les en lanières et retirez les graines.",
+    "Cut them into strips and remove the seeds."],
+   ["اطبخ الطماطم المقشرة مع الثوم والزيت والتوابل حتى تثخن.",
+    "Faites réduire les tomates pelées avec l'ail, l'huile et les épices.",
+    "Reduce the peeled tomatoes with the garlic, oil and spices."],
+   ["أضف الفلفل واطبخ ربع ساعة على نار هادئة.",
+    "Ajoutez les poivrons et cuisez un quart d'heure à feu doux.",
+    "Add the peppers and cook a quarter of an hour over low heat."],
+   ["أضف الأعشاب المفرومة وقدمها فاترة.",
+    "Ajoutez les herbes hachées et servez tiède.",
+    "Add the chopped herbs and serve warm."]],
+  ["الكيس بعد الشيّ يفصل الجلد بالبخار: بدونه تنزع اللحم مع القشرة.",
+    "Le sac après la grillade décolle la peau par la vapeur : sans lui, vous arrachez la chair avec.",
+    "The bag after grilling loosens the skin with steam: without it you tear away the flesh too."]);
+
+R("RCP-176", "c14", 1, 6, [15, 20, 0, 0], 6, "pc",
+  ["سلطة مغربية", "Salade marocaine", "Moroccan Salad"],
+  ["نيئة ومقطعة رقيقا", "Crue et finement taillée", "Raw and finely diced"],
+  "salade marocaine crue tomate oignon",
+  [["tomate", 600, "g", "base"], ["oignon", 150, "g", "base"], ["poivron", 200, "g", "base"],
+   ["persil", 30, "g", "base"], ["huile_oli", 50, "ml", "base"], ["jus_cit", 40, "ml", "base"],
+   ["cumin", 4, "g", "base", "root"], ["sel", 5, "g", "base", "root"],
+   ["olive_verte", 80, "g", "decor", "lin", true]],
+  [["قطع الطماطم والبصل والفلفل مكعبات صغيرة ومنتظمة.",
+    "Taillez tomates, oignon et poivron en petits dés réguliers.",
+    "Dice the tomatoes, onion and pepper small and evenly."],
+   ["ملّح الطماطم واتركها تصفي عشرين دقيقة في مصفاة.",
+    "Salez les tomates et laissez-les dégorger vingt minutes dans une passoire.",
+    "Salt the tomatoes and let them drain twenty minutes in a colander."],
+   ["اخلط الكل مع المعدنوس المفروم.",
+    "Réunissez le tout avec le persil haché.",
+    "Combine everything with the chopped parsley."],
+   ["أضف الزيت وعصير الليمون والكمون في آخر لحظة.",
+    "Ajoutez l'huile, le jus de citron et le cumin au dernier moment.",
+    "Add the oil, lemon juice and cumin at the last moment."]],
+  ["تصفية الطماطم تغير كل شيء: بدونها تسبح السلطة في ماءها بعد عشر دقائق.",
+    "Faire dégorger les tomates change tout : sans cela, la salade nage dans son eau en dix minutes.",
+    "Draining the tomatoes changes everything: without it the salad swims in its own water within ten minutes."]);
+
+R("RCP-177", "c14", 1, 6, [15, 30, 10, 0], 6, "pc",
+  ["سلطة الجزر بالبرتقال", "Salade de carottes à l'orange", "Carrot & Orange Salad"],
+  ["حلوة وعطرة", "Douce et parfumée", "Sweet and fragrant"],
+  "salade carotte orange cannelle",
+  [["carotte", 700, "g", "base"], ["orange", 3, "pc", "base"], ["jus_cit", 25, "ml", "base"],
+   ["sucre", 25, "g", "base"], ["cannelle", 3, "g", "base", "fix"],
+   ["eau_zhar", 10, "ml", "base", "fix"], ["sel", 2, "g", "base", "root"],
+   ["raisin_sec", 50, "g", "decor", "lin", true]],
+  [["ابشر الجزر خشنا أو قطعه شرائح رقيقة جدا.",
+    "Râpez les carottes gros, ou taillez-les en rondelles très fines.",
+    "Grate the carrots coarsely, or slice them very thin."],
+   ["ابشر قشر برتقالة واعصر الثلاث.",
+    "Zestez une orange et pressez les trois.",
+    "Zest one orange and juice all three."],
+   ["اخلط الجزر مع العصير والقشر وعصير الليمون والسكر والملح.",
+    "Mélangez les carottes au jus, au zeste, au citron, au sucre et au sel.",
+    "Toss the carrots with the juice, zest, lemon, sugar and salt."],
+   ["برّدها نصف ساعة، ثم أضف القرفة وماء الزهر والزبيب.",
+    "Réservez une demi-heure au frais, puis ajoutez la cannelle, l'eau de fleur d'oranger et les raisins.",
+    "Chill half an hour, then add the cinnamon, orange blossom water and raisins."]],
+  ["نصف ساعة في البرد ضرورية: الجزر يحتاجها ليتشرب العصير ويلين.",
+    "La demi-heure au frais est nécessaire : la carotte a besoin de ce temps pour boire le jus et s'attendrir.",
+    "The half hour in the fridge matters: the carrot needs it to drink the juice and soften."]);
+
+R("RCP-178", "c14", 1, 6, [15, 0, 20, 0], 6, "pc",
+  ["سلطة الكوسة بالثوم", "Salade de courgettes à l'ail", "Garlic Courgette Salad"],
+  ["مطبوخة وباردة", "Cuite puis refroidie", "Cooked, then cooled"],
+  "salade courgette ail cumin",
+  [["courgette", 800, "g", "base"], ["ail", 25, "g", "base"], ["huile_oli", 60, "ml", "base"],
+   ["cumin", 6, "g", "base", "root"], ["paprika", 4, "g", "base", "root"],
+   ["jus_cit", 30, "ml", "base"], ["sel", 6, "g", "base", "root"],
+   ["coriandre", 30, "g", "base"], ["olive_verte", 60, "g", "decor", "lin", true]],
+  [["قطع الكوسة مكعبات دون تقشير.",
+    "Coupez les courgettes en dés, sans les peler.",
+    "Dice the courgettes without peeling."],
+   ["اطبخها في الزيت مع الثوم المدقوق والتوابل، مغطاة، خمس عشرة دقيقة.",
+    "Cuisez-les à couvert dans l'huile avec l'ail pilé et les épices, quinze minutes.",
+    "Cook them covered in the oil with the crushed garlic and spices for fifteen minutes."],
+   ["اهرسها قليلا بالشوكة، دون أن تتحول إلى معجون.",
+    "Écrasez-les grossièrement à la fourchette, sans en faire une purée.",
+    "Crush them roughly with a fork, without making a purée."],
+   ["أضف الكزبرة وعصير الليمون، واتركها تبرد قبل التقديم.",
+    "Ajoutez la coriandre et le jus de citron, et laissez refroidir avant de servir.",
+    "Add the coriander and lemon juice, and let it cool before serving."]],
+  ["لا تقشر الكوسة: القشرة هي التي تمنعها من التحول إلى ماء.",
+    "Ne pelez pas les courgettes : c'est la peau qui les empêche de tourner en eau.",
+    "Do not peel the courgettes: the skin is what stops them turning to water."]);
+
+R("RCP-179", "c14", 1, 6, [15, 480, 60, 0], 6, "pc",
+  ["سلطة الحمص", "Salade de pois chiches", "Chickpea Salad"],
+  ["نباتية وغنية", "Végétale et rassasiante", "Plant-based and filling"],
+  "salade pois chiche vegetarien cumin",
+  [["pois_chiche", 400, "g", "base"], ["oignon", 120, "g", "base"], ["tomate", 250, "g", "base"],
+   ["persil", 35, "g", "base"], ["coriandre", 25, "g", "base"], ["huile_oli", 70, "ml", "base"],
+   ["jus_cit", 45, "ml", "base"], ["cumin", 7, "g", "base", "root"],
+   ["paprika", 4, "g", "base", "root"], ["sel", 6, "g", "base", "root"]],
+  [["انقع الحمص ثماني ساعات، ثم اسلقه ساعة حتى يلين دون أن يتفكك.",
+    "Faites tremper les pois chiches huit heures, puis cuisez-les une heure : tendres sans se défaire.",
+    "Soak the chickpeas eight hours, then cook one hour: tender without falling apart."],
+   ["صفّه واتركه يفتر.",
+    "Égouttez et laissez tiédir.",
+    "Drain and let cool to lukewarm."],
+   ["أضف البصل والطماطم مقطعين صغيرا والأعشاب المفرومة.",
+    "Ajoutez l'oignon et la tomate en petits dés, et les herbes hachées.",
+    "Add the finely diced onion and tomato, and the chopped herbs."],
+   ["اخلط الزيت وعصير الليمون والتوابل، واسكبه على الحمص وهو فاتر.",
+    "Mélangez huile, jus de citron et épices, et versez sur les pois chiches encore tièdes.",
+    "Whisk the oil, lemon juice and spices, and pour over the chickpeas while still warm."]],
+  ["اسكب الصلصة على حمص فاتر: باردا لا يتشرب شيئا.",
+    "Assaisonnez les pois chiches tièdes : froids, ils n'absorbent plus rien.",
+    "Dress the chickpeas warm: cold, they absorb nothing."]);
+
+/* ---------- plats et pains (c15) ---------- */
+R("RCP-180", "c15", 3, 6, [45, 0, 90, 0], 6, "pc",
+  ["رفيسة بالدجاج", "Rfissa au poulet", "Chicken Rfissa"],
+  ["بالحلبة والعدس", "Au fenugrec et aux lentilles", "With fenugreek and lentils"],
+  "rfissa poulet fenugrec trid msemen lentille",
+  [["poulet", 1400, "g", "base"], ["oignon", 700, "g", "base"], ["huile_oli", 80, "ml", "base"],
+   ["smen", 60, "g", "base"], ["fenugrec", 30, "g", "base", "root"],
+   ["ras_hanout", 10, "g", "base", "root"], ["gingembre_p", 6, "g", "base", "root"],
+   ["curcuma", 6, "g", "base", "root"], ["safran", 0.2, "g", "base", "root"],
+   ["poivre", 4, "g", "base", "root"], ["sel", 10, "g", "base", "root"],
+   ["lentille", 200, "g", "base"], ["eau", 1500, "ml", "base"],
+   ["farine", 600, "g", "pate"], ["semoule_f", 150, "g", "pate"],
+   ["sel", 8, "g", "pate", "root"], ["eau", 420, "ml", "pate"], ["huile", 120, "ml", "pate", "fix"]],
+  [["انقع الحلبة في ماء فاتر ساعة، وصفّها.",
+    "Faites tremper le fenugrec une heure dans l'eau tiède, et égouttez.",
+    "Soak the fenugreek one hour in warm water, and drain."],
+   ["حضر عجين المسمن، افرده رقيقا واطبخه، ثم قطّعه شرائط باليد: هذا هو التريد.",
+    "Préparez la pâte à msemen, étalez-la finement, cuisez-la puis déchirez-la à la main : c'est le trid.",
+    "Make the msemen dough, stretch it thin, cook it, then tear it by hand: that is trid."],
+   ["اطبخ الدجاج مع البصل المقطع رقيقا والتوابل والحلبة والعدس في الماء، ساعة وربع.",
+    "Cuisez le poulet avec l'oignon émincé, les épices, le fenugrec et les lentilles dans l'eau, une heure et quart.",
+    "Cook the chicken with the sliced onion, spices, fenugreek and lentils in the water for an hour and a quarter."],
+   ["بخّر التريد فوق المرق عشر دقائق ليتشرب البخار.",
+    "Passez le trid à la vapeur au-dessus du bouillon dix minutes.",
+    "Steam the trid over the broth for ten minutes."],
+   ["افرش التريد في الطبق، اسكب عليه المرق، ثم ضع الدجاج والعدس والبصل فوقه.",
+    "Étalez le trid dans le plat, arrosez-le de bouillon, puis disposez poulet, lentilles et oignons dessus.",
+    "Spread the trid in the dish, ladle the broth over it, then arrange chicken, lentils and onions on top."]],
+  ["الحلبة تمرّ إن أفرطت: ثلاثون غراما لستة أشخاص هي الحد.",
+    "Le fenugrec amérise si l'on en abuse : trente grammes pour six est la limite.",
+    "Fenugreek turns bitter in excess: thirty grams for six is the limit."]);
+
+R("RCP-181", "c15", 3, 8, [60, 0, 60, 0], 1, "pc",
+  ["بسطيلة بالدجاج", "Pastilla au poulet", "Chicken Pastilla"],
+  ["حلو ومملح، بالقرفة واللوز", "Sucrée-salée, cannelle et amandes", "Sweet and savoury, cinnamon and almonds"],
+  "pastilla poulet amande cannelle fete",
+  [["warqa", 10, "pc", "pate"], ["beurre_f", 100, "g", "pate"], ["oeuf", 1, "pc", "pate", "fix"],
+   ["poulet", 1200, "g", "farce"], ["oignon", 600, "g", "farce"], ["huile_oli", 70, "ml", "farce"],
+   ["safran", 0.3, "g", "farce", "root"], ["gingembre_p", 6, "g", "farce", "root"],
+   ["cannelle", 8, "g", "farce", "fix"], ["poivre", 4, "g", "farce", "root"],
+   ["sel", 9, "g", "farce", "root"], ["coriandre", 40, "g", "farce"], ["persil", 25, "g", "farce"],
+   ["oeuf", 6, "pc", "farce"], ["jus_cit", 25, "ml", "farce"],
+   ["amande_m", 250, "g", "decor"], ["sucre_glace", 100, "g", "decor"], ["cannelle", 10, "g", "decor", "fix"]],
+  [["اطبخ الدجاج مع البصل والتوابل والأعشاب حتى يتفكك، ثم فتّته وأزل العظم.",
+    "Cuisez le poulet avec l'oignon, les épices et les herbes jusqu'à ce qu'il se détache, effilez-le et désossez.",
+    "Cook the chicken with the onion, spices and herbs until it falls apart, shred it and remove the bones."],
+   ["ركّز المرق حتى يجف تماما، ثم اسكب فيه البيض المخفوق وحرّك حتى يتماسك: هذه هي الحشوة الثانية.",
+    "Faites réduire le bouillon à sec, puis versez-y les œufs battus et brouillez : c'est la seconde farce.",
+    "Reduce the broth to dryness, then pour in the beaten eggs and scramble: that is the second filling."],
+   ["اقل اللوز، صفّه واكسره خشنا مع السكر والقرفة.",
+    "Faites frire les amandes, égouttez et concassez-les avec le sucre et la cannelle.",
+    "Fry the almonds, drain and crush them with the sugar and cinnamon."],
+   ["ركّب في قالب مدهون: ورقات، لوز، دجاج، بيض، ثم ورقات، واطو الأطراف.",
+    "Montez dans un moule beurré : feuilles, amandes, poulet, œufs, puis feuilles, et repliez les bords.",
+    "Build in a buttered tin: sheets, almonds, chicken, eggs, then sheets, and fold the edges in."],
+   ["ادهنها بالبيض واخبزها 45 دقيقة على 180 درجة، ثم زخرفها بالسكر والقرفة.",
+    "Dorez à l'œuf et enfournez 45 minutes à 180 °C, puis décorez de sucre et de cannelle.",
+    "Brush with egg and bake 45 minutes at 180 °C, then decorate with sugar and cinnamon."]],
+  ["المرق يجب أن يجف تماما قبل البيض: أي رطوبة تبقى تبلل الورقة من الداخل.",
+    "Le bouillon doit être totalement réduit avant les œufs : toute humidité restante détrempe la feuille de l'intérieur.",
+    "The broth must be fully reduced before the eggs: any moisture left soaks the pastry from within."]);
+
+R("RCP-182", "c15", 2, 6, [20, 120, 180, 0], 6, "pc",
+  ["مشوي", "Mechoui d'agneau", "Lamb Mechoui"],
+  ["بالكمون والملح فقط", "Au cumin et au sel, rien d'autre", "Cumin and salt, nothing else"],
+  "mechoui agneau four cumin",
+  [["agneau", 2000, "g", "base"], ["smen", 80, "g", "base"], ["huile_oli", 40, "ml", "base"],
+   ["cumin", 15, "g", "base", "root"], ["sel", 20, "g", "base", "root"],
+   ["ail", 20, "g", "base"], ["paprika", 6, "g", "base", "root"],
+   ["cumin", 10, "g", "decor", "root"], ["sel", 10, "g", "decor", "root"]],
+  [["اخلط السمن والزيت والثوم المدقوق والكمون والملح والفلفل الحلو.",
+    "Mélangez le smen, l'huile, l'ail pilé, le cumin, le sel et le paprika.",
+    "Mix the smen, oil, crushed garlic, cumin, salt and paprika."],
+   ["دهّن اللحم بالخليط في كل مكان، وأدخله في الشقوق.",
+    "Enrobez la viande partout, en poussant le mélange dans les entailles.",
+    "Coat the meat all over, pushing the mix into the slits."],
+   ["اتركه ساعتين في البرد.",
+    "Laissez mariner deux heures au frais.",
+    "Marinate two hours in the fridge."],
+   ["اشوِه مغطى بورق الألومنيوم ثلاث ساعات على 150 درجة.",
+    "Rôtissez-le couvert de papier aluminium trois heures à 150 °C.",
+    "Roast it covered in foil for three hours at 150 °C."],
+   ["ارفع الورق آخر عشرين دقيقة، وقدّمه مع الكمون والملح في طبقين صغيرين.",
+    "Retirez le papier les vingt dernières minutes, et servez avec cumin et sel dans deux petites coupelles.",
+    "Remove the foil for the last twenty minutes, and serve with cumin and salt in two small dishes."]],
+  ["الكمون والملح يقدمان على المائدة، لا في الطبق: كل ضيف يقدّر جرعته.",
+    "Le cumin et le sel se présentent à table, non dans le plat : chaque convive dose lui-même.",
+    "Cumin and salt come to the table, not in the dish: each guest doses their own."]);
+
+R("RCP-183", "c15", 2, 8, [25, 120, 25, 0], 4, "pc",
+  ["خبز الدار", "Khobz maison", "Moroccan Home Bread"],
+  ["قرص الخبز اليومي", "La galette de tous les jours", "The everyday round loaf"],
+  "khobz pain maison semoule",
+  [["farine", 600, "g", "base"], ["semoule_f", 200, "g", "base"],
+   ["levure_b", 12, "g", "base", "root"], ["sel", 14, "g", "base", "root"],
+   ["sucre", 10, "g", "base"], ["huile_oli", 40, "ml", "base"], ["eau", 480, "ml", "base"],
+   ["semoule_f", 60, "g", "decor"]],
+  [["أذب الخميرة والسكر في ماء فاتر واتركهما عشر دقائق.",
+    "Délayez la levure et le sucre dans l'eau tiède et laissez dix minutes.",
+    "Dissolve the yeast and sugar in the warm water and leave ten minutes."],
+   ["اخلط الدقيق والسميد والملح، ثم اعجن بالماء والزيت عشر دقائق.",
+    "Mélangez farine, semoule et sel, puis pétrissez avec l'eau et l'huile dix minutes.",
+    "Mix the flour, semolina and salt, then knead with the water and oil for ten minutes."],
+   ["كوّر أربعة أقراص، مررها في السميد وافرشها على قماش.",
+    "Formez quatre boules, passez-les dans la semoule et posez-les sur un linge.",
+    "Shape four rounds, coat them in semolina and set them on a cloth."],
+   ["اضغطها لتصبح أقراصا بسماكة سنتيمتر ونصف، وغطها ساعتين.",
+    "Aplatissez-les à un centimètre et demi, et couvrez deux heures.",
+    "Flatten them to a centimetre and a half, and cover for two hours."],
+   ["اثقبها بالشوكة واخبزها 25 دقيقة على 220 درجة.",
+    "Piquez-les à la fourchette et enfournez 25 minutes à 220 °C.",
+    "Prick them with a fork and bake 25 minutes at 220 °C."]],
+  ["ثقب الشوكة يمنع القرص من الانتفاخ كالبالون وانفصال القشرة عن اللب.",
+    "Les piqûres empêchent la galette de gonfler en ballon et la croûte de se détacher de la mie.",
+    "The pricking stops the loaf ballooning and the crust separating from the crumb."]);
+
+R("RCP-184", "c15", 2, 8, [20, 90, 20, 0], 12, "pc",
+  ["بطبوط", "Batbout", "Batbout"],
+  ["خبز المقلاة المجوف", "Le pain creux de la poêle", "The hollow pan bread"],
+  "batbout pain poele mkhamer",
+  [["farine", 400, "g", "base"], ["semoule_f", 300, "g", "base"],
+   ["levure_b", 10, "g", "base", "root"], ["levure_c", 5, "g", "base", "root"],
+   ["sel", 10, "g", "base", "root"], ["sucre", 12, "g", "base"], ["eau", 480, "ml", "base"]],
+  [["اخلط الدقيق والسميد والخميرتين والملح والسكر.",
+    "Mélangez farine, semoule, les deux levures, le sel et le sucre.",
+    "Mix the flour, semolina, both leaveners, salt and sugar."],
+   ["اعجن بالماء الفاتر حتى تحصل على عجين لين جدا، ثم اعجنه عشر دقائق.",
+    "Pétrissez à l'eau tiède jusqu'à une pâte très souple, puis travaillez-la dix minutes.",
+    "Knead with warm water to a very soft dough, then work it ten minutes."],
+   ["كوّر كرات صغيرة، افرشها على قماش مرشوش بالسميد وغطها.",
+    "Formez de petites boules, posez-les sur un linge saupoudré de semoule et couvrez.",
+    "Shape small balls, set them on a semolina-dusted cloth and cover."],
+   ["اضغطها بعد نصف ساعة لتصبح أقراصا رقيقة، ودعها ترتفع ساعة.",
+    "Aplatissez-les après une demi-heure en galettes fines, et laissez lever une heure.",
+    "Flatten them after half an hour into thin rounds, and let them rise an hour."],
+   ["اطبخها في مقلاة جافة على نار متوسطة: تنتفخ وتتجوف من نفسها.",
+    "Cuisez-les à la poêle sèche à feu moyen : elles gonflent et se creusent d'elles-mêmes.",
+    "Cook them in a dry pan over medium heat: they puff and hollow on their own."]],
+  ["مقلاة جافة ونار متوسطة: بالزيت لا ينتفخ البطبوط، وعلى نار قوية يحترق قبل أن يتجوف.",
+    "Poêle sèche et feu moyen : avec de l'huile le batbout ne gonfle pas, à feu vif il brûle avant de se creuser.",
+    "Dry pan and medium heat: with oil the batbout will not puff, over high heat it burns before it hollows."]);
+
+R("RCP-185", "c15", 2, 6, [30, 60, 60, 0], 6, "pc",
+  ["دجاج مشرمل", "Poulet mchermel", "Mchermel Chicken"],
+  ["بالشرمولة والزيتون", "À la chermoula et aux olives", "With chermoula and olives"],
+  "poulet mchermel chermoula olive citron confit",
+  [["poulet", 1500, "g", "base"], ["oignon", 300, "g", "base"], ["ail", 30, "g", "base"],
+   ["coriandre", 45, "g", "base"], ["persil", 25, "g", "base"], ["huile_oli", 80, "ml", "base"],
+   ["paprika", 8, "g", "base", "root"], ["cumin", 7, "g", "base", "root"],
+   ["gingembre_p", 5, "g", "base", "root"], ["safran", 0.2, "g", "base", "root"],
+   ["poivre", 3, "g", "base", "root"], ["sel", 9, "g", "base", "root"],
+   ["jus_cit", 50, "ml", "base"], ["eau", 350, "ml", "base"],
+   ["citron_confit", 100, "g", "decor"], ["olive_verte", 150, "g", "decor"]],
+  [["حضّر الشرمولة: ثوم مدقوق، كزبرة، معدنوس، توابل، عصير ليمون وزيت.",
+    "Préparez la chermoula : ail pilé, coriandre, persil, épices, jus de citron et huile.",
+    "Make the chermoula: crushed garlic, coriander, parsley, spices, lemon juice and oil."],
+   ["دهّن الدجاج بها واتركه ساعة في البرد.",
+    "Enrobez-en le poulet et laissez mariner une heure au frais.",
+    "Coat the chicken with it and marinate one hour in the fridge."],
+   ["قلّبه في قدر مع البصل حتى يذهب لونه قليلا.",
+    "Faites-le revenir dans une cocotte avec l'oignon, jusqu'à légère coloration.",
+    "Brown it lightly in a casserole with the onion."],
+   ["أضف الماء وباقي الشرمولة، غط واطبخ خمسا وأربعين دقيقة.",
+    "Ajoutez l'eau et le reste de chermoula, couvrez et cuisez quarante-cinq minutes.",
+    "Add the water and the rest of the chermoula, cover and cook forty-five minutes."],
+   ["أضف الزيتون والحامض المصير، وارفع الغطاء ليتماسك المرق.",
+    "Ajoutez olives et citron confit, et découvrez pour laisser la sauce réduire.",
+    "Add the olives and preserved lemon, and uncover to let the sauce reduce."]],
+  ["نصف الشرمولة للتخمير ونصفها للطهي: الأولى تعطي العمق، الثانية تعطي الطعم الطازج.",
+    "Moitié pour la marinade, moitié pour la cuisson : la première donne la profondeur, la seconde la fraîcheur.",
+    "Half for the marinade, half for the cooking: the first gives depth, the second freshness."]);
+</script>
+
 <script>
 "use strict";
 
 /* Version du jeu de recettes livre. Toute augmentation declenche l'ajout
    des recettes manquantes, sans jamais toucher a celles que vous avez creees. */
-const SEED_VERSION = 3;
+const SEED_VERSION = 5;
 const SEEDV_KEY = "darhlou.seedv";
 
 function allSeed() {
@@ -4842,7 +6187,7 @@ function allSeed() {
 function mergeIngs() {
   const have = {};
   S.ings.forEach(function (g) { have[g.id] = 1; });
-  ING_SEED.forEach(function (g) { if (!have[g.id]) S.ings.push(g); });
+  ING_SEED.concat(ING_SUBS_SEED, ING_SALE_SEED).forEach(function (g) { if (!have[g.id]) S.ings.push(g); });
 }
 function localSeedVersion() {
   try { return Number(localStorage.getItem(SEEDV_KEY) || 0); } catch (e) { return 0; }
@@ -4884,6 +6229,7 @@ function setField(path, val) {
 function openRecipe(id) {
   S.recipeId = id;
   S.portions = null;
+  S.diet = null;
   S.screen = "recipe";
   render();
   window.scrollTo(0, 0);
@@ -4994,11 +6340,13 @@ document.addEventListener("click", function (ev) {
       render(); window.scrollTo(0, 0); break;
     case "open": openRecipe(v); break;
     case "clearq": S.query = ""; render(); break;
-    case "clearf": S.filter = { cat: "", diff: "", maxTime: "", minPort: "" }; render(); break;
+    case "clearf": S.filter = { cat: "", diff: "", maxTime: "", minPort: "", diet: "" }; render(); break;
 
     case "pminus": S.portions = Math.max(1, (S.portions || recipeById(S.recipeId).portions) - 1); render(); break;
     case "pplus": S.portions = (S.portions || recipeById(S.recipeId).portions) + 1; render(); break;
     case "pset": S.portions = Number(v); render(); break;
+    case "diet": S.diet = v || null; render(); window.scrollTo(0, 0); break;
+    case "fdiet": break;
     case "chk":
       S.checked[v] = !S.checked[v];
       el.setAttribute("data-done", S.checked[v] ? "1" : "0");
@@ -5137,6 +6485,7 @@ document.addEventListener("change", function (ev) {
     case "ftime": S.filter.maxTime = val; render(); break;
     case "fport": S.filter.minPort = val; render(); break;
     case "fsort": S.sort = val; render(); break;
+    case "fdietf": S.filter.diet = val; render(); break;
     case "fcat": S.draft.cat = val; render(); break;
     case "fdiffe": S.draft.diff = Number(val); break;
     case "fyu": S.draft.yieldU = val; break;
@@ -5177,7 +6526,7 @@ document.addEventListener("keydown", function (ev) {
 /* ---------- demarrage ---------- */
 function boot() {
   const had = loadLocal();
-  if (!S.ings.length) S.ings = ING_SEED.slice();
+  if (!S.ings.length) S.ings = ING_SEED.concat(ING_SUBS_SEED, ING_SALE_SEED);
   if (!had) {
     S.recipes = allSeed();
     mergeIngs();
