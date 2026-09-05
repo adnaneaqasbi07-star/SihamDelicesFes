@@ -301,6 +301,25 @@ main{flex:1;padding:0 0 calc(env(safe-area-inset-bottom) + 84px)}
 .step[data-done="1"] .tx{color:var(--ink-faint)}
 .step .tx{flex:1;font-size:15px;line-height:1.55}
 [dir="rtl"] .step .tx{font-size:16.5px}
+.gate{min-height:100dvh;display:grid;place-items:center;padding:36px 20px;background:var(--ground)}
+.gatecard{width:100%;max-width:420px;text-align:center}
+.gatecard .brand{font-size:26px;justify-content:center;margin-bottom:6px}
+.gatecard h2{font-family:Marcellus,Georgia,serif;font-weight:400;font-size:24px;margin:22px 0 10px}
+[dir="rtl"] .gatecard h2{font-family:Amiri,serif;font-weight:700}
+.gatecard p{font-size:14.5px;color:var(--ink-soft);margin:0 auto 20px;max-width:34ch}
+.gatecard .mark{font-size:44px;line-height:1;margin-bottom:4px}
+.gatecard .who{font-size:13px;color:var(--ink-faint);margin-top:16px}
+.gbtn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:50px;
+  padding:0 24px;border-radius:999px;background:var(--accent);color:var(--on-accent);
+  font-size:15.5px;font-weight:500;box-shadow:var(--shadow-2)}
+.reqrow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:12px 13px;border-bottom:1px solid var(--line-soft)}
+.reqrow:last-child{border-bottom:0}
+.reqrow .who{flex:1 1 100%;order:1;min-width:0;font-size:14.5px;line-height:1.3;text-align:start;
+  overflow-wrap:anywhere}
+.reqrow .who em{font-style:normal;display:block;color:var(--ink-faint);font-size:12.5px}
+[dir="rtl"] .reqrow .who{font-size:16px}
+.reqrow .dv{order:2}
+.reqrow .acts{order:3;display:flex;gap:6px;flex-shrink:0;margin-inline-start:auto}
 .dietbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:10px 0 2px}
 .dietrow{display:flex;align-items:center;gap:11px;width:100%;text-align:start;padding:10px 13px;border-bottom:1px solid var(--line-soft)}
 .dietrow:last-child{border-bottom:0}
@@ -309,11 +328,11 @@ main{flex:1;padding:0 0 calc(env(safe-area-inset-bottom) + 84px)}
 .dietrow .dn em{font-style:normal;color:var(--ink-faint);font-size:12.5px;display:block}
 [dir="rtl"] .dietrow .dn{font-size:16px}
 [dir="rtl"] .dietrow .dn em{font-size:14px}
-.dietrow .dv{flex:0 0 auto;font-size:11.5px;font-weight:500;padding:2px 8px;border-radius:4px;white-space:nowrap}
-[dir="rtl"] .dietrow .dv{font-size:13px}
-.dietrow .dv.ok{background:var(--accent-wash);color:var(--ok)}
-.dietrow .dv.adapt{background:var(--gold-wash);color:var(--warn)}
-.dietrow .dv.no{background:var(--danger-wash);color:var(--danger)}
+.dv{flex:0 0 auto;font-size:11.5px;font-weight:500;padding:2px 8px;border-radius:4px;white-space:nowrap}
+[dir="rtl"] .dv{font-size:13px}
+.dv.ok{background:var(--accent-wash);color:var(--ok)}
+.dv.adapt{background:var(--gold-wash);color:var(--warn)}
+.dv.no{background:var(--danger-wash);color:var(--danger)}
 button.dietrow:active{background:var(--surface-2)}
 .tipbox{background:var(--gold-wash);border-inline-start:2px solid var(--gold);border-radius:0 var(--r-s) var(--r-s) 0;padding:13px 15px;margin:12px 0;font-size:14.5px;line-height:1.55}
 [dir="rtl"] .tipbox{border-radius:var(--r-s) 0 0 var(--r-s);font-size:16px}
@@ -569,6 +588,38 @@ const UI = {
   qs:           { ar: "حسب الحاجة", fr: "q.s.", en: "as needed" },
 
   diets:        { ar: "الأنظمة الغذائية", fr: "Régimes", en: "Diets" },
+
+  a_signin:     { ar: "الدخول بحساب Google", fr: "Se connecter avec Google", en: "Sign in with Google" },
+  a_signout:    { ar: "تسجيل الخروج", fr: "Se déconnecter", en: "Sign out" },
+  a_welcome:    { ar: "وصفات محفوظة", fr: "Un recueil protégé", en: "A protected collection" },
+  a_intro:      { ar: "هذه الوصفات خاصة. سجّل الدخول بحساب Google، وسيوافق المسؤول على طلبك.",
+                  fr: "Ces recettes sont privées. Connectez-vous avec Google : l'administrateur validera votre demande.",
+                  en: "These recipes are private. Sign in with Google and the administrator will approve your request." },
+  a_pending_t:  { ar: "طلبك في انتظار الموافقة", fr: "Votre demande est en attente", en: "Your request is pending" },
+  a_pending_b:  { ar: "سجّلنا طلبك. ستحصل على الدخول بمجرد أن يوافق عليه المسؤول.",
+                  fr: "Votre demande est enregistrée. L'accès s'ouvrira dès que l'administrateur l'aura approuvée.",
+                  en: "Your request is recorded. Access opens as soon as the administrator approves it." },
+  a_refused_t:  { ar: "الدخول مرفوض", fr: "Accès refusé", en: "Access refused" },
+  a_refused_b:  { ar: "لم يُمنح لك الدخول إلى هذا الرصيد. اتصل بالمسؤول إن كان ذلك خطأ.",
+                  fr: "L'accès à ce recueil ne vous a pas été accordé. Contactez l'administrateur si c'est une erreur.",
+                  en: "Access to this collection has not been granted. Contact the administrator if this is a mistake." },
+  a_admin:      { ar: "إدارة الدخول", fr: "Gestion des accès", en: "Access management" },
+  a_requests:   { ar: "الطلبات", fr: "Demandes", en: "Requests" },
+  a_approve:    { ar: "موافقة", fr: "Approuver", en: "Approve" },
+  a_refuse:     { ar: "رفض", fr: "Refuser", en: "Refuse" },
+  a_revoke:     { ar: "إلغاء الموافقة", fr: "Révoquer", en: "Revoke" },
+  a_st_wait:    { ar: "في الانتظار", fr: "En attente", en: "Pending" },
+  a_st_ok:      { ar: "مقبول", fr: "Approuvé", en: "Approved" },
+  a_st_no:      { ar: "مرفوض", fr: "Refusé", en: "Refused" },
+  a_none:       { ar: "لا توجد طلبات", fr: "Aucune demande", en: "No requests" },
+  a_you:        { ar: "أنت", fr: "vous", en: "you" },
+  a_admin_only: { ar: "المسؤول وحده يرى هذه الصفحة.", fr: "Seul l'administrateur voit cette page.", en: "Only the administrator sees this page." },
+  a_error:      { ar: "تعذر الاتصال بالخادم", fr: "Connexion au serveur impossible", en: "Could not reach the server" },
+  a_checking:   { ar: "جاري التحقق…", fr: "Vérification…", en: "Checking…" },
+  a_config_t:   { ar: "التهيئة مطلوبة", fr: "Configuration requise", en: "Configuration required" },
+  a_config_b:   { ar: "هذه النسخة لا تحتوي على الوصفات: تأتي من قاعدة البيانات. أدخل عنوان مشروع Supabase ومفتاح anon في أعلى الملف.",
+                  fr: "Cette version ne contient pas les recettes : elles viennent de la base. Renseignez l'adresse du projet Supabase et la clé anon en haut du fichier.",
+                  en: "This build carries no recipes: they come from the database. Fill in the Supabase project URL and anon key at the top of the file." },
   d_sugar_str:  { ar: "السكر يحدد قوام المثلجات: تقليله يغير الوصفة نفسها، لا طعمها فقط.",
                   fr: "Le sucre fixe la texture d'une glace : le réduire change la recette, pas seulement le goût.",
                   en: "Sugar sets the texture of a frozen dessert: cutting it changes the recipe, not just the taste." },
@@ -1224,6 +1275,7 @@ const S = {
   filter: { cat: "", diff: "", maxTime: "", minPort: "", diet: "" },
   sort: "name",
   diet: null,
+  demandes: null,
   draft: null,
   ings: [],
   recipes: [],
@@ -1445,10 +1497,23 @@ function dbWrite(path, body) {
     return null;
   });
 }
-function pushRecipe(r) { return dbWrite("recipes/" + r.id, r); }
-function pushIngs() { return dbWrite("catalog/ingredients", { items: S.ings }); }
-function pushStock() { return dbWrite("catalog/stock", { items: S.stock }); }
-function pushShop() { return dbWrite("state/shop", { items: S.shop }); }
+/* Une seule porte de sortie pour chaque écriture : Supabase si
+   l'authentification est active, sinon la base claude.ai, sinon rien
+   (le stockage local a déjà été mis à jour par l'appelant). */
+function ecrire(fnSupa, cheminDb, corpsDb) {
+  if (typeof supaOn === "function" && supaOn()) {
+    return fnSupa().catch(function (e) {
+      if (e && e.code === 403) toast(t("d_no"));
+      else toast(t("err_save"));
+      return null;
+    });
+  }
+  return dbWrite(cheminDb, corpsDb);
+}
+function pushRecipe(r) { return ecrire(function () { return supaSaveRecipe(r); }, "recipes/" + r.id, r); }
+function pushIngs()    { return ecrire(supaSaveIngs, "catalog/ingredients", { items: S.ings }); }
+function pushStock()   { return ecrire(supaSavePrefs, "catalog/stock", { items: S.stock }); }
+function pushShop()    { return ecrire(supaSavePrefs, "state/shop", { items: S.shop }); }
 
 async function seedAll() {
   S.ings = ING_SEED.concat(ING_SUBS_SEED, ING_SALE_SEED);
@@ -1612,6 +1677,21 @@ function render() {
   const rtl = !!RTL[S.lang];
   document.documentElement.lang = S.lang;
   document.documentElement.dir = rtl ? "rtl" : "ltr";
+
+  /* version protégée non configurée : ni recettes embarquées, ni base */
+  if (!AUTH.actif && !S.recipes.length && !allSeed().length) {
+    $("#app").innerHTML = gateCard("⚙", t("a_config_t"), t("a_config_b"), "");
+    return;
+  }
+
+  /* porte d'accès : rien de l'application ne s'affiche sans approbation */
+  if (AUTH.actif) {
+    if (!AUTH.pret)                    { $("#app").innerHTML = scChecking(); return; }
+    if (!AUTH.session)                 { $("#app").innerHTML = scLogin();    return; }
+    if (AUTH.statut === "refuse")      { $("#app").innerHTML = scRefused();  return; }
+    if (AUTH.statut !== "approuve")    { $("#app").innerHTML = scPending();  return; }
+  }
+
   let body = "";
   switch (S.screen) {
     case "home":   body = scHome(); break;
@@ -1622,6 +1702,7 @@ function render() {
     case "shop":   body = scShop(); break;
     case "stock":  body = scStock(); break;
     case "set":    body = scSettings(); break;
+    case "admin":  body = scAdmin(); break;
     default:       body = scHome();
   }
   $("#app").innerHTML =
@@ -1629,6 +1710,73 @@ function render() {
     '<main><div class="wrap">' + body + "</div></main>" +
     tabbar();
   afterRender();
+}
+
+/* ---------- écrans d'accès ---------- */
+function gateCard(mark, titre, corps, action, who) {
+  return '<div class="gate"><div class="gatecard">' +
+    '<div class="brand"><b>Siham</b> <span>Délice de Fès</span></div>' +
+    (mark ? '<div class="mark" aria-hidden="true">' + mark + "</div>" : "") +
+    "<h2>" + esc(titre) + "</h2>" +
+    "<p>" + esc(corps) + "</p>" +
+    (action || "") +
+    (who ? '<p class="who">' + esc(who) + "</p>" : "") +
+    "</div></div>";
+}
+function scLogin() {
+  return gateCard("🍪", t("a_welcome"), t("a_intro"),
+    '<button class="gbtn" data-act="signin">' + esc(t("a_signin")) + "</button>" +
+    (AUTH.erreur ? '<p class="who" style="color:var(--danger)">' + esc(AUTH.erreur) + "</p>" : ""));
+}
+function scPending() {
+  return gateCard("⏳", t("a_pending_t"), t("a_pending_b"),
+    '<button class="btn ghost" data-act="signout">' + esc(t("a_signout")) + "</button>",
+    AUTH.user ? AUTH.user.email : "");
+}
+function scRefused() {
+  return gateCard("⊘", t("a_refused_t"), t("a_refused_b"),
+    '<button class="btn ghost" data-act="signout">' + esc(t("a_signout")) + "</button>",
+    AUTH.user ? AUTH.user.email : "");
+}
+function scChecking() {
+  return gateCard("", t("a_checking"), "", "");
+}
+function scAdmin() {
+  if (!estAdmin()) { S.screen = "set"; return scSettings(); }
+  let h = '<div class="pad">' +
+    '<button class="btn ghost sm" data-act="nav" data-v="set" style="margin-bottom:12px">← ' + esc(t("tab_set")) + "</button>" +
+    '<h1 class="h-screen serif">' + esc(t("a_admin")) + "</h1>" +
+    '<p class="sub">' + esc(t("a_admin_only")) + "</p>";
+  if (S.demandes === null) {
+    h += '<div class="empty">' + esc(t("loading")) + "</div>";
+  } else if (!S.demandes.length) {
+    h += '<div class="empty"><div class="big">✉</div><p>' + esc(t("a_none")) + "</p></div>";
+  } else {
+    const ordre = { en_attente: 0, approuve: 1, refuse: 2 };
+    const rang = function (st) { return Object.prototype.hasOwnProperty.call(ordre, st) ? ordre[st] : 9; };
+    const liste = S.demandes.slice().sort(function (a, b) {
+      return rang(a.statut) - rang(b.statut);
+    });
+    h += '<div class="card">';
+    liste.forEach(function (d) {
+      const moi = AUTH.user && d.user_id === AUTH.user.id;
+      const badge = d.statut === "approuve" ? '<span class="dv ok">' + esc(t("a_st_ok")) + "</span>"
+                  : d.statut === "refuse" ? '<span class="dv no">' + esc(t("a_st_no")) + "</span>"
+                  : '<span class="dv adapt">' + esc(t("a_st_wait")) + "</span>";
+      let actions = "";
+      if (!moi) {
+        if (d.statut !== "approuve") actions += '<button class="btn sm primary" data-act="approve" data-v="' + esc(d.user_id) + '">' + esc(t("a_approve")) + "</button>";
+        if (d.statut === "approuve") actions += '<button class="btn sm danger" data-act="refuse" data-v="' + esc(d.user_id) + '">' + esc(t("a_revoke")) + "</button>";
+        else if (d.statut !== "refuse") actions += '<button class="btn sm danger" data-act="refuse" data-v="' + esc(d.user_id) + '">' + esc(t("a_refuse")) + "</button>";
+      }
+      h += '<div class="reqrow"><span class="who">' + esc(d.email || d.user_id) +
+        (d.nom ? " <em>" + esc(d.nom) + "</em>" : "") +
+        (moi ? ' <em>(' + esc(t("a_you")) + ")</em>" : "") + "</span>" +
+        badge + '<span class="acts">' + actions + "</span></div>";
+    });
+    h += "</div>";
+  }
+  return h + "</div>";
 }
 
 function topbar() {
@@ -2317,6 +2465,16 @@ function scSettings() {
       '<button class="btn ghost" data-act="jsonin">' + esc(t("import_json")) + "</button>" +
       '<button class="btn ghost" data-act="reseed">' + esc(t("reseed")) + "</button>" +
     "</div>";
+
+  if (AUTH.actif && AUTH.session) {
+    h += '<p class="eyebrow">' + esc(t("a_admin")) + '</p><div class="card" style="padding:14px 16px">' +
+      '<div style="font-size:14px;margin-bottom:10px">' + esc(AUTH.user ? AUTH.user.email : "") +
+      (estAdmin() ? ' <span class="badge">' + esc(t("a_admin")) + "</span>" : "") + "</div>" +
+      '<div class="row">' +
+      (estAdmin() ? '<button class="btn sm" data-act="nav" data-v="admin">' + esc(t("a_requests")) + "</button>" : "") +
+      '<button class="btn sm ghost" data-act="signout">' + esc(t("a_signout")) + "</button>" +
+      "</div></div>";
+  }
 
   h += '<p class="eyebrow">' + esc(t("about")) + '</p>' +
     '<p class="muted" style="font-size:13.5px">Siham Délice de Fès — ' + esc(t("app_tag")) +
@@ -6201,6 +6359,267 @@ function setLocalSeedVersion(v) {
 "use strict";
 
 /* =====================================================================
+   Accès protégé par Google — client Supabase minimal
+   ---------------------------------------------------------------------
+   Tant que SUPA.url est vide, tout ce fichier reste inerte : l'application
+   fonctionne comme avant, sans écran de connexion. Renseignez les deux
+   valeurs ci-dessous pour activer l'authentification.
+
+   Où les trouver : tableau de bord Supabase → Project Settings → API.
+   La clé « anon / publishable » est faite pour être publiée ; ce ne sont
+   pas elle qui protège les données mais les règles Row Level Security.
+   N'inscrivez JAMAIS ici la clé service_role.
+   ===================================================================== */
+
+const SUPA = {
+  url: "",                                   /* https://xxxxxxxx.supabase.co */
+  key: "",                                   /* clé anon / publishable       */
+  admin: "adnane.aqasbi07@gmail.com"
+};
+
+const AUTH = {
+  actif: false,      /* Supabase configuré */
+  session: null,     /* { access_token, refresh_token, expires_at } */
+  user: null,        /* { id, email, nom } */
+  statut: null,      /* en_attente | approuve | refuse */
+  pret: false,       /* la vérification est terminée */
+  erreur: null
+};
+
+const TOK_KEY = "darhlou.session";
+
+/* ---------- utilitaires ---------- */
+function b64urlDecode(s) {
+  s = s.replace(/-/g, "+").replace(/_/g, "/");
+  while (s.length % 4) s += "=";
+  try { return decodeURIComponent(escape(atob(s))); } catch (e) { return null; }
+}
+function jwtPayload(tok) {
+  if (!tok) return null;
+  const parts = String(tok).split(".");
+  if (parts.length < 2) return null;
+  const raw = b64urlDecode(parts[1]);
+  if (!raw) return null;
+  try { return JSON.parse(raw); } catch (e) { return null; }
+}
+function saveSession(s) {
+  AUTH.session = s;
+  try {
+    if (s) localStorage.setItem(TOK_KEY, JSON.stringify(s));
+    else localStorage.removeItem(TOK_KEY);
+  } catch (e) { /* quota */ }
+}
+function loadSession() {
+  try {
+    const raw = localStorage.getItem(TOK_KEY);
+    if (!raw) return null;
+    const s = JSON.parse(raw);
+    return s && s.access_token ? s : null;
+  } catch (e) { return null; }
+}
+
+/* ---------- appels HTTP ---------- */
+async function supaFetch(path, opts) {
+  opts = opts || {};
+  const h = Object.assign({
+    "apikey": SUPA.key,
+    "Content-Type": "application/json"
+  }, opts.headers || {});
+  if (AUTH.session && AUTH.session.access_token && !opts.anon) {
+    h["Authorization"] = "Bearer " + AUTH.session.access_token;
+  }
+  const res = await fetch(SUPA.url + path, {
+    method: opts.method || "GET",
+    headers: h,
+    body: opts.body ? JSON.stringify(opts.body) : undefined
+  });
+  if (res.status === 401 && !opts.dejaRafraichi) {
+    const ok = await refreshSession();
+    if (ok) return supaFetch(path, Object.assign({}, opts, { dejaRafraichi: true }));
+  }
+  if (!res.ok) {
+    let detail = "";
+    try { detail = (await res.json()).message || ""; } catch (e) { /* corps vide */ }
+    throw { code: res.status, message: detail || res.statusText };
+  }
+  if (res.status === 204) return null;
+  const txt = await res.text();
+  return txt ? JSON.parse(txt) : null;
+}
+
+/* ---------- session ---------- */
+function sessionFromResponse(d) {
+  if (!d || !d.access_token) return null;
+  return {
+    access_token: d.access_token,
+    refresh_token: d.refresh_token || null,
+    expires_at: Date.now() + (Number(d.expires_in || 3600) * 1000)
+  };
+}
+async function refreshSession() {
+  const s = AUTH.session;
+  if (!s || !s.refresh_token) return false;
+  try {
+    const d = await supaFetch("/auth/v1/token?grant_type=refresh_token", {
+      method: "POST", anon: true, body: { refresh_token: s.refresh_token }
+    });
+    const ns = sessionFromResponse(d);
+    if (!ns) return false;
+    saveSession(ns);
+    return true;
+  } catch (e) { saveSession(null); return false; }
+}
+
+/* récupère les jetons renvoyés par Google dans le fragment d'URL */
+function captureRedirect() {
+  const h = location.hash || "";
+  if (h.indexOf("access_token=") < 0 && h.indexOf("error=") < 0) return false;
+  const p = new URLSearchParams(h.replace(/^#/, ""));
+  if (p.get("error")) {
+    AUTH.erreur = p.get("error_description") || p.get("error");
+  } else {
+    const s = sessionFromResponse({
+      access_token: p.get("access_token"),
+      refresh_token: p.get("refresh_token"),
+      expires_in: p.get("expires_in")
+    });
+    if (s) saveSession(s);
+  }
+  try { history.replaceState(null, "", location.pathname + location.search); } catch (e) { location.hash = ""; }
+  return true;
+}
+
+function signInGoogle() {
+  const back = location.origin + location.pathname;
+  location.href = SUPA.url + "/auth/v1/authorize?provider=google&redirect_to=" + encodeURIComponent(back);
+}
+async function signOut() {
+  try { await supaFetch("/auth/v1/logout", { method: "POST" }); } catch (e) { /* sans importance */ }
+  saveSession(null);
+  AUTH.user = null; AUTH.statut = null;
+  try { localStorage.removeItem(LS_KEY); } catch (e) { /* ignore */ }
+  location.reload();
+}
+
+function estAdmin() {
+  return !!(AUTH.user && AUTH.user.email &&
+    AUTH.user.email.toLowerCase() === SUPA.admin.toLowerCase());
+}
+
+/* ---------- vérification de l'accès ---------- */
+async function verifierAcces() {
+  const pay = jwtPayload(AUTH.session && AUTH.session.access_token);
+  if (!pay || !pay.sub) { saveSession(null); return; }
+  AUTH.user = {
+    id: pay.sub,
+    email: pay.email || "",
+    nom: (pay.user_metadata && (pay.user_metadata.full_name || pay.user_metadata.name)) || ""
+  };
+
+  /* le déclencheur côté base crée la demande ; on la lit, et on la crée
+     nous-mêmes si le déclencheur n'a pas encore tourné */
+  let lignes = null;
+  try {
+    lignes = await supaFetch("/rest/v1/acces?select=statut&user_id=eq." + encodeURIComponent(AUTH.user.id));
+  } catch (e) {
+    AUTH.erreur = e.message || "lecture impossible";
+    return;
+  }
+  if (Array.isArray(lignes) && lignes.length) {
+    AUTH.statut = lignes[0].statut;
+    return;
+  }
+  try {
+    await supaFetch("/rest/v1/acces", {
+      method: "POST",
+      headers: { "Prefer": "resolution=merge-duplicates,return=minimal" },
+      body: [{ user_id: AUTH.user.id, email: AUTH.user.email, nom: AUTH.user.nom || null }]
+    });
+    AUTH.statut = estAdmin() ? "approuve" : "en_attente";
+  } catch (e) {
+    AUTH.statut = estAdmin() ? "approuve" : "en_attente";
+  }
+}
+
+/* ---------- Supabase comme magasin de données ----------
+   Quand l'authentification est active et l'accès approuvé, les recettes
+   viennent de Postgres et non du fichier. C'est ce qui rend la protection
+   réelle : la page ne contient plus rien à lire. */
+function supaOn() {
+  return !!(AUTH.actif && AUTH.statut === "approuve" && AUTH.user && AUTH.user.id);
+}
+
+async function supaLoad() {
+  const rows = await supaFetch("/rest/v1/recettes?select=id,data");
+  if (Array.isArray(rows)) {
+    const liste = rows.map(function (r) { return r.data; })
+                      .filter(function (x) { return x && x.id; });
+    if (liste.length) S.recipes = liste;
+  }
+  let cat = null;
+  try { cat = await supaFetch("/rest/v1/catalogue?select=cle,data"); } catch (e) { cat = null; }
+  (cat || []).forEach(function (c) {
+    if (c.cle !== "ingredients") return;
+    const items = Array.isArray(c.data) ? c.data
+                : (c.data && Array.isArray(c.data.items) ? c.data.items : null);
+    if (items && items.length) S.ings = items;
+  });
+  try {
+    const pr = await supaFetch("/rest/v1/prefs?select=data&user_id=eq." + encodeURIComponent(AUTH.user.id));
+    if (Array.isArray(pr) && pr.length && pr[0].data) {
+      if (pr[0].data.stock) S.stock = pr[0].data.stock;
+      if (pr[0].data.shop) S.shop = pr[0].data.shop;
+    }
+  } catch (e) { /* premières visites : aucune préférence enregistrée */ }
+  mergeIngs();
+  _idx.clear();
+  saveLocal();
+}
+
+function supaSaveRecipe(r) {
+  return supaFetch("/rest/v1/recettes", {
+    method: "POST",
+    headers: { "Prefer": "resolution=merge-duplicates,return=minimal" },
+    body: [{ id: r.id, data: r, modifie_le: new Date().toISOString() }]
+  });
+}
+function supaDeleteRecipe(id) {
+  return supaFetch("/rest/v1/recettes?id=eq." + encodeURIComponent(id), {
+    method: "DELETE", headers: { "Prefer": "return=minimal" }
+  });
+}
+function supaSaveIngs() {
+  return supaFetch("/rest/v1/catalogue", {
+    method: "POST",
+    headers: { "Prefer": "resolution=merge-duplicates,return=minimal" },
+    body: [{ cle: "ingredients", data: S.ings, modifie_le: new Date().toISOString() }]
+  });
+}
+function supaSavePrefs() {
+  return supaFetch("/rest/v1/prefs", {
+    method: "POST",
+    headers: { "Prefer": "resolution=merge-duplicates,return=minimal" },
+    body: [{ user_id: AUTH.user.id, data: { stock: S.stock, shop: S.shop }, modifie_le: new Date().toISOString() }]
+  });
+}
+
+/* ---------- administration des demandes ---------- */
+async function listerDemandes() {
+  return await supaFetch("/rest/v1/acces?select=user_id,email,nom,statut,demande_le&order=demande_le.desc");
+}
+async function trancherDemande(userId, statut) {
+  await supaFetch("/rest/v1/acces?user_id=eq." + encodeURIComponent(userId), {
+    method: "PATCH",
+    headers: { "Prefer": "return=minimal" },
+    body: { statut: statut, decide_le: new Date().toISOString(), decide_par: AUTH.user.email }
+  });
+}
+</script>
+
+<script>
+"use strict";
+
+/* =====================================================================
    Interactions et demarrage
    ===================================================================== */
 
@@ -6284,7 +6703,8 @@ function deleteRecipe(id) {
   _idx.delete(id);
   dropPhoto(id);
   saveLocal(); pushShop();
-  if (S.db) S.db.doc("recipes/" + id).delete().catch(function () {});
+  if (supaOn()) supaDeleteRecipe(id).catch(function () { toast(t("err_save")); });
+  else if (S.db) S.db.doc("recipes/" + id).delete().catch(function () {});
   toast(t("deleted"));
   S.screen = "list"; S.recipeId = null;
   render();
@@ -6334,6 +6754,11 @@ document.addEventListener("click", function (ev) {
     case "nav":
       S.screen = v;
       if (v === "list" || v === "ings") S.query = "";
+      if (v === "admin") {
+        S.demandes = null;
+        listerDemandes().then(function (d) { S.demandes = d || []; render(); })
+                        .catch(function () { S.demandes = []; toast(t("a_error")); render(); });
+      }
       render(); window.scrollTo(0, 0); break;
     case "cat":
       S.filter.cat = v || ""; S.query = ""; S.screen = "list";
@@ -6346,6 +6771,19 @@ document.addEventListener("click", function (ev) {
     case "pplus": S.portions = (S.portions || recipeById(S.recipeId).portions) + 1; render(); break;
     case "pset": S.portions = Number(v); render(); break;
     case "diet": S.diet = v || null; render(); window.scrollTo(0, 0); break;
+    case "signin": signInGoogle(); break;
+    case "signout": signOut(); break;
+    case "approve": case "refuse": {
+      const st = act === "approve" ? "approuve" : "refuse";
+      trancherDemande(v, st).then(function () {
+        return listerDemandes();
+      }).then(function (d) {
+        S.demandes = d || [];
+        toast(st === "approuve" ? t("a_st_ok") : t("a_st_no"));
+        render();
+      }).catch(function () { toast(t("a_error")); });
+      break;
+    }
     case "fdiet": break;
     case "chk":
       S.checked[v] = !S.checked[v];
@@ -6544,7 +6982,34 @@ function boot() {
   if (!S.printLang) S.printLang = S.lang;
   S.booted = true;
   render();
-  connectDb();
+  bootAuth().then(function () {
+    render();
+    if (!AUTH.actif) { connectDb(); return; }
+    if (!supaOn()) return;
+    supaLoad().then(function () { render(); })
+              .catch(function (e) {
+                AUTH.erreur = (e && e.message) || t("a_error");
+                toast(t("a_error"));
+              });
+  });
+}
+
+async function bootAuth() {
+  AUTH.actif = !!(SUPA.url && SUPA.key);
+  if (!AUTH.actif) { AUTH.pret = true; return; }
+  try {
+    captureRedirect();
+    AUTH.session = loadSession();
+    if (AUTH.session) {
+      if (AUTH.session.expires_at && AUTH.session.expires_at < Date.now() + 60000) {
+        await refreshSession();
+      }
+      if (AUTH.session) await verifierAcces();
+    }
+  } catch (e) {
+    AUTH.erreur = (e && e.message) || String(e);
+  }
+  AUTH.pret = true;
 }
 if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
 else boot();
@@ -6552,10 +7017,9 @@ else boot();
 
 <script>
 "use strict";
-/* Service worker : l'application fonctionne sans reseau une fois ouverte. */
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", function () {
-    navigator.serviceWorker.register("sw.js", { scope: "./" }).catch(function () { /* hors ligne indisponible */ });
+    navigator.serviceWorker.register("sw.js", { scope: "./" }).catch(function () {});
   });
 }
 </script>
